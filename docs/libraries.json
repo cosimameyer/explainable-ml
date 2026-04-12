@@ -1,5 +1,21 @@
 [
   {
+    "name": "dalex",
+    "known_for": "moDel Agnostic Language for Exploration and eXplanation: breakDown, SHAP, LIME, PDP, ALE, variable importance",
+    "description": "[\"Responsible Machine Learning with Interactive Explainability\"](https://dalex.drwhy.ai/python/)",
+    "repo": "ModelOriented/DALEX",
+    "docs": "https://dalex.drwhy.ai/python/",
+    "pypi": "https://pypi.org/project/dalex/",
+    "global": true,
+    "local": true,
+    "tabular": true,
+    "text": false,
+    "image": false,
+    "timeseries": false,
+    "blackbox": true,
+    "whitebox": false
+  },
+  {
     "name": "alibi",
     "known_for": "Anchors (classification), counterfactuals, ALE plots, and [more](https://docs.seldon.ai/alibi-explain/explanations/methods)",
     "description": "[\"[P]rovide high-quality implementations of black-box, white-box, local and global explanation methods for classification and regression models\"](https://pypi.org/project/alibi/)",
