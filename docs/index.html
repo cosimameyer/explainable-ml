@@ -312,8 +312,8 @@ COLUMNS.filter(c => c.type === "bool").forEach(c => filterState[c.key] = 0);
 const colVisible = {};
 COLUMNS.forEach(c => colVisible[c.key] = true);
 
-let sortKey = "stars";
-let sortAsc = false;
+let sortKey = "name";
+let sortAsc = true;
 
 const ICON_REQ = '<i class="fa-solid fa-check"></i>';
 const ICON_EXC = '<i class="fa-solid fa-xmark"></i>';
