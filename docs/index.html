@@ -318,6 +318,21 @@ let sortAsc = true;
 const ICON_REQ = '<i class="fa-solid fa-check"></i>';
 const ICON_EXC = '<i class="fa-solid fa-xmark"></i>';
 
+// Convert a subset of markdown to HTML: [text](url) links and `code` spans.
+function mdToHtml(text) {
+  // Escape HTML entities first to prevent injection
+  let s = text
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;");
+  // `code` → <code>code</code>
+  s = s.replace(/`([^`]+)`/g, "<code>$1</code>");
+  // [text](url) → <a href="url" target="_blank" rel="noopener">text</a>
+  s = s.replace(/\[([^\]]+)\]\((https?:\/\/[^)]+)\)/g,
+    '<a href="$2" target="_blank" rel="noopener">$1</a>');
+  return s;
+}
+
 function chipLabel(col) {
   const s = filterState[col.key];
   if (s === 0) return col.label;
@@ -459,7 +474,7 @@ function renderBody() {
         td.innerHTML = `<code>${lib.name}</code>`;
       } else if (col.type === "text") {
         td.className = "known-for";
-        td.textContent = lib.known_for;
+        td.innerHTML = mdToHtml(lib.known_for);
       } else if (col.type === "link") {
         const parts = [];
         if (lib.repo) parts.push(`<a href="https://github.com/${lib.repo}" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>`);

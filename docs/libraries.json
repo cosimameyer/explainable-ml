@@ -81,8 +81,8 @@
   },
   {
     "name": "darts",
-    "known_for": "[\"Darts has the ability to explain some forecasting models using Shap values\"](https://pypi.org/project/darts/) as well as [Temporal Fusion Transformer (TFT)](https://unit8co.github.io/darts/generated_api/darts.models.forecasting.tft_model.html) with built-in variable selection and attention",
-    "description": "",
+    "known_for": "SHAP for forecasting + [Temporal Fusion Transformer (TFT)](https://unit8co.github.io/darts/generated_api/darts.models.forecasting.tft_model.html) with built-in variable selection and attention",
+    "description": "[\"Darts has the ability to explain some forecasting models using Shap values\"](https://pypi.org/project/darts/)",
     "repo": "unit8co/darts",
     "docs": "https://unit8co.github.io/darts/",
     "pypi": "https://pypi.org/project/darts/",
