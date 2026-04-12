@@ -1,0 +1,3548 @@
+<!DOCTYPE html>
+<html lang="en"><head>
+<script src="2026-xai-presentation_files/libs/clipboard/clipboard.min.js"></script>
+<script src="2026-xai-presentation_files/libs/quarto-html/tabby.min.js"></script>
+<script src="2026-xai-presentation_files/libs/quarto-html/popper.min.js"></script>
+<script src="2026-xai-presentation_files/libs/quarto-html/tippy.umd.min.js"></script>
+<link href="2026-xai-presentation_files/libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="2026-xai-presentation_files/libs/quarto-html/quarto-html.min.css" rel="stylesheet" data-mode="light">
+<link href="2026-xai-presentation_files/libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<link href="2026-xai-presentation_files/libs/quarto-contrib/fontawesome6-6.7.2/all.min.css" rel="stylesheet">
+<link href="2026-xai-presentation_files/libs/quarto-contrib/fontawesome6-6.7.2/latex-fontsize.css" rel="stylesheet">
+<script src="2026-xai-presentation_files/libs/quarto-contrib/videojs/video.min.js"></script>
+<link href="2026-xai-presentation_files/libs/quarto-contrib/videojs/video-js.css" rel="stylesheet"><meta charset="utf-8">
+  <meta name="generator" content="quarto-1.2.335">
+
+  <meta name="author" content="Cosima Meyer">
+  <title>Why Did The Model  Do That?</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui">
+  <link rel="stylesheet" href="2026-xai-presentation_files/libs/revealjs/dist/reset.css">
+  <link rel="stylesheet" href="2026-xai-presentation_files/libs/revealjs/dist/reveal.css">
+  <style>
+    code{white-space: pre-wrap;}
+    span.smallcaps{font-variant: small-caps;}
+    div.columns{display: flex; gap: min(4vw, 1.5em);}
+    div.column{flex: auto; overflow-x: auto;}
+    div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+    ul.task-list{list-style: none;}
+    ul.task-list li input[type="checkbox"] {
+      width: 0.8em;
+      margin: 0 0.8em 0.2em -1.6em;
+      vertical-align: middle;
+    }
+  </style>
+  <link rel="stylesheet" href="2026-xai-presentation_files/libs/revealjs/dist/theme/quarto.css" id="theme">
+  <link href="2026-xai-presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.css" rel="stylesheet">
+  <link href="2026-xai-presentation_files/libs/revealjs/plugin/reveal-menu/menu.css" rel="stylesheet">
+  <link href="2026-xai-presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.css" rel="stylesheet">
+  <link href="2026-xai-presentation_files/libs/revealjs/plugin/quarto-support/footer.css" rel="stylesheet">
+  <style type="text/css">
+
+  .callout {
+    margin-top: 1em;
+    margin-bottom: 1em;  
+    border-radius: .25rem;
+  }
+
+  .callout.callout-style-simple { 
+    padding: 0em 0.5em;
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+    display: flex;
+  }
+
+  .callout.callout-style-default {
+    border-left: solid #acacac .3rem;
+    border-right: solid 1px silver;
+    border-top: solid 1px silver;
+    border-bottom: solid 1px silver;
+  }
+
+  .callout .callout-body-container {
+    flex-grow: 1;
+  }
+
+  .callout.callout-style-simple .callout-body {
+    font-size: 1rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-style-default .callout-body {
+    font-size: 0.9rem;
+    font-weight: 400;
+  }
+
+  .callout.callout-captioned.callout-style-simple .callout-body {
+    margin-top: 0.2em;
+  }
+
+  .callout:not(.callout-captioned) .callout-body {
+      display: flex;
+  }
+
+  .callout:not(.no-icon).callout-captioned.callout-style-simple .callout-content {
+    padding-left: 1.6em;
+  }
+
+  .callout.callout-captioned .callout-header {
+    padding-top: 0.2em;
+    margin-bottom: -0.2em;
+  }
+
+  .callout.callout-captioned .callout-caption  p {
+    margin-top: 0.5em;
+    margin-bottom: 0.5em;
+  }
+    
+  .callout.callout-captioned.callout-style-simple .callout-content  p {
+    margin-top: 0;
+  }
+
+  .callout.callout-captioned.callout-style-default .callout-content  p {
+    margin-top: 0.7em;
+  }
+
+  .callout.callout-style-simple div.callout-caption {
+    border-bottom: none;
+    font-size: .9rem;
+    font-weight: 600;
+    opacity: 75%;
+  }
+
+  .callout.callout-style-default  div.callout-caption {
+    border-bottom: none;
+    font-weight: 600;
+    opacity: 85%;
+    font-size: 0.9rem;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-default div.callout-content {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .callout.callout-style-simple .callout-icon::before {
+    height: 1rem;
+    width: 1rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 1rem 1rem;
+  }
+
+  .callout.callout-style-default .callout-icon::before {
+    height: 0.9rem;
+    width: 0.9rem;
+    display: inline-block;
+    content: "";
+    background-repeat: no-repeat;
+    background-size: 0.9rem 0.9rem;
+  }
+
+  .callout-caption {
+    display: flex
+  }
+    
+  .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  .callout.no-icon::before {
+    display: none !important;
+  }
+
+  .callout.callout-captioned .callout-body > .callout-content > :last-child {
+    margin-bottom: 0.5rem;
+  }
+
+  .callout.callout-captioned .callout-icon::before {
+    margin-top: .5rem;
+    padding-right: .5rem;
+  }
+
+  .callout:not(.callout-captioned) .callout-icon::before {
+    margin-top: 1rem;
+    padding-right: .5rem;
+  }
+
+  /* Callout Types */
+
+  div.callout-note {
+    border-left-color: #4582ec !important;
+  }
+
+  div.callout-note .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEU0lEQVRYCcVXTWhcVRQ+586kSUMMxkyaElstCto2SIhitS5Ek8xUKV2poatCcVHtUlFQk8mbaaziwpWgglJwVaquitBOfhQXFlqlzSJpFSpIYyXNjBNiTCck7x2/8/LeNDOZxDuEkgOXe++553zfefee+/OYLOXFk3+1LLrRdiO81yNqZ6K9cG0P3MeFaMIQjXssE8Z1JzLO9ls20MBZX7oG8w9GxB0goaPrW5aNMp1yOZIa7Wv6o2ykpLtmAPs/vrG14Z+6d4jpbSKuhdcSyq9wGMPXjonwmESXrriLzFGOdDBLB8Y6MNYBu0dRokSygMA/mrun8MGFN3behm6VVAwg4WR3i6FvYK1T7MHo9BK7ydH+1uurECoouk5MPRyVSBrBHMYwVobG2aOXM07sWrn5qgB60rc6mcwIDJtQrnrEr44kmy+UO9r0u9O5/YbkS9juQckLed3DyW2XV/qWBBB3ptvI8EUY3I9p/67OW+g967TNr3Sotn3IuVlfMLVnsBwH4fsnebJvyGm5GeIUA3jljERmrv49SizPYuq+z7c2H/jlGC+Ghhupn/hcapqmcudB9jwJ/3jvnvu6vu5lVzF1fXyZuZZ7U8nRmVzytvT+H3kilYvH09mLWrQdwFSsFEsxFVs5fK7A0g8gMZjbif4ACpKbjv7gNGaD8bUrlk8x+KRflttr22JEMRUbTUwwDQScyzPgedQHZT0xnx7ujw2jfVfExwYHwOsDTjLdJ2ebmeQIlJ7neo41s/DrsL3kl+W2lWvAga0tR3zueGr6GL78M3ifH0rGXrBC2aAR8uYcIA5gwV8zIE8onoh8u0Fca/ciF7j1uOzEnqcIm59sEXoGc0+z6+H45V1CvAvHcD7THztu669cnp+L0okAeIc6zjbM/24LgGM1gZk7jnRu1aQWoU9sfUOuhrmtaPIO3YY1KLLWZaEO5TKUbMY5zx8W9UJ6elpLwKXbsaZ4EFl7B4bMtDv0iRipKoDQT2sNQI9b1utXFdYisi+wzZ/ri/1m7QfDgEuvgUUEIJPq3DhX/5DWNqIXDOweC2wvIR90Oq3lDpdMIgD2r0dXvGdsEW5H6x6HLRJYU7C69VefO1x8Gde1ZFSJLfWS1jbCnhtOPxmpfv2LXOA2Xk2tvnwKKPFuZ/oRmwBwqRQDcKNeVQkYcOjtWVBuM/JuYw5b6isojIkYxyYAFn5K7ZBF10fea52y8QltAg6jnMqNHFBmGkQ1j+U43HMi2xMar1Nv0zGsf1s8nUsmUtPOOrbFIR8bHFDMB5zL13Gmr/kGlCkUzedTzzmzsaJXhYawnA3UmARpiYj5ooJZiUoxFRtK3X6pgNPv+IZVPcnwbOl6f+aBaO1CNvPW9n9LmCp01nuSaTRF2YxHqZ8DYQT6WsXT+RD6eUztwYLZ8rM+rcPxamv1VQzFUkzFXvkiVrySGQgJNvXHJAxiU3/NwiC03rSf05VBaPtu/Z7/B8Yn/w7eguloAAAAAElFTkSuQmCC');
+  }
+
+  div.callout-note.callout-style-default .callout-caption {
+    background-color: #dae6fb
+  }
+
+  div.callout-important {
+    border-left-color: #d9534f !important;
+  }
+
+  div.callout-important .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAEKklEQVRYCcVXTWhcVRS+575MJym48A+hSRFr00ySRQhURRfd2HYjk2SSTokuBCkU2o0LoSKKraKIBTcuFCoidGFD08nkBzdREbpQ1EDNIv8qSGMFUboImMSZd4/f9zJv8ibJMC8xJQfO3HPPPef7zrvvvnvviIkpC9nsw0UttFunbUhpFzFtarSd6WJkStVMw5xyVqYTvkwfzuf/5FgtkVoB0729j1rjXwThS7Vio+Mo6DNnvLfahoZ+i/o32lULuJ3NNiz7q6+pyAUkJaFF6JwaM2lUJlV0MlnQn5aTRbEu0SEqHUa0A4AdiGuB1kFXRfVyg5d87+Dg4DL6m2TLAub60ilj7A1Ec4odSAc8X95sHh7+ZRPCFo6Fnp7HfU/fBng/hi10CjCnWnJjsxvDNxWw0NfV6Rv5GgP3I3jGWXumdTD/3cbEOP2ZbOZp69yniG3FQ9z1jD7bnBu9Fc2tKGC2q+uAJOQHBDRiZX1x36o7fWBs7J9ownbtO+n0/qWkvW7UPIfc37WgT6ZGR++EOJyeQDSb9UB+DZ1G6DdLDzyS+b/kBCYGsYgJbSQHuThGKRcw5xdeQf8YdNHsc6ePXrlSYMBuSIAFTGAtQo+VuALo4BX83N190NWZWbynBjhOHsmNfFWLeL6v+ynsA58zDvvAC8j5PkbOcXCMg2PZFk3q8MjI7WAG/Dp9AwP7jdGBOOQkAvlFUB+irtm16I1Zw9YBcpGTGXYmk3kQIC/Cds55l+iMI3jqhjAuaoe+am2Jw5GT3Nbz3CkE12NavmzN5+erJW7046n/CH1RO/RVa8lBLozXk9uqykkGAyRXLWlLv5jyp4RFsG5vGVzpDLnIjTWgnRy2Rr+tDKvRc7Y8AyZq10jj8DqXdnIRNtFZb+t/ZRtXcDiVnzpqx8mPcDWxgARUqx0W1QB9MeUZiNrV4qP+Ehc+BpNgATsTX8ozYKL2NtFYAHc84fG7ndxUPr+AR/iQSns7uSUufAymwDOb2+NjK27lEFocm/EE2WpyIy/Hi66MWuMKJn8RvxIcj87IM5Vh9663ziW36kR0HNenXuxmfaD8JC7tfKbrhFr7LiZCrMjrzTeGx+PmkosrkNzW94ObzwocJ7A1HokLolY+AvkTiD/q1H0cN48c5EL8Crkttsa/AXQVDmutfyku0E7jShx49XqV3MFK8IryDhYVbj7Sj2P2eBxwcXoe8T8idsKKPRcnZw1b+slFTubwUwhktrfnAt7J++jwQtLZcm3sr9LQrjRzz6cfMv9aLvgmnAGvpoaGLxM4mAEaLV7iAzQ3oU0IvD5x9ix3yF2RAAuYAOO2f7PEFWCXZ4C9Pb2UsgDeVnFSpbFK7/IWu7TPTvBqzbGdCHOJQSxiEjt6IyZmxQyEJHv6xyQsYk//moVFsN2zP6fRImjfq7/n/wFDguUQFNEwugAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-important.callout-style-default .callout-caption {
+    background-color: #f7dddc
+  }
+
+  div.callout-warning {
+    border-left-color: #f0ad4e !important;
+  }
+
+  div.callout-warning .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAAETklEQVRYCeVWW2gcVRg+58yaTUnizqbipZeX4uWhBEniBaoUX1Ioze52t7sRq6APio9V9MEaoWlVsFasRq0gltaAPuxms8lu0gcviE/FFOstVbSIxgcv6SU7EZqmdc7v9+9mJtNks51NTUH84ed889/PP+cmxP+d5FIbMJmNbpREu4WUkiTtCicKny0l1pIKmBzovF2S+hIJHX8iEu3hZJ5lNZGqyRrGSIQpq15AzF28jgpeY6yk6GVdrfFqdrD6Iw+QlB8g0YS2g7dyQmXM/IDhBhT0UCiRf59lfqmmDvzRt6kByV/m4JjtzuaujMUM2c5Z2d6JdKrRb3K2q6mA+oYVz8JnDdKPmmNthzkAk/lN63sYPgevrguc72aZX/L9C6x09GYyxBgCX4NlvyGUHOKELlm5rXeR1kchuChJt4SSwyddZRXgvwMGvYo4QSlk3/zkHD8UHxwVJA6zjZZqP8v8kK8OWLnIZtLyCAJagYC4rTGW/9Pqj92N/c+LUaAj27movwbi19tk/whRCIE7Q9vyI6yvRpftAKVTdUjOW40X3h5OXsKCdmFcx0xlLJoSuQngnrJe7Kcjm4OMq9FlC7CMmScQANuNvjfP3PjGXDBaUQmbp296S5L4DrpbrHN1T87ZVEZVCzg1FF0Ft+dKrlLukI+/c9ENo+TvlTDbYFvuKPtQ9+l052rXrgKoWkDAFnvh0wTOmYn8R5f4k/jN/fZiCM1tQx9jQQ4ANhqG4hiL0qIFTGViG9DKB7GYzgubnpofgYRwO+DFjh0Zin2m4b/97EDkXkc+f6xYAPX0KK2I/7fUQuwzuwo/L3AkcjugPNixC8cHf0FyPjWlItmLxWw4Ou9YsQCr5fijMGoD/zpdRy95HRysyXA74MWOnscpO4j2y3HAVisw85hX5+AFBRSHt4ShfLFkIMXTqyKFc46xdzQM6XbAi702a7sy04J0+feReMFKp5q9esYLCqAZYw/k14E/xcLLsFElaornTuJB0svMuJINy8xkIYuL+xPAlWRceH6+HX7THJ0djLUom46zREu7tTkxwmf/FdOZ/sh6Q8qvEAiHpm4PJ4a/doJe0gH1t+aHRgCzOvBvJedEK5OFE5jpm4AGP2a8Dxe3gGJ/pAutug9Gp6he92CsSsWBaEcxGx0FHytmIpuqGkOpldqNYQK8cSoXvd+xLxXADw0kf6UkJNFtdo5MOgaLjiQOQHcn+A6h5NuL2s0qsC2LOM75PcF3yr5STuBSAcGG+meA14K/CI21HcS4LBT6tv0QAh8Dr5l93AhZzG5ZJ4VxAqdZUEl9z7WJ4aN+svMvwHHL21UKTd1mqvChH7/Za5xzXBBKrUcB0TQ+Ulgkfbi/H/YT5EptrGzsEK7tR1B7ln9BBwckYfMiuSqklSznIuoIIOM42MQO+QnduCoFCI0bpkzjCjddHPN/F+2Yu+sd9bKNpVwHhbS3LluK/0zgfwD0xYI5dXuzlQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-warning.callout-style-default .callout-caption {
+    background-color: #fcefdc
+  }
+
+  div.callout-tip {
+    border-left-color: #02b875 !important;
+  }
+
+  div.callout-tip .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAADr0lEQVRYCe1XTWgTQRj9ZjZV8a9SPIkKgj8I1bMHsUWrqYLVg4Ue6v9BwZOxSYsIerFao7UiUryIqJcqgtpimhbBXoSCVxUFe9CTiogUrUp2Pt+3aUI2u5vdNh4dmMzOzHvvezuz8xNFM0mjnbXaNu1MvFWRXkXEyE6aYOYJpdW4IXuA4r0fo8qqSMDBU0v1HJUgVieAXxzCsdE/YJTdFcVIZQNMyhruOMJKXYFoLfIfIvVIMWdsrd+Rpd86ZmyzzjJmLStqRn0v8lzkb4rVIXvnpScOJuAn2ACC65FkPzEdEy4TPWRLJ2h7z4cArXzzaOdKlbOvKKX25Wl00jSnrwVxAg3o4dRxhO13RBSdNvH0xSARv3adTXbBdTf64IWO2vH0LT+cv4GR1DJt+DUItaQogeBX/chhbTBxEiZ6gftlDNXTrvT7co4ub5A6gp9HIcHvzTa46OS5fBeP87Qm0fQkr4FsYgVQ7Qg+ZayaDg9jhg1GkWj8RG6lkeSacrrHgDaxdoBiZPg+NXV/KifMuB6//JmYH4CntVEHy/keA6x4h4CU5oFy8GzrBS18cLJMXcljAKB6INjWsRcuZBWVaS3GDrqB7rdapVIeA+isQ57Eev9eCqzqOa81CY05VLd6SamW2wA2H3SiTbnbSxmzfp7WtKZkqy4mdyAlGx7ennghYf8voqp9cLSgKdqNfa6RdRsAAkPwRuJZNbpByn+RrJi1RXTwdi8RQF6ymDwGMAtZ6TVE+4uoKh+MYkcLsT0Hk8eAienbiGdjJHZTpmNjlbFJNKDVAp2fJlYju6IreQxQ08UJDNYdoLSl6AadO+fFuCQqVMB1NJwPm69T04Wv5WhfcWyfXQB+wXRs1pt+nCknRa0LVzSA/2B+a9+zQJadb7IyyV24YAxKp2Jqs3emZTuNnKxsah+uabKbMk7CbTgJx/zIgQYErIeTKRQ9yD9wxVof5YolPHqaWo7TD6tJlh7jQnK5z2n3+fGdggIOx2kaa2YI9QWarc5Ce1ipNWMKeSG4DysFF52KBmTNMmn5HqCFkwy34rDg05gDwgH3bBi+sgFhN/e8QvRn8kbamCOhgrZ9GJhFDgfcMHzFb6BAtjKpFhzTjwv1KCVuxHvCbsSiEz4CANnj84cwHdFXAbAOJ4LTSAawGWFn5tDhLMYz6nWeU2wJfIhmIJBefcd/A5FWQWGgrWzyORZ3Q6HuV+Jf0Bj+BTX69fm1zWgK7By1YTXchFDORywnfQ7GpzOo6S+qECrsx2ifVQAAAABJRU5ErkJggg==');
+  }
+
+  div.callout-tip.callout-style-default .callout-caption {
+    background-color: #ccf1e3
+  }
+
+  div.callout-caution {
+    border-left-color: #fd7e14 !important;
+  }
+
+  div.callout-caution .callout-icon::before {
+    background-image: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAAXNSR0IArs4c6QAAAERlWElmTU0AKgAAAAgAAYdpAAQAAAABAAAAGgAAAAAAA6ABAAMAAAABAAEAAKACAAQAAAABAAAAIKADAAQAAAABAAAAIAAAAACshmLzAAACV0lEQVRYCdVWzWoUQRCuqp2ICBLJXgITZL1EfQDBW/bkzUMUD7klD+ATSHBEfAIfQO+iXsWDxJsHL96EHAwhgzlkg8nBg25XWb0zIb0zs9muYYWkoKeru+vn664fBqElyZNuyh167NXJ8Ut8McjbmEraKHkd7uAnAFku+VWdb3reSmRV8PKSLfZ0Gjn3a6Xlcq9YGb6tADjn+lUfTXtVmaZ1KwBIvFI11rRXlWlatwIAAv2asaa9mlB9wwygiDX26qaw1yYPzFXg2N1GgG0FMF8Oj+VIx7E/03lHx8UhvYyNZLN7BwSPgekXXLribw7w5/c8EF+DBK5idvDVYtEEwMeYefjjLAdEyQ3M9nfOkgnPTEkYU+sxMq0BxNR6jExrAI31H1rzvLEfRIdgcv1XEdj6QTQAS2wtstEALLG1yEZ3QhH6oDX7ExBSFEkFINXH98NTrme5IOaaA7kIfiu2L8A3qhH9zRbukdCqdsA98TdElyeMe5BI8Rs2xHRIsoTSSVFfCFCWGPn9XHb4cdobRIWABNf0add9jakDjQJpJ1bTXOJXnnRXHRf+dNL1ZV1MBRCXhMbaHqGI1JkKIL7+i8uffuP6wVQAzO7+qVEbF6NbS0LJureYcWXUUhH66nLR5rYmva+2tjRFtojkM2aD76HEGAD3tPtKM309FJg5j/K682ywcWJ3PASCcycH/22u+Bh7Aa0ehM2Fu4z0SAE81HF9RkB21c5bEn4Dzw+/qNOyXr3DCTQDMBOdhi4nAgiFDGCinIa2owCEChUwD8qzd03PG+qdW/4fDzjUMcE1ZpIAAAAASUVORK5CYII=');
+  }
+
+  div.callout-caution.callout-style-default .callout-caption {
+    background-color: #ffe5d0
+  }
+
+  </style>
+  <style type="text/css">
+    .reveal div.sourceCode {
+      margin: 0;
+      overflow: auto;
+    }
+    .reveal div.hanging-indent {
+      margin-left: 1em;
+      text-indent: -1em;
+    }
+    .reveal .slide:not(.center) {
+      height: 100%;
+    }
+    .reveal .slide.scrollable {
+      overflow-y: auto;
+    }
+    .reveal .footnotes {
+      height: 100%;
+      overflow-y: auto;
+    }
+    .reveal .slide .absolute {
+      position: absolute;
+      display: block;
+    }
+    .reveal .footnotes ol {
+      counter-reset: ol;
+      list-style-type: none; 
+      margin-left: 0;
+    }
+    .reveal .footnotes ol li:before {
+      counter-increment: ol;
+      content: counter(ol) ". "; 
+    }
+    .reveal .footnotes ol li > p:first-child {
+      display: inline-block;
+    }
+    .reveal .slide ul,
+    .reveal .slide ol {
+      margin-bottom: 0.5em;
+    }
+    .reveal .slide ul li,
+    .reveal .slide ol li {
+      margin-top: 0.4em;
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide ul[role="tablist"] li {
+      margin-bottom: 0;
+    }
+    .reveal .slide ul li > *:first-child,
+    .reveal .slide ol li > *:first-child {
+      margin-block-start: 0;
+    }
+    .reveal .slide ul li > *:last-child,
+    .reveal .slide ol li > *:last-child {
+      margin-block-end: 0;
+    }
+    .reveal .slide .columns:nth-child(3) {
+      margin-block-start: 0.8em;
+    }
+    .reveal blockquote {
+      box-shadow: none;
+    }
+    .reveal .tippy-content>* {
+      margin-top: 0.2em;
+      margin-bottom: 0.7em;
+    }
+    .reveal .tippy-content>*:last-child {
+      margin-bottom: 0.2em;
+    }
+    .reveal .slide > img.stretch.quarto-figure-center,
+    .reveal .slide > img.r-stretch.quarto-figure-center {
+      display: block;
+      margin-left: auto;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-left,
+    .reveal .slide > img.r-stretch.quarto-figure-left  {
+      display: block;
+      margin-left: 0;
+      margin-right: auto; 
+    }
+    .reveal .slide > img.stretch.quarto-figure-right,
+    .reveal .slide > img.r-stretch.quarto-figure-right  {
+      display: block;
+      margin-left: auto;
+      margin-right: 0; 
+    }
+  </style>
+  <script src="2026-xai-presentation_files/libs/quarto-diagram/mermaid.min.js"></script>
+  <script src="2026-xai-presentation_files/libs/quarto-diagram/mermaid-init.js"></script>
+  <link href="2026-xai-presentation_files/libs/quarto-diagram/mermaid.css" rel="stylesheet">
+  <style>
+    /* Ensure method-cards sit on top of flex/grid correctly */
+    .reveal .slides section .columns { align-items: stretch; }
+  </style>
+</head>
+<body class="quarto-light">
+  <div class="reveal">
+    <div class="slides">
+
+<section id="title-slide" data-background-color="#1E3A4C" data-background-image="img/ghost.png" data-background-position="bottom 2% right 2%" data-background-size="38%" class="quarto-title-block center">
+  <h1 class="title"><p><span class="myfont" style="font-size: 120px;">Why Did The Model<br> Do That?</span></p></h1>
+  <p class="subtitle"></p><p><span style="font-size: 40px;">Debugging the <span class="myfont">Ghost</span> in the Machine</span></p><p></p>
+
+<div class="quarto-title-authors">
+<div class="quarto-title-author">
+<div class="quarto-title-author-name">
+Cosima Meyer 
+</div>
+</div>
+</div>
+
+</section>
+<section id="who-am-i" class="slide level2" data-menu-title="Introduction-Speaker">
+<h2>Who am I?</h2>
+<div class="columns">
+<div class="column" style="width:60%;">
+<div class="fragment fade-up">
+<p><br> <br> 👩🏼‍🎓 <strong>PhD in Politicial Science</strong> @ University of Mannheim</p>
+</div>
+<div class="fragment fade-up">
+<p><br> 👩🏼‍💻 <strong>Data Science</strong> @ SAP</p>
+</div>
+</div><div class="column" style="width:40%;">
+<p><img data-src="img/cosima_squared_picture.png"></p>
+</div>
+</div>
+<aside class="notes">
+<p>“I started my career studying civil wars — trying to understand why conflicts escalate, who’s affected, and what the data actually tells us. Biased data wasn’t an abstract concept. It had real consequences. When I moved into data science, I brought that same question with me: can we actually trust what the model is telling us?”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section" class="slide level2" data-menu-title="Introduction-Topic">
+<h2></h2>
+<p><img data-src="img/husky.png" class="fragment absolute" style="top: 100px; left: 100px; width: 450px; height: 400px; "></p>
+<div class="fragment absolute" style="top: 500px; left: 150px; width: 350px; height: 300px; ">
+<p>Husky classified as <strong>wolf</strong></p>
+</div>
+<p><img data-src="img/snow.png" class="fragment absolute" style="top: 100px; left: 750px; width: 450px; height: 400px; "></p>
+<div class="fragment absolute" style="top: 500px; left: 850px; width: 350px; height: 300px; ">
+<p>… because of <strong>snow</strong></p>
+</div>
+<div class="absolute" style="font-size: 0.4em;left: 0px; bottom: 5px; width: 100%; ">
+<p>Images taken from <a href="https://arxiv.org/abs/1602.04938">Ribeiro, M. T., Singh, S., Guestrin, C., Lundberg, S. M., &amp; Lee, S. I. 2016. “Why Should I Trust You?”: Explaining the Predictions of Any Classifier. arXiv</a></p>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“Here’s a classic example. A classifier was asked: husky or wolf? It said wolf. Sounds reasonable — until you look at <em>why</em>. It wasn’t looking at the animal. It was looking at the snow. Snow means wolf. No snow means husky. The model learned a shortcut, not the concept.”</p>
+</blockquote>
+<blockquote>
+<p>“This is funny in a research paper. It’s not funny when the same kind of shortcut drives decisions about loans, medical diagnoses, or hiring.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="how-do-we-detect-this" class="slide level2" data-background-color="#1E3A4C" style="color: white !important;" data-menu-title="Introduction-Topic">
+<h2>How Do We Detect This?</h2>
+<style>
+section[data-background-color="#1E3A4C"] p,
+section[data-background-color="#1E3A4C"] strong {
+  color: white !important;
+}
+</style>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<p>You trained a model.</p>
+</div>
+<div class="fragment">
+<p>It looks good.</p>
+</div>
+<div class="fragment">
+<p>But something feels a bit off.</p>
+</div>
+<div class="fragment">
+<p>There are many different approaches and Python libraries.</p>
+</div>
+<div class="fragment">
+<p><strong>How do you choose?</strong></p>
+</div>
+</div><div class="column" style="width:50%;">
+<p><img data-src="img/ghost_question.png" class="absolute" style="bottom: 0px; right: 0px; width: 500px; "></p>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“So you’ve trained a model. It looks good. But something feels off. You search for ‘explainable AI’ and get hit with dozens of methods and libraries. SHAP, LIME, Integrated Gradients, Grad-CAM, counterfactuals… Having worked on real-world XAI projects, I know how hard it is to find the right fit. So today, I want to give you a reusable framework to help you navigate your decisions.</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="an-xai-decision-tree" class="slide level2" data-menu-title="Introduction-Topic">
+<h2>An XAI Decision Tree</h2>
+<div class="columns" style="display: flex; align-items: center;">
+<div class="column fragment" style="width:20%;">
+<p><img data-src="img/decision_tree_large.png"></p>
+</div><div class="column fragment" style="width:20%;">
+<p><img data-src="img/arrow.png"></p>
+</div><div class="column fragment" style="width:60%;">
+<p><img data-src="img/decision_tree_small.png"></p>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“Instead of guessing, I want to give you a structured decision tree. A few simple questions — about your data, your model access, and what you want to explain — and it’ll point you to the right method <em>and</em> the right Python library. Let’s build it together.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="terms-and-terminology" class="slide level2" data-menu-title="Introduction-Topic">
+<h2>Terms and Terminology</h2>
+<style>
+.term-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 3em;
+  font-size: 0.8em;
+}
+.term-tile {
+  background: #EBF0F3;
+  border-left: 4px solid #1E3A4C;
+  border-radius: 6px;
+  padding: 2em 2em;
+}
+.term-tile h2 {
+  margin: 0 0 0.5em 0;
+  font-size: 2em;
+  color: #1E3A4C;
+}
+.term-tile p {
+  margin: 3;
+  color: #5A7A8A;
+  line-height: 1.35;
+}
+</style>
+
+<div class="term-grid">
+
+<div class="term-tile fragment">
+<h3>Explainability vs Interpretability</h3>
+<p>Can you <b>read</b> the <b>model's logic directly</b>, or do you <b>need a separate method</b> to approximate it?</p>
+</div>
+
+<div class="term-tile fragment">
+<h3>Model-agnostic vs Model-specific</h3>
+<p>Does the method treat the <b>model as a black box</b>, or does it <b>exploit its internals</b>?</p>
+</div>
+
+<div class="term-tile fragment">
+<h3>Black-box vs White-box</h3>
+<p>Can you only query the model, or do you have <b>full access</b> to weights and gradients?</p>
+</div>
+
+<div class="term-tile fragment">
+<h3>Global vs Local</h3>
+<p>Explains <b>overall model behavior</b>, or explains a <b>single prediction</b>?</p>
+</div>
+
+<!--
+<div class="term-tile fragment">
+<h3>Attribution vs Counterfactual</h3>
+<p><b>Why</b> did it predict this? vs <b>What change</b> would flip the outcome?</p>
+</div>
+
+<div class="term-tile fragment">
+<h3>Importance / Effects / Interactions</h3>
+<p>Which features matter, how they shape predictions, and where they combine non-additively.</p>
+</div>
+-->
+
+</div>
+<aside class="notes">
+<blockquote>
+<p>“Before we dive in, four quick distinctions to keep in mind.</p>
+</blockquote>
+<p>First: explainability versus interpretability — can you read the model’s logic directly, or do you need a separate method to approximate it?</p>
+<p>Second: is the method model-agnostic — treats the model as a black box — or model-specific, exploiting internals like gradients?</p>
+<p>Third: black-box versus white-box — this is about your <em>access level</em>. Can you only query predictions, or do you have full access to weights?</p>
+<p>And fourth: global versus local — are you explaining the model’s overall behavior, or one specific prediction? These distinctions will come back throughout the talk.”</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="lets-build-the-decision-tree-together" class="slide level2" data-menu-title="Introduction-Topic">
+<h2>Let’s Build the Decision Tree Together 🌳</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    START(("🔍 Explain?"))
+
+    style START fill:#ffffff,stroke:#1E3A4C,stroke-width:2.5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div style="text-align: center; margin-top: 40px; color: #6b7280;">
+<p>One question at a time.</p>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“We start with one node: you want to explain something. The very first question is…”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="whats-your-data-type" class="slide level2" data-menu-title="Introduction-Topic">
+<h2>What’s Your Data Type?</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    START(("🔍 Explain?"))
+    DTYPE{"Data type?"}
+    START --&gt; DTYPE
+
+    style START fill:#ffffff,stroke:#1E3A4C,stroke-width:2.5px,color:#1E3A4C
+    style DTYPE fill:#EBF0F3,stroke:#ADC0CA,stroke-width:5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-2" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="whats-your-data-type-1" class="slide level2" data-menu-title="Introduction-Topic">
+<h2>What’s Your Data Type?</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-3">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    START(("🔍 Explain?"))
+    DTYPE{"Data type?"}
+    START --&gt; DTYPE
+
+    TAB["📊 Tabular"]
+    IMG["🖼️ Image"]
+    TXT["📝 Text"]
+
+    DTYPE --&gt; TAB
+    DTYPE --&gt; IMG
+    DTYPE --&gt; TXT
+
+    style START fill:#ffffff,stroke:#1E3A4C,stroke-width:2.5px,color:#1E3A4C
+    style DTYPE fill:#EBF0F3,stroke:#ADC0CA,stroke-width:5px,color:#1E3A4C
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-3" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“What kind of data are you working with? Tabular, image, or text? Each has its own branch because the methods are fundamentally different. Let’s start with tabular — it’s the most common in practice.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-1" class="slide level2" data-background-color="#EBF0F3" data-menu-title="Tabular">
+<h2></h2>
+<div class="r-fit-text" style="text-align: center;">
+<p><span style="color: #1E3A4C;">Tabular</span></p>
+</div>
+</section>
+<section id="first-question-is-it-already-interpretable" class="slide level2" data-menu-title="Tabular">
+<h2>First Question: Is It Already Interpretable?</h2>
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-4">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TAB["📊 Tabular"]
+    TAB_INTERP{"Inherently&lt;br/&gt;interpretable?"}
+    TAB --&gt; TAB_INTERP
+
+    TAB_GLASS["✅ Use built-in explanations&lt;br/&gt;coefficients · rules ·&lt;br/&gt;shape functions"]
+    TAB_INTERP --&gt;|"Yes — linear, tree,&lt;br/&gt;GAM, EBM"| TAB_GLASS
+
+    TAB_SCOPE{"Scope?"}
+    TAB_INTERP --&gt;|"No — black-box&lt;br/&gt;model"| TAB_SCOPE
+
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB_INTERP fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GLASS fill:#d1fae5,stroke:#059669,stroke-width:5px,color:#065f46
+    style TAB_SCOPE fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-4" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p>Is your model already interpretable? <br><strong>You can stop here 🎉</strong></p>
+<p><span class="lib">sklearn</span> <span class="lib">statsmodels</span></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p>Explainable Boosting Machine (EBM) classifier are GAM models who remain fully transparent</p>
+<p><span class="lib">interpret</span></p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“Before you reach for any XAI tool, ask yourself: is your model already interpretable? If you’re using linear regression, a decision tree, a GAM, or an Explainable Boosting Machine — you can read the model’s logic directly. Coefficients, rules, shape functions. You don’t need a separate explanation method. You can stop here.”</p>
+</blockquote>
+<blockquote>
+<p>“EBMs from the <code>interpret</code> library are worth a special mention — they’re GAMs that remain fully transparent while often matching black-box performance. If you haven’t tried them, they’re worth a look.”</p>
+</blockquote>
+<blockquote>
+<p>“But if you’re working with a black-box model — a random forest, gradient boosting, a neural network — then we need to go deeper.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!--
+![](img/ebm.png){width="50%"}
+*[Image Reference](https://interpret.ml/docs/ebm.html)*
+-->
+</section>
+<section id="tabular-scope" class="slide level2" data-menu-title="Tabular">
+<h2>Tabular → Scope</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-5">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB --&gt; TAB_SCOPE
+
+    TAB_G{"What insight?"}
+    TAB_SCOPE --&gt;|"Global"| TAB_G
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+
+    TAB_L{"Type?"}
+    TAB_SCOPE --&gt;|"Local"| TAB_L
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    style TAB fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_SCOPE fill:#EBF0F3,stroke:#ADC0CA,stroke-width:5px,color:#9ca3af
+    style TAB_G fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-5" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“Next question: scope. Are you trying to understand the model as a whole — its overall behavior — or are you explaining a single, specific prediction? Global versus local. These lead to very different methods.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="tabular-scope-1" class="slide level2" data-menu-title="Tabular">
+<h2>Tabular → Scope</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-6">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB --&gt; TAB_SCOPE
+
+    TAB_G{"What insight?"}
+    TAB_SCOPE --&gt;|"Global"| TAB_G
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+
+    TAB_L{"Type?"}
+    TAB_SCOPE --&gt;|"Local"| TAB_L
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB_SCOPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-6" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--
+::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 2em;"}
+Are you explaining the **model as a whole**, or a **single prediction**?
+:::
+-->
+</section>
+<section id="tabular-global-3-questions" class="slide level2" data-menu-title="Tabular">
+<h2>Tabular → Global → 3 Questions</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-7">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB --&gt; TAB_SCOPE
+
+    TAB_G{"What insight?"}
+    TAB_SCOPE --&gt;|"Global"| TAB_G
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+
+    TAB_L{"Type?"}
+    TAB_SCOPE --&gt;|"Local"| TAB_L
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB_SCOPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GR fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GE fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GI fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-7" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--
+::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 2em;"}
+Three **different** questions you can ask about your model globally.
+:::
+-->
+<aside class="notes">
+<blockquote>
+<p>“If you go global, there are three different questions you might be asking. Which features matter most? — that’s ranking. How does a feature affect predictions? — that’s effects. And do features work together? — that’s interactions. Let’s walk through each.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="tabular-global" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Global</h2>
+<!--
+::: {.path}
+[Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Feature Ranking]{.node .node-leaf}
+:::
+-->
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-8">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB --&gt; TAB_SCOPE
+
+    TAB_G{"What insight?"}
+    TAB_SCOPE --&gt;|"Global"| TAB_G
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+
+    TAB_L{"Type?"}
+    TAB_SCOPE --&gt;|"Local"| TAB_L
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB_SCOPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GR fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-8" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--
+::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 2em;"}
+Which **features matter most**?
+:::
+-->
+</section>
+<section id="tabular-global-1" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Global</h2>
+<!--
+::: {.path}
+[Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Feature Ranking]{.node .node-leaf}
+:::
+-->
+<h3 style="margin-top: 20px;" id="which-features-matter-most">Which Features Matter Most?</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>SHAP Summary Plot</strong></p>
+<p>Global view of feature importance across an entire dataset</p>
+<p><span class="lib">shap</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/shap_beeswarm.png" style="width:80.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
+<p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/api_examples/plots/beeswarm.html">Image Reference</a></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Permutation Feature Importance (PFI)</strong></p>
+<p>Simple, model-agnostic way to measure how much each feature matters to your model’s performance</p>
+<p><span class="lib">sklearn</span> <span class="lib">dalex</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/pfi.png" style="width:70.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
+<p><a href="https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html">Image Reference</a></p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“For feature ranking, two approaches. SHAP summary plots give you a global view — each dot is a data point, the x-axis shows the SHAP value, and the color shows the feature value. You see importance <em>and</em> direction at a glance. Use the <code>shap</code> library. Alternatively, Permutation Feature Importance — PFI — is simpler and fully model-agnostic. Shuffle a feature, see how much performance drops. Available in <code>sklearn</code> and also in <code>dalex</code>.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="tabular-global-2" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Global</h2>
+<!-- 
+::: {.path}
+[Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Feature Effects]{.node .node-leaf}
+:::
+-->
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-9">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB --&gt; TAB_SCOPE
+
+    TAB_G{"What insight?"}
+    TAB_SCOPE --&gt;|"Global"| TAB_G
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+
+    TAB_L{"Type?"}
+    TAB_SCOPE --&gt;|"Local"| TAB_L
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB_SCOPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-9" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--
+::: {.fragment style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 2em;"}
+How does a **feature affect predictions**?
+:::
+-->
+</section>
+<section id="tabular-global-3" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Global</h2>
+<!--
+::: {.path}
+[Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Feature Effects]{.node .node-leaf}
+:::
+-->
+<h3 style="margin-top: 20px;" id="how-does-a-feature-affect-predictions">How Does a Feature Affect Predictions?</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Partial Dependence Plots (PDP)</strong></p>
+<p>How a feature affects the model’s prediction on average, across the dataset</p>
+<p><span class="lib">sklearn</span> <span class="lib">dalex</span> <span class="lib-outdated">PiML</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/pdp_sklearn.png" style="width:50.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://scikit-learn.org/0.24/auto_examples/inspection/plot_partial_dependence.html">Image Reference</a></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Accumulated Local Effects (ALE) Plots</strong></p>
+<p>How a feature affects predictions by accumulating local changes (good when features are correlated)</p>
+<p><span class="lib">alibi</span> <span class="lib">effector</span> <span class="lib-outdated">PyALE</span> <span class="lib-outdated">ALEPython</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/ale-alibi.png" style="width:80.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
+<p><a href="https://github.com/ramonpzg/alibi/blob/9714f6455e007ab3dc4b2fba2ce94385014d7727/doc/source/examples/ale_regression_california.ipynb">Image Reference</a></p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“For understanding <em>how</em> a feature affects predictions, Partial Dependence Plots show the average effect of a feature across the dataset. Great for getting the big picture — <code>sklearn</code> and <code>dalex</code> both support them. But if your features are correlated, PDPs can be misleading — that’s where ALE plots come in. ALE accumulates local changes, so it handles correlated features gracefully. For ALE, I’d recommend <code>alibi</code> or <code>effector</code>.”</p>
+</blockquote>
+<hr>
+<p>The ALE on the y-axes of the plot above is in the units of the prediction variable which, in this case, is the value of the house in $100,000’s.</p>
+<p>The median income here is in units of $10,000’s.</p>
+<p>The main interpretation of the ALE plot is qualitative—fixing the feature value and looking at the ALE plot as a function at that point, the tangent at that point (or the slope of linear interpolation between the closest bin endpoints) shows how sensitive the target prediction is with respect to small changes of the feature value. Since we have a linear regression model, the tangent/slope is the same across the whole feature range so the feature sensitivity is identical at any point in the feature range.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!--
+Flag PyALE as unmaintained → suggest alibi for ALE plots
+
+[alibi]{.lib} 
+-->
+<!--
+::: {.fragment}
+:::: {.columns}
+::: {.column width="50%"}
+::: {.method-card .method-blue}
+**Individual Conditional Expectation (ICE) plot**: shows individual curves.
+
+[sklearn]{.lib}  [PiML]{.lib-outdated}
+
+:::
+:::
+::: {.column width="50%"}
+![](img/ice.png){width="50%"}
+
+:::
+::::
+:::
+-->
+</section>
+<section id="tabular-global-4" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Global</h2>
+<!--
+::: {.path}
+[Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Interactions]{.node .node-leaf}
+:::
+-->
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-10">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB --&gt; TAB_SCOPE
+
+    TAB_G{"What insight?"}
+    TAB_SCOPE --&gt;|"Global"| TAB_G
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+
+    TAB_L{"Type?"}
+    TAB_SCOPE --&gt;|"Local"| TAB_L
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB_SCOPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-10" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--
+::: {.fragment style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 2em;"}
+Which **features work together**?
+:::
+-->
+</section>
+<section class="slide level2">
+
+</section>
+<section id="tabular-global-5" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Global</h2>
+<h3 style="margin-top: 20px;" id="which-features-work-together">Which Features Work Together?</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>SHAP Interaction Values</strong></p>
+<p>Decompose predictions into main effects + pairwise interactions</p>
+<p><span class="lib">shap</span> <span class="lib">shapiq</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/shap_interaction_values.png" style="width:80.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/tabular_examples/tree_based_models/NHANES%20I%20Survival%20Model.html">Image Reference</a></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><em>Alternative: 2D PDP or ALE plots</em></p>
+<p><span class="lib">sklearn</span> <span class="lib">alibi</span> <span class="lib">effector</span> <span class="lib-outdated">pdpbox</span> <span class="lib-outdated">PyALE</span> <span class="lib-outdated">ALEPython</span></p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“And for interactions — which features work together — SHAP interaction values decompose predictions into main effects plus pairwise interactions. You can also use 2D PDP or ALE plots as a simpler alternative. The <code>shap</code> and <code>shapiq</code> libraries handle this well.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="tabular-local-type" class="slide level2" data-menu-title="Tabular">
+<h2>Tabular → Local → Type?</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-11">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB --&gt; TAB_SCOPE
+
+    TAB_G{"What insight?"}
+    TAB_SCOPE --&gt;|"Global"| TAB_G
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+
+    TAB_L{"Type?"}
+    TAB_SCOPE --&gt;|"Local"| TAB_L
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB_SCOPE fill:#EBF0F3,stroke:#ADC0CA,stroke-width:5px,color:#9ca3af
+    style TAB_G fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_LW fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_LC fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-11" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“Now let’s flip to local — explaining a single prediction. Here, there are two fundamentally different questions. ‘Why this prediction?’ — that’s attribution. And ‘What would need to change?’ — that’s counterfactual. These serve different audiences and different purposes.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!--
+::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 1em;"}
+Two fundamentally different questions about a single prediction.
+:::
+-->
+</section>
+<section id="tabular-local" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Local</h2>
+<!--
+::: {.path}
+[Tabular]{.node .node-tab} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [Why this prediction?]{.node .node-leaf}
+:::
+-->
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-12">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB --&gt; TAB_SCOPE
+
+    TAB_G{"What insight?"}
+    TAB_SCOPE --&gt;|"Global"| TAB_G
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+
+    TAB_L{"Type?"}
+    TAB_SCOPE --&gt;|"Local"| TAB_L
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB_SCOPE fill:#EBF0F3,stroke:#ADC0CA,stroke-width:5px,color:#9ca3af
+    style TAB_G fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_LW fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-12" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="tabular-local-1" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Local</h2>
+<!--
+::: {.path}
+[Tabular]{.node .node-tab} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [Why this prediction?]{.node .node-leaf}
+:::
+-->
+<h3 style="margin-top: 20px;" id="why-this-prediction">Why This Prediction?</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>SHAP</strong></p>
+<p>Feature attributions via Shapley values</p>
+<p>Use the right explainer for your model (Tree, Linear, Deep, Kernel)</p>
+<p><span class="lib">shap</span> <span class="lib">dalex</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/shap-waterfall.png" style="width:70.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
+<p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html">Image Reference</a></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>LIME</strong></p>
+<p>How features influence a single prediction by slightly changing the input and seeing how the prediction changes</p>
+<p><span class="lib-outdated">lime</span> <span class="lib">dalex</span></p>
+<!--For rules-based explanations, see Anchors.-->
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/lime-library.png" style="width:70.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
+<p><a href="https://marcotcr.github.io/lime/tutorials/Tutorial%20-%20continuous%20and%20categorical%20features.html">Image Reference</a></p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“For ‘why this prediction,’ your go-to tools are SHAP and LIME. SHAP gives you feature attributions grounded in game theory — Shapley values. Pick the right explainer for your model: TreeExplainer for tree models, LinearExplainer for linear models, DeepExplainer or KernelExplainer for neural nets. LIME takes a different approach — it perturbs the input slightly and fits a local linear model to see how the prediction changes. Both are also available through <code>dalex</code>, which gives you a unified interface — one Explainer object, and you call <code>predict_parts</code> with the method you want. Great if you don’t want to juggle separate libraries.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="tabular-local-2" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Local</h2>
+<!--
+::: {.path}
+[Tabular]{.node .node-tab} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [What would change?]{.node .node-leaf}
+:::
+-->
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-13">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB --&gt; TAB_SCOPE
+
+    TAB_G{"What insight?"}
+    TAB_SCOPE --&gt;|"Global"| TAB_G
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+
+    TAB_L{"Type?"}
+    TAB_SCOPE --&gt;|"Local"| TAB_L
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB_SCOPE fill:#EBF0F3,stroke:#ADC0CA,stroke-width:5px,color:#9ca3af
+    style TAB_G fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_LC fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-13" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="tabular-local-3" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Local</h2>
+<h3 style="margin-top: 20px;" id="what-would-change">What Would Change?</h3>
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Counterfactuals</strong></p>
+<p>Not <strong>why</strong>, but <strong>what needs to change in the input to achieve a different outcome</strong></p>
+<p><span class="lib">dice-ml</span> <span class="lib">alibi</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/counterfactuals.png" style="width:80.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://pureai.com/articles/2020/03/13/open-source-counterfactuals.aspx">Image Reference</a></p>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“Now, ‘what would change’ is a fundamentally different question. Counterfactuals don’t tell you <em>why</em> the model said no — they tell you <em>what the applicant would need to change</em> to get a yes. Incredibly powerful for actionable feedback. Think: ‘If your income were 5K higher, the loan would have been approved.’ The <code>dice-ml</code> and <code>alibi</code> libraries are your friends here.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="tabular" class="slide level2" data-menu-title="Tabular">
+<h2>Tabular ✅</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-14">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    START(("🔍 Explain?"))
+    DTYPE{"Data type?"}
+    START --&gt; DTYPE
+
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB_G{"Insight?"}
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_L{"Type?"}
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+
+    DTYPE --&gt;|Tabular| TAB
+    TAB --&gt; TAB_SCOPE
+    TAB_SCOPE --&gt;|Global| TAB_G
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+    TAB_SCOPE --&gt;|Local| TAB_L
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG_G["Global"]
+    IMG_L{"Access?"}
+    IMG_BB["Black-Box"]
+    IMG_A{"Architecture?"}
+    IMG_CNN["CNN"]
+    IMG_VIT["ViT"]
+
+    DTYPE --&gt;|Image| IMG
+    IMG --&gt; IMG_S
+    IMG_S --&gt;|Global| IMG_G
+    IMG_S --&gt;|Local| IMG_L
+    IMG_L --&gt;|Black-Box| IMG_BB
+    IMG_L --&gt;|White-Box| IMG_A
+    IMG_A --&gt;|CNN| IMG_CNN
+    IMG_A --&gt;|ViT| IMG_VIT
+
+    TXT["📝 Text"]
+    TXT_S{"Scope?"}
+    TXT_G["Global"]
+    TXT_L{"Access?"}
+    TXT_BB["Black-Box"]
+    TXT_WB["White-Box"]
+
+    DTYPE --&gt;|Text| TXT
+    TXT --&gt; TXT_S
+    TXT_S --&gt;|Global| TXT_G
+    TXT_S --&gt;|Local| TXT_L
+    TXT_L --&gt;|Black-Box| TXT_BB
+    TXT_L --&gt;|White-Box| TXT_WB
+
+    style START fill:#ffffff,stroke:#1E3A4C,stroke-width:2.5px,color:#1E3A4C
+    style DTYPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_SCOPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GR fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GE fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GI fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_LW fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_LC fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_S fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_L fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_A fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TXT_S fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TXT_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_L fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TXT_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-14" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“And that’s the tabular branch — complete. A few questions got us from ‘I have a black-box model’ to a specific method and library. Let’s move on to images.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-2" class="slide level2" data-background-color="#EBF0F3" data-menu-title="Image">
+<h2></h2>
+<div class="r-fit-text" style="text-align: center;">
+<p><span style="color: #1E3A4C;">Image</span></p>
+</div>
+<!--
+::: {style="text-align: center; color: #6b7280;"}
+Spatial structure, specialized methods
+:::
+-->
+</section>
+<section id="image-data" class="slide level2">
+<h2>Image Data</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-15">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG --&gt; IMG_S
+
+    IMG_G["Global"]
+    IMG_S --&gt;|"Global"| IMG_G
+
+    IMG_L{"Access?"}
+    IMG_S --&gt;|"Local"| IMG_L
+
+    IMG_BB["Black-Box"]
+    IMG_L --&gt;|"Black-Box"| IMG_BB
+
+    IMG_A{"Architecture?"}
+    IMG_L --&gt;|"White-Box"| IMG_A
+    IMG_CNN["CNN"]
+    IMG_VIT["ViT"]
+    IMG_A --&gt;|"CNN"| IMG_CNN
+    IMG_A --&gt;|"ViT"| IMG_VIT
+
+    style IMG fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_S fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_A fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-15" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="image-scope" class="slide level2" data-menu-title="Image">
+<h2>Image: Scope</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-16">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG --&gt; IMG_S
+
+    IMG_G["Global"]
+    IMG_S --&gt;|"Global"| IMG_G
+
+    IMG_L{"Access?"}
+    IMG_S --&gt;|"Local"| IMG_L
+
+    IMG_BB["Black-Box"]
+    IMG_L --&gt;|"Black-Box"| IMG_BB
+
+    IMG_A{"Architecture?"}
+    IMG_L --&gt;|"White-Box"| IMG_A
+    IMG_CNN["CNN"]
+    IMG_VIT["ViT"]
+    IMG_A --&gt;|"CNN"| IMG_CNN
+    IMG_A --&gt;|"ViT"| IMG_VIT
+
+    style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_G fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_A fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-16" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--
+::: {style="text-align: center; margin-top: 30px; color: #6b7280; font-size: 0.85em;"}
+Again, are you explaining the **model as a whole**, or a **single prediction**?
+:::
+-->
+<!-- 
+Global is niche. Local is where the action is.
+-->
+<aside class="notes">
+<blockquote>
+<p>“Same first question: global or local? For images, global is more niche — it’s about understanding what the model has <em>learned</em> in general. Local is where most of the action is — explaining why it classified <em>this specific image</em> the way it did.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="image-global" class="slide level2" data-menu-title="Image">
+<h2>Image → Global</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-17">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG --&gt; IMG_S
+
+    IMG_G["Global"]
+    IMG_S --&gt;|"Global"| IMG_G
+
+    IMG_L{"Access?"}
+    IMG_S --&gt;|"Local"| IMG_L
+
+    IMG_BB["Black-Box"]
+    IMG_L --&gt;|"Black-Box"| IMG_BB
+
+    IMG_A{"Architecture?"}
+    IMG_L --&gt;|"White-Box"| IMG_A
+    IMG_CNN["CNN"]
+    IMG_VIT["ViT"]
+    IMG_A --&gt;|"CNN"| IMG_CNN
+    IMG_A --&gt;|"ViT"| IMG_VIT
+
+    style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_G fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_A fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-17" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="image-global-1" class="slide level2 path-slide" data-menu-title="Image">
+<h2>Image → Global</h2>
+<h3 style="margin-top: 20px;" id="what-concepts-has-the-model-learned">What Concepts Has the Model Learned?</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Testing with Concept Activation Vectors (TCAV)</strong></p>
+<p>Tests whether a concept (e.g., “striped texture”) influences predictions</p>
+<p><span class="lib">captum</span> <span class="lib-outdated">tcav</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/tcav.png" style="width:70.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://captum.ai/tutorials/TCAV_Image">Image Reference</a></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Feature Visualization</strong></p>
+<p>Generates images that maximally activate specific neurons</p>
+<p><span class="lib">captum</span> <span class="lib">tf-keras-vis</span> <span class="lib-outdated">lucid</span> <span class="lib-outdated">lucent</span> <span class="lib-outdated">flashtorch</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/feature-visualization.png" style="width:100.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://distill.pub/2017/feature-visualization/">Image Reference</a></p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“For global image explanations, two powerful approaches. TCAV — Testing with Concept Activation Vectors — lets you test whether a human-defined concept, like ‘striped texture,’ actually influences the model’s predictions. Think: does ‘stripes’ matter when classifying zebras, or is it something else? Then there’s feature visualization — generating synthetic images that maximally activate specific neurons. It shows you what the model has <em>learned</em> to detect at each layer. Both available through <code>captum</code>.”</p>
+</blockquote>
+<p>TCAV: zebra - has stripes, background, something else? does concept, stripes, influence a model’s prediction? teach a model the concept and check the influence</p>
+<p>Feature visualiaztion: understanding what a model has learned (recently also combined with what a model activates -&gt; “attribution” -&gt; optimized feature visualization)</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="image-local-access" class="slide level2" data-menu-title="Image">
+<h2>Image → Local → Access</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-18">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG --&gt; IMG_S
+
+    IMG_G["Global"]
+    IMG_S --&gt;|"Global"| IMG_G
+
+    IMG_L{"Access?"}
+    IMG_S --&gt;|"Local"| IMG_L
+
+    IMG_BB["Black-Box"]
+    IMG_L --&gt;|"Black-Box"| IMG_BB
+
+    IMG_A{"Architecture?"}
+    IMG_L --&gt;|"White-Box"| IMG_A
+    IMG_CNN["CNN"]
+    IMG_VIT["ViT"]
+    IMG_A --&gt;|"CNN"| IMG_CNN
+    IMG_A --&gt;|"ViT"| IMG_VIT
+
+    style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_A fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_CNN fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
+    style IMG_VIT fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-18" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“For local image explanations, the next question is access. Can you only query the model — black-box — or do you have full access to its internals — white-box? This matters a lot for images.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="image-local-black-box" class="slide level2" data-menu-title="Image">
+<h2>Image → Local → Black-Box</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-19">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG --&gt; IMG_S
+
+    IMG_G["Global"]
+    IMG_S --&gt;|"Global"| IMG_G
+
+    IMG_L{"Access?"}
+    IMG_S --&gt;|"Local"| IMG_L
+
+    IMG_BB["Black-Box"]
+    IMG_L --&gt;|"Black-Box"| IMG_BB
+
+    IMG_A{"Architecture?"}
+    IMG_L --&gt;|"White-Box"| IMG_A
+    IMG_CNN["CNN"]
+    IMG_VIT["ViT"]
+    IMG_A --&gt;|"CNN"| IMG_CNN
+    IMG_A --&gt;|"ViT"| IMG_VIT
+
+    style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_A fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-19" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="image-local-black-box-1" class="slide level2 path-slide" data-menu-title="Image">
+<h2>Image → Local → Black-Box</h2>
+<!--
+::: {.path}
+[Image]{.node .node-img} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [Black-Box]{.node .node-leaf}
+:::
+-->
+<h3 style="margin-top: 20px;" id="which-regions-matter">Which Regions Matter?</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>SHAP Partition Explainer</strong></p>
+<p>Uses a hierarchical decomposition</p>
+<p><span class="lib">shap</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/shap-image.png" style="width:80.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/image_examples/image_classification/Image%20Multi%20Class.html">Image Reference</a></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Image Segmentation</strong></p>
+<p>Segment the image into superpixels and perturbs them</p>
+<p><span class="lib-outdated">lime</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/lime-image.png" style="width:80.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://marcotcr.github.io/lime/tutorials/Tutorial%20-%20images.html">Image Reference</a></p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<p>If it’s a black-box, SHAP’s partition explainer uses hierarchical image decomposition to attribute importance to regions. LIME segments the image into superpixels and perturbs them. Both give you heatmaps showing which parts of the image drove the prediction — like showing that the model looked at snow, not the husky.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="image-local-white-box-architecture" class="slide level2" data-menu-title="Image">
+<h2>Image → Local → White-Box → Architecture</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-20">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG --&gt; IMG_S
+
+    IMG_G["Global"]
+    IMG_S --&gt;|"Global"| IMG_G
+
+    IMG_L{"Access?"}
+    IMG_S --&gt;|"Local"| IMG_L
+
+    IMG_BB["Black-Box"]
+    IMG_L --&gt;|"Black-Box"| IMG_BB
+
+    IMG_A{"Architecture?"}
+    IMG_L --&gt;|"White-Box"| IMG_A
+    IMG_CNN["CNN"]
+    IMG_VIT["ViT"]
+    IMG_A --&gt;|"CNN"| IMG_CNN
+    IMG_A --&gt;|"ViT"| IMG_VIT
+
+    style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_A fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_CNN fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_VIT fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-20" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“If you have white-box access, architecture matters. The methods differ for CNNs versus Vision Transformers.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<!--
+::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 0.85em;"}
+The architecture split matters here.
+:::
+-->
+</section>
+<section id="image-local-white-box-architecture-1" class="slide level2" data-menu-title="Image">
+<h2>Image → Local → White-Box → Architecture</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-21">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG --&gt; IMG_S
+
+    IMG_G["Global"]
+    IMG_S --&gt;|"Global"| IMG_G
+
+    IMG_L{"Access?"}
+    IMG_S --&gt;|"Local"| IMG_L
+
+    IMG_BB["Black-Box"]
+    IMG_L --&gt;|"Black-Box"| IMG_BB
+
+    IMG_A{"Architecture?"}
+    IMG_L --&gt;|"White-Box"| IMG_A
+    IMG_CNN["CNN"]
+    IMG_VIT["ViT"]
+    IMG_A --&gt;|"CNN"| IMG_CNN
+    IMG_A --&gt;|"ViT"| IMG_VIT
+
+    style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_A fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_CNN fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-21" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="image-local-white-box-architecture-2" class="slide level2 path-slide" data-menu-title="Image">
+<h2>Image → Local → White-Box → Architecture</h2>
+<!--
+::: {.path}
+[Image]{.node .node-img} [→]{.arrow} [White-Box]{.node .node-q} [→]{.arrow} [CNN]{.node .node-leaf}
+:::
+-->
+<h3 style="margin-top: 20px;" id="grad-cam-integrated-gradients">Grad-CAM &amp; Integrated Gradients</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Gradient-Based Heatmaps</strong></p>
+<p>Grad-CAM highlights which spatial regions drive the prediction</p>
+<p><span class="lib">captum</span> <span class="lib">grad-cam</span> <span class="lib-outdated">pytorch-grad-cam</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/gradcam.png" style="width:70.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://github.com/jacobgil/pytorch-grad-cam">Image Reference</a></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Integrated Gradients</strong></p>
+<p>Attribute a model’s prediction to its input features by accumulating gradients along a linear path from a neutral baseline to the actual input.</p>
+<p><span class="lib">captum</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/tf-integrated-gradients.png" style="width:50.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://www.tensorflow.org/tutorials/interpretability/integrated_gradients">Image Reference</a></p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“For CNNs, Grad-CAM gives you gradient-based heatmaps highlighting which spatial regions drove the prediction. Integrated Gradients takes a different approach — it accumulates gradients along a path from a neutral baseline to your actual input, giving pixel-level attribution. Both available through <code>captum</code>.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="image-local-white-box-architecture-3" class="slide level2 path-slide" data-menu-title="Image">
+<h2>Image → Local → White-Box → Architecture</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-22">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG --&gt; IMG_S
+
+    IMG_G["Global"]
+    IMG_S --&gt;|"Global"| IMG_G
+
+    IMG_L{"Access?"}
+    IMG_S --&gt;|"Local"| IMG_L
+
+    IMG_BB["Black-Box"]
+    IMG_L --&gt;|"Black-Box"| IMG_BB
+
+    IMG_A{"Architecture?"}
+    IMG_L --&gt;|"White-Box"| IMG_A
+    IMG_CNN["CNN"]
+    IMG_VIT["ViT"]
+    IMG_A --&gt;|"CNN"| IMG_CNN
+    IMG_A --&gt;|"ViT"| IMG_VIT
+
+    style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_A fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_VIT fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-22" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="image-local-white-box-architecture-4" class="slide level2 path-slide" data-menu-title="Image">
+<h2>Image → Local → White-Box → Architecture</h2>
+<h3 style="margin-top: 20px;" id="attention-rollout-transformer-attribution">Attention Rollout &amp; Transformer Attribution</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Attention Rollout</strong></p>
+<p>Aggregates attention across layers</p>
+<p><span class="lib">captum</span> <span class="lib">vit-explain</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/attention-rollout.png" style="width:80.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://github.com/jacobgil/vit-explain">Image Reference</a></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Transformer Attribution</strong></p>
+<p>Combines attention with gradient information</p>
+<p><span class="lib">captum</span> <span class="lib">vit-explain</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/transformer-attribution.png" style="width:80.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://github.com/jacobgil/vit-explain?tab=readme-ov-file#gradient-attention-rollout-for-class-specific-explainability">Image Reference</a></p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“For Vision Transformers, attention rollout aggregates attention across layers, and transformer attribution combines attention with gradient information for sharper, class-specific explanations. Again, <code>captum</code> and <code>vit-explain</code> cover these.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="image" class="slide level2" data-menu-title="Image">
+<h2>Image ✅</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-23">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    START(("🔍 Explain?"))
+    DTYPE{"Data type?"}
+    START --&gt; DTYPE
+
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB_G{"Insight?"}
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_L{"Type?"}
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+
+    DTYPE --&gt;|Tabular| TAB
+    TAB --&gt; TAB_SCOPE
+    TAB_SCOPE --&gt;|Global| TAB_G
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+    TAB_SCOPE --&gt;|Local| TAB_L
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG_G["Global"]
+    IMG_L{"Access?"}
+    IMG_BB["Black-Box"]
+    IMG_A{"Architecture?"}
+    IMG_CNN["CNN"]
+    IMG_VIT["ViT"]
+
+    DTYPE --&gt;|Image| IMG
+    IMG --&gt; IMG_S
+    IMG_S --&gt;|Global| IMG_G
+    IMG_S --&gt;|Local| IMG_L
+    IMG_L --&gt;|Black-Box| IMG_BB
+    IMG_L --&gt;|White-Box| IMG_A
+    IMG_A --&gt;|CNN| IMG_CNN
+    IMG_A --&gt;|ViT| IMG_VIT
+
+    TXT["📝 Text"]
+    TXT_S{"Scope?"}
+    TXT_G["Global"]
+    TXT_L{"Access?"}
+    TXT_BB["Black-Box"]
+    TXT_WB["White-Box"]
+
+    DTYPE --&gt;|Text| TXT
+    TXT --&gt; TXT_S
+    TXT_S --&gt;|Global| TXT_G
+    TXT_S --&gt;|Local| TXT_L
+    TXT_L --&gt;|Black-Box| TXT_BB
+    TXT_L --&gt;|White-Box| TXT_WB
+
+    style START fill:#ffffff,stroke:#1E3A4C,stroke-width:2.5px,color:#1E3A4C
+    style DTYPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_SCOPE fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_G fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_G fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_A fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_CNN fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_VIT fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TXT_S fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TXT_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_L fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TXT_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-23" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“Image branch — done. On to text.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-3" class="slide level2" data-background-color="#EBF0F3" data-menu-title="Text">
+<h2></h2>
+<div class="r-fit-text" style="text-align: center;">
+<p><span style="color: #1E3A4C;">Text / NLP</span></p>
+</div>
+<!--
+::: {style="text-align: center; color: #6b7280;"}
+Similar shape to image, with one big caveat
+:::
+-->
+</section>
+<section id="text" class="slide level2" data-menu-title="Text">
+<h2>Text</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-24">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TXT["📝 Text"]
+    TXT_S{"Scope?"}
+    TXT --&gt; TXT_S
+
+    TXT_G["Global"]
+    TXT_S --&gt;|"Global"| TXT_G
+
+    TXT_L{"Access?"}
+    TXT_S --&gt;|"Local"| TXT_L
+
+    TXT_BB["Black-Box"]
+    TXT_L --&gt;|"Black-Box"| TXT_BB
+
+    TXT_WB["White-Box"]
+    TXT_L --&gt;|"White-Box"| TXT_WB
+
+    style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TXT_G fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
+    style TXT_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TXT_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
+    style TXT_WB fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-24" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="text-scope" class="slide level2" data-menu-title="Text">
+<h2>Text: Scope</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-25">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TXT["📝 Text"]
+    TXT_S{"Scope?"}
+    TXT --&gt; TXT_S
+
+    TXT_G["Global"]
+    TXT_S --&gt;|"Global"| TXT_G
+
+    TXT_L{"Access?"}
+    TXT_S --&gt;|"Local"| TXT_L
+
+    TXT_BB["Black-Box"]
+    TXT_L --&gt;|"Black-Box"| TXT_BB
+
+    TXT_WB["White-Box"]
+    TXT_L --&gt;|"White-Box"| TXT_WB
+
+    style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_G fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-25" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--
+::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 2em;"}
+Are you explaining the **model as a whole**, or a **single prediction**?
+:::
+-->
+<aside class="notes">
+<blockquote>
+<p>“Same structure: global or local? And for local, the key split is again black-box versus white-box.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="text-global" class="slide level2" data-menu-title="Text">
+<h2>Text → Global</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-26">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TXT["📝 Text"]
+    TXT_S{"Scope?"}
+    TXT --&gt; TXT_S
+
+    TXT_G["Global"]
+    TXT_S --&gt;|"Global"| TXT_G
+
+    TXT_L{"Access?"}
+    TXT_S --&gt;|"Local"| TXT_L
+
+    TXT_BB["Black-Box"]
+    TXT_L --&gt;|"Black-Box"| TXT_BB
+
+    TXT_WB["White-Box"]
+    TXT_L --&gt;|"White-Box"| TXT_WB
+
+    style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_G fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_L fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TXT_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-26" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="text-global-1" class="slide level2 path-slide" data-menu-title="Text">
+<h2>Text → Global</h2>
+<h3 style="margin-top: 20px;" id="shap-partition-explainer">SHAP Partition Explainer</h3>
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>SHAP Partition Explainer</strong></p>
+<p>Specifically designed for text</p>
+<p>Uses a hierarchical masking strategy that respects token boundaries</p>
+<p><span class="lib">shap</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/shap-text-global.png" style="width:50.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/api_examples/plots/text.html">Image Reference</a></p>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“For global text explanations, the SHAP partition explainer is specifically designed for text. It uses a hierarchical masking strategy that respects token boundaries — so it’s not just randomly dropping words, it’s doing it intelligently. This gives you a view of which tokens or phrases matter most across your dataset.”</p>
+</blockquote>
+<p>The partition explainer is a model-agnostic estimator based on a hierarchical tree for the features that tell the partition explainer how to recursively compute the SHAP values. The Partition explainer is useful when the features are text or image inputs, but also when features are correlated.</p>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="text-local-access" class="slide level2" data-menu-title="Text">
+<h2>Text → Local → Access</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-27">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TXT["📝 Text"]
+    TXT_S{"Scope?"}
+    TXT --&gt; TXT_S
+
+    TXT_G["Global"]
+    TXT_S --&gt;|"Global"| TXT_G
+
+    TXT_L{"Access?"}
+    TXT_S --&gt;|"Local"| TXT_L
+
+    TXT_BB["Black-Box"]
+    TXT_L --&gt;|"Black-Box"| TXT_BB
+
+    TXT_WB["White-Box"]
+    TXT_L --&gt;|"White-Box"| TXT_WB
+
+    style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_WB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-27" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="text-local-black-box" class="slide level2" data-menu-title="Text">
+<h2>Text → Local → Black-Box</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-28">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TXT["📝 Text"]
+    TXT_S{"Scope?"}
+    TXT --&gt; TXT_S
+
+    TXT_G["Global"]
+    TXT_S --&gt;|"Global"| TXT_G
+
+    TXT_L{"Access?"}
+    TXT_S --&gt;|"Local"| TXT_L
+
+    TXT_BB["Black-Box"]
+    TXT_L --&gt;|"Black-Box"| TXT_BB
+
+    TXT_WB["White-Box"]
+    TXT_L --&gt;|"White-Box"| TXT_WB
+
+    style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-28" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="text-local-black-box-1" class="slide level2 path-slide" data-menu-title="Text">
+<h2>Text → Local → Black-Box</h2>
+<!--
+::: {.path}
+[Text]{.node .node-txt} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [Black-Box]{.node .node-leaf}
+:::
+-->
+<h3 style="margin-top: 20px;" id="token-level-attributions-without-gradients">Token-Level Attributions Without Gradients</h3>
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>SHAP Partition Explainer</strong></p>
+<p>Same SHAP toolkit as other domains → mask or perturb tokens, measure impact</p>
+<p><span class="lib">shap</span> <span class="lib-outdated">lime</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/shap-text-local.png" style="width:70.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/api_examples/plots/text.html">Image Reference</a></p>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“For local black-box text explanations, same tool — SHAP’s partition explainer. Mask or perturb tokens, measure the impact on the prediction. You get token-level attributions without needing any access to the model’s internals.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="text-local-white-box" class="slide level2" data-menu-title="Text">
+<h2>Text → Local → White-Box</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-29">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TXT["📝 Text"]
+    TXT_S{"Scope?"}
+    TXT --&gt; TXT_S
+
+    TXT_G["Global"]
+    TXT_S --&gt;|"Global"| TXT_G
+
+    TXT_L{"Access?"}
+    TXT_S --&gt;|"Local"| TXT_L
+
+    TXT_BB["Black-Box"]
+    TXT_L --&gt;|"Black-Box"| TXT_BB
+
+    TXT_WB["White-Box"]
+    TXT_L --&gt;|"White-Box"| TXT_WB
+
+    style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_WB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-29" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="text-local-white-box-1" class="slide level2 path-slide" data-menu-title="Text">
+<h2>Text → Local → White-Box</h2>
+<!--
+::: {.path}
+[Text]{.node .node-txt} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [White-Box]{.node .node-leaf}
+:::
+-->
+<h3 style="margin-top: 20px;" id="integrated-gradients">Integrated Gradients</h3>
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Integrated Gradients</strong></p>
+<p>Attribute a model’s prediction to its input features by accumulating gradients along a linear path from a neutral baseline to the actual input</p>
+<p><span class="lib">captum</span> <span class="lib">inseq</span> <span class="lib-outdated">transformers-interpret</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/captum-ig.png" style="width:60.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://captum.ai/tutorials/IMDB_TorchText_Interpret">Image Reference</a></p>
+</div>
+</div>
+<!--
+::: {.callout-warning}
+## Attention ≠ Attribution
+
+The biggest misconception in NLP explainability. Attention weights show what the model **looks at**, not what it **relies on**.
+:::
+-->
+<aside class="notes">
+<blockquote>
+<p>“And if you have white-box access to a transformer, Integrated Gradients is your go-to. Same principle as with images — accumulate gradients from a baseline to your input — but now applied to token embeddings. The <code>captum</code> and <code>inseq</code> libraries handle this. One quick note that’s often a source of confusion: attention weights are <em>not</em> explanations. They show what the model <em>looks at</em>, not what it <em>relies on</em>. There’s a whole debate in the literature on this — but for practical purposes, use proper attribution methods rather than raw attention.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="text-1" class="slide level2" data-menu-title="Text">
+<h2>Text ✅</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.6); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-30">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    START(("🔍 Explain?"))
+    DTYPE{"Data type?"}
+    START --&gt; DTYPE
+
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB_G{"Insight?"}
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_L{"Type?"}
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+
+    DTYPE --&gt;|Tabular| TAB
+    TAB --&gt; TAB_SCOPE
+    TAB_SCOPE --&gt;|Global| TAB_G
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+    TAB_SCOPE --&gt;|Local| TAB_L
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG_G["Global"]
+    IMG_L{"Access?"}
+    IMG_BB["Black-Box"]
+    IMG_A{"Architecture?"}
+    IMG_CNN["CNN"]
+    IMG_VIT["ViT"]
+
+    DTYPE --&gt;|Image| IMG
+    IMG --&gt; IMG_S
+    IMG_S --&gt;|Global| IMG_G
+    IMG_S --&gt;|Local| IMG_L
+    IMG_L --&gt;|Black-Box| IMG_BB
+    IMG_L --&gt;|White-Box| IMG_A
+    IMG_A --&gt;|CNN| IMG_CNN
+    IMG_A --&gt;|ViT| IMG_VIT
+
+    TXT["📝 Text"]
+    TXT_S{"Scope?"}
+    TXT_G["Global"]
+    TXT_L{"Access?"}
+    TXT_BB["Black-Box"]
+    TXT_WB["White-Box"]
+
+    DTYPE --&gt;|Text| TXT
+    TXT --&gt; TXT_S
+    TXT_S --&gt;|Global| TXT_G
+    TXT_S --&gt;|Local| TXT_L
+    TXT_L --&gt;|Black-Box| TXT_BB
+    TXT_L --&gt;|White-Box| TXT_WB
+
+    style START fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2.5px,color:#1E3A4C
+    style DTYPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_SCOPE fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_G fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_S fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_L fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_A fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_BB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_WB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-30" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“And that’s the text branch — and the entire decision tree.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="observed-patterns-and-whats-next" class="slide level2 smaller" data-menu-title="Outlook">
+<h2>Observed Patterns and What’s Next</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div style="font-size: 2.5em;">
+<div class="fragment">
+<div>
+<ul>
+<li class="fragment"><p><strong>SHAP</strong> appears in every single branch — it’s the Swiss army knife</p></li>
+<li class="fragment"><p><strong>Integrated Gradients</strong> feels like a universal white-box method</p></li>
+<li class="fragment"><p><strong>“Why this prediction?”</strong> and <strong>“What would change it?”</strong> are fundamentally different questions</p></li>
+<li class="fragment"><p>Start with <strong>interpretable models</strong> when you can</p></li>
+</ul>
+<!---  Attention weights are **not** explanations-->
+</div>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div style="font-size: 2em;">
+<div class="fragment">
+<p>Find an interactive (tabular) version of the decision tree here 👇 <a href="https://cosimameyer.github.io/explainable-ml/"><img data-src="img/qr_repo.png" style="width:60.0%"></a> <!----></p>
+</div>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“Let me leave you with a few patterns to take away.”</p>
+</blockquote>
+<blockquote>
+<p>“First, SHAP shows up in every single branch of this tree. Tabular, image, text — global, local, black-box. It’s the Swiss army knife of XAI. If you learn one tool deeply, make it SHAP.”</p>
+</blockquote>
+<blockquote>
+<p>“Second, Integrated Gradients is the universal white-box method. Whenever you have access to gradients — CNNs, transformers, text models — it works.”</p>
+</blockquote>
+<blockquote>
+<p>“Third — and this is conceptual — ‘why this prediction’ and ‘what would change it’ are fundamentally different questions. Don’t confuse them. Attribution tells you what drove the decision. Counterfactuals tell you what to <em>do about it</em>.”</p>
+</blockquote>
+<blockquote>
+<p>“And finally: start with interpretable models when you can. If a linear model or an EBM gets you 95% of the performance, you might not need a black box at all.”</p>
+</blockquote>
+<blockquote>
+<p>“You can find an interactive version of this decision tree on my GitHub. Scan the QR code or visit the repo.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="more-resources" class="slide level2 smaller" data-background-color="#1E3A4C" style="color: white;" data-menu-title="Resources">
+<h2>More Resources</h2>
+<style>
+section[data-background-color="#1E3A4C"] ul {
+  font-size: 1.2em;
+}
+section[data-background-color="#1E3A4C"] li {
+  margin-bottom: 0.4em;
+}
+</style>
+<div class="columns" style="color: white;">
+<div class="column" style="width:55%;">
+<div>
+<h3 id="links">Links</h3>
+<ul>
+<li><a href="https://github.com/cosimameyer/explainable-ml">Meyer, Cosima. Explainable ML (GitHub Repository), 2026</a></li>
+<li><a href="https://socialsciencedatalab.mzes.uni-mannheim.de/article/bert-explainable-ai/">Küpfer, Andreas &amp; Meyer, Cosima. BERT and Explainable AI, 2023</a></li>
+</ul>
+<h3 id="books-and-papers">Books and Papers</h3>
+<ul>
+<li><a href="https://www.packtpub.com/en-de/product/interpretable-machine-learning-with-python-9781803243627?srsltid=AfmBOorf6dLkzbhjoDJN41FPaFhcTXpX7jtWBDSc80ZoOk-k1B3y61keQmo">Masís, Serg. Interpretable Machine Learning with Python: Build Explainable, Fair, and Robust High-performance Models With Hands-on, Real-world Examples, 2nd ed., 2023</a></li>
+<li><a href="https://github.com/christophM/interpretable-ml-book">Molnar, Christoph. Interpretable Machine Learning: A Guide for Making Black Box Models Explainable. 3rd ed., 2025</a></li>
+<li><a href="https://arxiv.org/abs/1902.10186">Jain, Sarthak &amp; Wallace, Byron C. Attention is not Explanation, 2019</a></li>
+<li><a href="https://arxiv.org/abs/1908.04626">Wiegreffe, Sarah &amp; Pinter, Yuval. Attention is not not Explanation, 2019</a></li>
+</ul>
+</div>
+</div><div class="column" style="width:45%;">
+<div>
+<p><img data-src="img/ghost_happy.png" class="absolute" style="bottom: 0px; right: 0px; width: 500px; "></p>
+</div>
+</div>
+</div>
+<aside class="notes">
+<blockquote>
+<p>“I’ve listed some resources here — my GitHub repo with the interactive decision tree, a tutorial on BERT and XAI, and two excellent books by Serg Masís and Christoph Molnar if you want to go deeper. These slides will be available as well.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+</section>
+<section id="section-4" class="slide level2" data-background-color="#1E3A4C" data-menu-title="Closing">
+<h2></h2>
+<div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; gap: 0.6em; color: #FFFFFF; text-align: center;">
+<p><span class="myfont" style="font-size: 120px;">Thank You!</span></p>
+<p><i class="fa-solid fa-globe" aria-label="globe"></i> cosimameyer.com<br>
+<i class="fa-brands fa-github" aria-label="github"></i> cosimameyer</p>
+<!--
+ cosimameyer  
+ @cosima_meyer@mas.to
+-->
+</div>
+<aside class="notes">
+<blockquote>
+<p>“Thank you! I’m happy to take questions — and you can find me online at cosimameyer.com or on GitHub.”</p>
+</blockquote>
+<style type="text/css">
+        span.MJX_Assistive_MathML {
+          position:absolute!important;
+          clip: rect(1px, 1px, 1px, 1px);
+          padding: 1px 0 0 0!important;
+          border: 0!important;
+          height: 1px!important;
+          width: 1px!important;
+          overflow: hidden!important;
+          display:block!important;
+      }</style></aside>
+<div class="footer footer-default">
+
+</div>
+</section>
+    </div>
+  </div>
+
+  <script>window.backupDefine = window.define; window.define = undefined;</script>
+  <script src="2026-xai-presentation_files/libs/revealjs/dist/reveal.js"></script>
+  <!-- reveal.js plugins -->
+  <script src="2026-xai-presentation_files/libs/revealjs/plugin/quarto-line-highlight/line-highlight.js"></script>
+  <script src="2026-xai-presentation_files/libs/revealjs/plugin/pdf-export/pdfexport.js"></script>
+  <script src="2026-xai-presentation_files/libs/revealjs/plugin/reveal-menu/menu.js"></script>
+  <script src="2026-xai-presentation_files/libs/revealjs/plugin/reveal-menu/quarto-menu.js"></script>
+  <script src="2026-xai-presentation_files/libs/revealjs/plugin/quarto-support/support.js"></script>
+  
+
+  <script src="2026-xai-presentation_files/libs/revealjs/plugin/notes/notes.js"></script>
+  <script src="2026-xai-presentation_files/libs/revealjs/plugin/search/search.js"></script>
+  <script src="2026-xai-presentation_files/libs/revealjs/plugin/zoom/zoom.js"></script>
+  <script src="2026-xai-presentation_files/libs/revealjs/plugin/math/math.js"></script>
+  <script>window.define = window.backupDefine; window.backupDefine = undefined;</script>
+
+  <script>
+
+      // Full list of configuration options available at:
+      // https://revealjs.com/config/
+      Reveal.initialize({
+'controlsAuto': false,
+'previewLinksAuto': false,
+'smaller': false,
+'pdfSeparateFragments': false,
+'autoAnimateEasing': "ease",
+'autoAnimateDuration': 1,
+'autoAnimateUnmatched': true,
+'menu': {"side":"left","useTextContentForMissingTitles":true,"markers":false,"loadIcons":false,"custom":[{"title":"Tools","icon":"<i class=\"fas fa-gear\"></i>","content":"<ul class=\"slide-menu-items\">\n<li class=\"slide-tool-item active\" data-item=\"0\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.fullscreen(event)\"><kbd>f</kbd> Fullscreen</a></li>\n<li class=\"slide-tool-item\" data-item=\"1\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.speakerMode(event)\"><kbd>s</kbd> Speaker View</a></li>\n<li class=\"slide-tool-item\" data-item=\"2\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>o</kbd> Slide Overview</a></li>\n<li class=\"slide-tool-item\" data-item=\"3\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.overview(event)\"><kbd>e</kbd> PDF Export Mode</a></li>\n<li class=\"slide-tool-item\" data-item=\"4\"><a href=\"#\" onclick=\"RevealMenuToolHandlers.keyboardHelp(event)\"><kbd>?</kbd> Keyboard Help</a></li>\n</ul>"}],"openButton":true},
+'smaller': false,
+ 
+        // Display controls in the bottom right corner
+        controls: false,
+
+        // Help the user learn the controls by providing hints, for example by
+        // bouncing the down arrow when they first encounter a vertical slide
+        controlsTutorial: false,
+
+        // Determines where controls appear, "edges" or "bottom-right"
+        controlsLayout: 'edges',
+
+        // Visibility rule for backwards navigation arrows; "faded", "hidden"
+        // or "visible"
+        controlsBackArrows: 'faded',
+
+        // Display a presentation progress bar
+        progress: true,
+
+        // Display the page number of the current slide
+        slideNumber: false,
+
+        // 'all', 'print', or 'speaker'
+        showSlideNumber: 'all',
+
+        // Add the current slide number to the URL hash so that reloading the
+        // page/copying the URL will return you to the same slide
+        hash: true,
+
+        // Start with 1 for the hash rather than 0
+        hashOneBasedIndex: false,
+
+        // Flags if we should monitor the hash and change slides accordingly
+        respondToHashChanges: true,
+
+        // Push each slide change to the browser history
+        history: true,
+
+        // Enable keyboard shortcuts for navigation
+        keyboard: true,
+
+        // Enable the slide overview mode
+        overview: true,
+
+        // Disables the default reveal.js slide layout (scaling and centering)
+        // so that you can use custom CSS layout
+        disableLayout: false,
+
+        // Vertical centering of slides
+        center: false,
+
+        // Enables touch navigation on devices with touch input
+        touch: true,
+
+        // Loop the presentation
+        loop: false,
+
+        // Change the presentation direction to be RTL
+        rtl: false,
+
+        // see https://revealjs.com/vertical-slides/#navigation-mode
+        navigationMode: 'linear',
+
+        // Randomizes the order of slides each time the presentation loads
+        shuffle: false,
+
+        // Turns fragments on and off globally
+        fragments: true,
+
+        // Flags whether to include the current fragment in the URL,
+        // so that reloading brings you to the same fragment position
+        fragmentInURL: false,
+
+        // Flags if the presentation is running in an embedded mode,
+        // i.e. contained within a limited portion of the screen
+        embedded: false,
+
+        // Flags if we should show a help overlay when the questionmark
+        // key is pressed
+        help: true,
+
+        // Flags if it should be possible to pause the presentation (blackout)
+        pause: true,
+
+        // Flags if speaker notes should be visible to all viewers
+        showNotes: false,
+
+        // Global override for autoplaying embedded media (null/true/false)
+        autoPlayMedia: null,
+
+        // Global override for preloading lazy-loaded iframes (null/true/false)
+        preloadIframes: null,
+
+        // Number of milliseconds between automatically proceeding to the
+        // next slide, disabled when set to 0, this value can be overwritten
+        // by using a data-autoslide attribute on your slides
+        autoSlide: 0,
+
+        // Stop auto-sliding after user input
+        autoSlideStoppable: true,
+
+        // Use this method for navigation when auto-sliding
+        autoSlideMethod: null,
+
+        // Specify the average time in seconds that you think you will spend
+        // presenting each slide. This is used to show a pacing timer in the
+        // speaker view
+        defaultTiming: null,
+
+        // Enable slide navigation via mouse wheel
+        mouseWheel: false,
+
+        // The display mode that will be used to show slides
+        display: 'block',
+
+        // Hide cursor if inactive
+        hideInactiveCursor: true,
+
+        // Time before the cursor is hidden (in ms)
+        hideCursorTime: 5000,
+
+        // Opens links in an iframe preview overlay
+        previewLinks: false,
+
+        // Transition style (none/fade/slide/convex/concave/zoom)
+        transition: 'fade',
+
+        // Transition speed (default/fast/slow)
+        transitionSpeed: 'default',
+
+        // Transition style for full page slide backgrounds
+        // (none/fade/slide/convex/concave/zoom)
+        backgroundTransition: 'fade',
+
+        // Number of slides away from the current that are visible
+        viewDistance: 3,
+
+        // Number of slides away from the current that are visible on mobile
+        // devices. It is advisable to set this to a lower number than
+        // viewDistance in order to save resources.
+        mobileViewDistance: 2,
+
+        // The "normal" size of the presentation, aspect ratio will be preserved
+        // when the presentation is scaled to fit different resolutions. Can be
+        // specified using percentage units.
+        width: 1280,
+
+        height: 720,
+
+        // Factor of the display size that should remain empty around the content
+        margin: 5.0e-2,
+
+        math: {
+          mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
+          config: 'TeX-AMS_HTML-full',
+          tex2jax: {
+            inlineMath: [['\\(','\\)']],
+            displayMath: [['\\[','\\]']],
+            balanceBraces: true,
+            processEscapes: false,
+            processRefs: true,
+            processEnvironments: true,
+            preview: 'TeX',
+            skipTags: ['script','noscript','style','textarea','pre','code'],
+            ignoreClass: 'tex2jax_ignore',
+            processClass: 'tex2jax_process'
+          },
+        },
+
+        // reveal.js plugins
+        plugins: [QuartoLineHighlight, PdfExport, RevealMenu, QuartoSupport,
+
+          RevealMath,
+          RevealNotes,
+          RevealSearch,
+          RevealZoom
+        ]
+      });
+    </script>
+    <script id="quarto-html-after-body" type="application/javascript">
+    window.document.addEventListener("DOMContentLoaded", function (event) {
+      const toggleBodyColorMode = (bsSheetEl) => {
+        const mode = bsSheetEl.getAttribute("data-mode");
+        const bodyEl = window.document.querySelector("body");
+        if (mode === "dark") {
+          bodyEl.classList.add("quarto-dark");
+          bodyEl.classList.remove("quarto-light");
+        } else {
+          bodyEl.classList.add("quarto-light");
+          bodyEl.classList.remove("quarto-dark");
+        }
+      }
+      const toggleBodyColorPrimary = () => {
+        const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+        if (bsSheetEl) {
+          toggleBodyColorMode(bsSheetEl);
+        }
+      }
+      toggleBodyColorPrimary();  
+      const tabsets =  window.document.querySelectorAll(".panel-tabset-tabby")
+      tabsets.forEach(function(tabset) {
+        const tabby = new Tabby('#' + tabset.id);
+      });
+      const clipboard = new window.ClipboardJS('.code-copy-button', {
+        target: function(trigger) {
+          return trigger.previousElementSibling;
+        }
+      });
+      clipboard.on('success', function(e) {
+        // button target
+        const button = e.trigger;
+        // don't keep focus
+        button.blur();
+        // flash "checked"
+        button.classList.add('code-copy-button-checked');
+        var currentTitle = button.getAttribute("title");
+        button.setAttribute("title", "Copied!");
+        let tooltip;
+        if (window.bootstrap) {
+          button.setAttribute("data-bs-toggle", "tooltip");
+          button.setAttribute("data-bs-placement", "left");
+          button.setAttribute("data-bs-title", "Copied!");
+          tooltip = new bootstrap.Tooltip(button, 
+            { trigger: "manual", 
+              customClass: "code-copy-button-tooltip",
+              offset: [0, -8]});
+          tooltip.show();    
+        }
+        setTimeout(function() {
+          if (tooltip) {
+            tooltip.hide();
+            button.removeAttribute("data-bs-title");
+            button.removeAttribute("data-bs-toggle");
+            button.removeAttribute("data-bs-placement");
+          }
+          button.setAttribute("title", currentTitle);
+          button.classList.remove('code-copy-button-checked');
+        }, 1000);
+        // clear code selection
+        e.clearSelection();
+      });
+      function tippyHover(el, contentFn) {
+        const config = {
+          allowHTML: true,
+          content: contentFn,
+          maxWidth: 500,
+          delay: 100,
+          arrow: false,
+          appendTo: function(el) {
+              return el.closest('section.slide') || el.parentElement;
+          },
+          interactive: true,
+          interactiveBorder: 10,
+          theme: 'quarto-reveal',
+          placement: 'bottom-start'
+        };
+          config['offset'] = [0,0];
+          config['maxWidth'] = 700;
+        window.tippy(el, config); 
+      }
+      const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+      for (var i=0; i<noterefs.length; i++) {
+        const ref = noterefs[i];
+        tippyHover(ref, function() {
+          // use id or data attribute instead here
+          let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+          try { href = new URL(href).hash; } catch {}
+          const id = href.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          return note.innerHTML;
+        });
+      }
+      const findCites = (el) => {
+        const parentEl = el.parentElement;
+        if (parentEl) {
+          const cites = parentEl.dataset.cites;
+          if (cites) {
+            return {
+              el,
+              cites: cites.split(' ')
+            };
+          } else {
+            return findCites(el.parentElement)
+          }
+        } else {
+          return undefined;
+        }
+      };
+      var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+      for (var i=0; i<bibliorefs.length; i++) {
+        const ref = bibliorefs[i];
+        const citeInfo = findCites(ref);
+        if (citeInfo) {
+          tippyHover(citeInfo.el, function() {
+            var popup = window.document.createElement('div');
+            citeInfo.cites.forEach(function(cite) {
+              var citeDiv = window.document.createElement('div');
+              citeDiv.classList.add('hanging-indent');
+              citeDiv.classList.add('csl-entry');
+              var biblioDiv = window.document.getElementById('ref-' + cite);
+              if (biblioDiv) {
+                citeDiv.innerHTML = biblioDiv.innerHTML;
+              }
+              popup.appendChild(citeDiv);
+            });
+            return popup.innerHTML;
+          });
+        }
+      }
+    });
+    </script>
+    <script>
+      (function () {
+        function equalizeMethodCards(slide) {
+          if (!slide) return;
+          // Group method-cards by the .columns row they belong to.
+          var rows = slide.querySelectorAll('.columns');
+          rows.forEach(function (row) {
+            var cards = row.querySelectorAll('.method-card');
+            if (cards.length < 2) return;
+            // Reset first so we measure natural height
+            cards.forEach(function (c) { c.style.minHeight = ''; });
+            var max = 0;
+            cards.forEach(function (c) {
+              var h = c.getBoundingClientRect().height;
+              if (h > max) max = h;
+            });
+            if (max > 0) {
+              cards.forEach(function (c) {
+                c.style.minHeight = Math.ceil(max) + 'px';
+              });
+            }
+          });
+          // Also handle slides where cards are not inside .columns
+          // but are siblings at the slide level.
+          var looseCards = slide.querySelectorAll(':scope > .method-card');
+          if (looseCards.length >= 2) {
+            looseCards.forEach(function (c) { c.style.minHeight = ''; });
+            var max2 = 0;
+            looseCards.forEach(function (c) {
+              var h = c.getBoundingClientRect().height;
+              if (h > max2) max2 = h;
+            });
+            if (max2 > 0) {
+              looseCards.forEach(function (c) {
+                c.style.minHeight = Math.ceil(max2) + 'px';
+              });
+            }
+          }
+        }
+
+        function equalizeAll() {
+          document.querySelectorAll('.reveal .slides section').forEach(equalizeMethodCards);
+        }
+
+        if (window.Reveal) {
+          Reveal.on('ready', equalizeAll);
+          Reveal.on('slidechanged', function (e) { equalizeMethodCards(e.currentSlide); });
+          Reveal.on('resize', equalizeAll);
+        } else {
+          document.addEventListener('DOMContentLoaded', equalizeAll);
+          window.addEventListener('load', equalizeAll);
+        }
+      })();
+    </script>
+    
+    
+
+</body></html>
