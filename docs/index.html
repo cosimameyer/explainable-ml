@@ -235,6 +235,99 @@
     .control-label { min-width: auto; width: 100%; }
     .known-for { max-width: 260px; }
   }
+
+  /* ── Tabs ──────────────────────────────────────────────────────────── */
+  .tab-nav {
+    display: flex;
+    border-bottom: 1px solid var(--border);
+    padding: 0 40px;
+    background: var(--bg);
+  }
+  .tab-btn {
+    padding: 14px 20px;
+    border: none;
+    background: transparent;
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--muted);
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    margin-bottom: -1px;
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    transition: color 0.12s;
+  }
+  .tab-btn:hover { color: var(--brand-navy); }
+  .tab-btn.active { color: var(--brand-navy); border-bottom-color: var(--brand-navy); font-weight: 600; }
+  .tab-panel { display: none; }
+  .tab-panel.active { display: block; }
+
+  /* ── Wizard ─────────────────────────────────────────────────────────── */
+  .wizard-wrap { max-width: 680px; margin: 48px auto; padding: 0 40px 60px; }
+  .wizard-breadcrumb {
+    display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
+    font-size: 11px; color: var(--muted); margin-bottom: 32px; min-height: 20px;
+  }
+  .bc-step {
+    color: var(--muted); background: var(--panel);
+    padding: 3px 8px; border-radius: 3px; font-size: 11px;
+  }
+  .bc-sep { color: var(--brand-mid); font-size: 10px; }
+  .wizard-question {
+    font-size: 20px; font-weight: 600; color: var(--brand-navy);
+    margin: 0 0 8px; line-height: 1.3;
+  }
+  .wizard-hint { font-size: 12.5px; color: var(--muted); margin: 0 0 28px; }
+  .wizard-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+  .wizard-opt-btn {
+    text-align: left; padding: 14px 18px;
+    border: 1px solid var(--border); border-radius: 6px;
+    background: var(--bg); color: var(--brand-navy);
+    font-family: inherit; font-size: 13.5px; cursor: pointer;
+    transition: border-color 0.12s, background 0.12s; line-height: 1.4;
+  }
+  .wizard-opt-btn:hover { border-color: var(--brand-navy); background: var(--panel); }
+  .wizard-nav { display: flex; gap: 10px; }
+  .wizard-nav-btn {
+    padding: 7px 14px; border: 1px solid var(--border); border-radius: 4px;
+    background: transparent; color: var(--muted);
+    font-family: inherit; font-size: 12px; cursor: pointer;
+    display: inline-flex; align-items: center; gap: 6px;
+    transition: color 0.12s, border-color 0.12s;
+  }
+  .wizard-nav-btn:hover { color: var(--brand-navy); border-color: var(--brand-navy); }
+  .wizard-nav-btn:disabled { opacity: 0.35; cursor: default; }
+  .wizard-result { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .wizard-result-header { background: var(--brand-navy); color: #fff; padding: 20px 24px; }
+  .wizard-result-header .r-label {
+    font-size: 10px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 1px; opacity: 0.65; margin-bottom: 6px;
+  }
+  .wizard-result-header .r-method { font-size: 18px; font-weight: 600; line-height: 1.3; }
+  .wizard-result-body { padding: 20px 24px; }
+  .wizard-result-body .r-desc { font-size: 13.5px; color: var(--muted); margin: 0 0 16px; line-height: 1.55; }
+  .wizard-result-body .r-note { font-size: 12px; color: var(--dated); margin: 0 0 16px; }
+  .wizard-result-body .r-libs-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase;
+    letter-spacing: 0.7px; color: var(--muted); margin-bottom: 10px;
+  }
+  .wizard-lib-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .wizard-lib-chip {
+    padding: 5px 12px; border: 1px solid var(--brand-mid); border-radius: 4px;
+    font-size: 12.5px; font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+    color: var(--brand-navy); cursor: pointer; background: transparent;
+    transition: background 0.12s, border-color 0.12s; text-decoration: none; display: inline-block;
+  }
+  .wizard-lib-chip:hover { background: var(--brand-navy); color: #fff; border-color: var(--brand-navy); }
+  .wizard-no-lib { font-size: 12.5px; color: var(--muted); font-style: italic; }
+
+  @media (max-width: 900px) {
+    .tab-nav { padding: 0 20px; }
+    .wizard-wrap { padding: 0 20px 40px; margin-top: 32px; }
+    .wizard-question { font-size: 17px; }
+  }
 </style>
 </head>
 <body>
@@ -248,6 +341,16 @@
   </div>
 </header>
 
+<nav class="tab-nav">
+  <button class="tab-btn active" data-tab="tab-libraries">
+    <i class="fa-solid fa-table-list"></i> Libraries
+  </button>
+  <button class="tab-btn" data-tab="tab-wizard">
+    <i class="fa-solid fa-wand-magic-sparkles"></i> Decision Wizard
+  </button>
+</nav>
+
+<div id="tab-libraries" class="tab-panel active">
 <div class="controls">
   <div class="control-row">
     <span class="control-label">Scope</span>
@@ -285,6 +388,22 @@
     <tbody id="body"></tbody>
   </table>
 </div>
+</div><!-- #tab-libraries -->
+
+<div id="tab-wizard" class="tab-panel">
+  <div class="wizard-wrap">
+    <div class="wizard-breadcrumb" id="wizard-breadcrumb"></div>
+    <div id="wizard-content"></div>
+    <div class="wizard-nav">
+      <button class="wizard-nav-btn" id="wizard-back" disabled>
+        <i class="fa-solid fa-arrow-left"></i> Back
+      </button>
+      <button class="wizard-nav-btn" id="wizard-restart">
+        <i class="fa-solid fa-rotate-left"></i> Start over
+      </button>
+    </div>
+  </div>
+</div><!-- #tab-wizard -->
 
 <script>
 const COLUMNS = [
@@ -590,6 +709,643 @@ async function init() {
   render();
   loadGitHubData();
 }
+
+// ── Decision Wizard ──────────────────────────────────────────────────────────
+const TREE = {
+  START: { q: "What data type are you working with?", opts: [
+    { label: "Tabular", next: "TAB_INTERP" },
+    { label: "Image", next: "IMG_SCOPE" },
+    { label: "Text / NLP", next: "TXT_SCOPE" },
+    { label: "Time Series", next: "TS_TASK" },
+  ]},
+
+  // ── TABULAR ────────────────────────────────────────────────────────────────
+  TAB_INTERP: { q: "Is the model inherently interpretable?",
+    hint: "e.g. linear / logistic regression, single decision tree, GAM, EBM",
+    opts: [
+      { label: "Yes — linear, tree, GAM, or EBM", next: "TAB_GLASS" },
+      { label: "No — black-box or complex model", next: "TAB_SCOPE" },
+    ]},
+  TAB_GLASS: { method: "Use built-in explanations",
+    desc: "Coefficients, tree rules, or shape functions give direct interpretability — no separate XAI step needed.",
+    libs: ["sklearn.inspection", "statsmodels", "interpret"] },
+  TAB_SCOPE: { q: "What scope do you need?", opts: [
+    { label: "Global — understand overall model behaviour", next: "TAB_G_WHAT" },
+    { label: "Local — explain a single prediction", next: "TAB_L_TYPE" },
+  ]},
+  TAB_G_WHAT: { q: "What kind of global insight do you need?", opts: [
+    { label: "Which features matter most? (feature importance)", next: "TAB_G_FI_ACCESS" },
+    { label: "How does one feature affect predictions? (feature effect)", next: "TAB_G_FE" },
+    { label: "How do features interact with each other?", next: "TAB_G_INTER_ACCESS" },
+  ]},
+  TAB_G_FI_ACCESS: { q: "What type of model access do you have?", opts: [
+    { label: "Any model (model-agnostic)", next: "TAB_G_FI_AGNOSTIC" },
+    { label: "Tree ensemble (random forest, XGBoost, etc.)", next: "TAB_G_FI_TREE" },
+    { label: "Linear model", next: "SHAP_LINEAR_GLOBAL" },
+  ]},
+  TAB_G_FI_AGNOSTIC: { q: "Which technique?", opts: [
+    { label: "Shuffle-based — fast and simple", next: "PFI" },
+    { label: "Shapley-based — gives ranking and direction", next: "SHAP_GLOBAL_TAB" },
+  ]},
+  PFI: { method: "Permutation Feature Importance (PFI)",
+    desc: "Shuffle each feature and measure the drop in model score. Fast, intuitive, works with any model.",
+    libs: ["sklearn.inspection"] },
+  SHAP_GLOBAL_TAB: { method: "SHAP Summary Plot",
+    desc: "Beeswarm or bar chart of Shapley values across the dataset — shows importance and direction of effect.",
+    libs: ["shap"] },
+  TAB_G_FI_TREE: { q: "Which technique for tree ensembles?", opts: [
+    { label: "SHAP values — consistent and directional", next: "SHAP_TREE_GLOBAL" },
+    { label: "Built-in importance — fast but approximate", next: "BUILTIN_FI" },
+  ]},
+  SHAP_TREE_GLOBAL: { method: "SHAP TreeExplainer — summary plot",
+    desc: "Exact Shapley values computed efficiently for tree ensembles. Beeswarm / bar for global importance.",
+    libs: ["shap"] },
+  BUILTIN_FI: { method: "Built-in Feature Importance",
+    desc: "Gini impurity, gain, or split count. Fast but can be biased toward high-cardinality or correlated features.",
+    libs: ["sklearn.inspection"] },
+  SHAP_LINEAR_GLOBAL: { method: "SHAP LinearExplainer",
+    desc: "Handles correlations between features when computing Shapley values for linear models.",
+    libs: ["shap"] },
+  TAB_G_FE: { q: "Are your features correlated?", opts: [
+    { label: "No / low correlation", next: "PDP" },
+    { label: "Yes / high correlation", next: "ALE" },
+    { label: "I want per-instance heterogeneity (ICE plots)", next: "ICE" },
+  ]},
+  PDP: { method: "Partial Dependence Plot (PDP)",
+    desc: "Marginalises out all other features to show the average effect of one feature. Assumes feature independence.",
+    libs: ["sklearn.inspection", "pdpbox", "effector"] },
+  ALE: { method: "Accumulated Local Effects (ALE)",
+    desc: "Corrects for feature correlation by conditioning on local neighbourhoods. More reliable than PDP when features are correlated.",
+    libs: ["PyALE", "alibi", "ALEPython", "effector"] },
+  ICE: { method: "Individual Conditional Expectation (ICE)",
+    desc: "One PDP line per instance — reveals heterogeneity hidden by average PDP curves.",
+    libs: ["sklearn.inspection", "pdpbox"] },
+  TAB_G_INTER_ACCESS: { q: "What type of model access do you have?", opts: [
+    { label: "Any model (model-agnostic)", next: "TAB_G_INTER_AGNOSTIC" },
+    { label: "Tree ensemble — fast, exact Shapley interactions", next: "SHAP_INTERACT" },
+  ]},
+  TAB_G_INTER_AGNOSTIC: { q: "Which technique?", opts: [
+    { label: "Visual — 2D interaction plot", next: "PDP_2D" },
+    { label: "Statistical — measure interaction strength", next: "H_STAT" },
+  ]},
+  PDP_2D: { method: "2D PDP / 2D ALE",
+    desc: "Plot the joint effect of two features. 2D ALE is preferred when features are correlated.",
+    libs: ["sklearn.inspection", "pdpbox", "PyALE"] },
+  H_STAT: { method: "H-statistic (Friedman)",
+    desc: "Quantifies pairwise interaction strength. Values near 0 = no interaction; near 1 = strong interaction.",
+    libs: ["sklearn.inspection"] },
+  SHAP_INTERACT: { method: "SHAP Interaction Values",
+    desc: "Pairwise Shapley interactions computed exactly for tree ensembles. Visualise as a matrix heatmap.",
+    libs: ["shap"] },
+  TAB_L_TYPE: { q: "What type of local explanation do you need?", opts: [
+    { label: "Feature attribution — why this prediction?", next: "TAB_L_FA_ACCESS" },
+    { label: "Rule-based — if X then Y", next: "ANCHORS_TAB" },
+    { label: "Counterfactual — what would change the outcome?", next: "TAB_L_CF" },
+  ]},
+  TAB_L_FA_ACCESS: { q: "What type of model access do you have?", opts: [
+    { label: "Black-box (model-agnostic)", next: "TAB_L_BB" },
+    { label: "White-box (access to model internals)", next: "TAB_L_WB" },
+  ]},
+  TAB_L_BB: { q: "Which method?", opts: [
+    { label: "Theoretically grounded — Shapley values", next: "SHAP_KERNEL_LOCAL" },
+    { label: "Fast and intuitive — local surrogate model", next: "LIME_TAB" },
+  ]},
+  SHAP_KERNEL_LOCAL: { method: "SHAP KernelExplainer",
+    desc: "Force / waterfall plots of Shapley values. Model-agnostic but slower than TreeExplainer.",
+    libs: ["shap"] },
+  LIME_TAB: { method: "LIME",
+    desc: "Fits a local linear surrogate around the instance. Fast and interpretable, but can be unstable.",
+    libs: ["lime"] },
+  TAB_L_WB: { q: "What model family?", opts: [
+    { label: "Tree ensemble", next: "SHAP_TREE_LOCAL" },
+    { label: "Linear model", next: "SHAP_LINEAR_LOCAL" },
+    { label: "Deep neural network", next: "TAB_L_WB_DNN" },
+  ]},
+  SHAP_TREE_LOCAL: { method: "SHAP TreeExplainer",
+    desc: "Force / decision plot of Shapley values. Exact and fast for tree models.",
+    libs: ["shap"] },
+  SHAP_LINEAR_LOCAL: { method: "SHAP LinearExplainer",
+    desc: "Force / waterfall plot. Handles feature correlations for linear models.",
+    libs: ["shap"] },
+  TAB_L_WB_DNN: { q: "Which technique for neural networks?", opts: [
+    { label: "Shapley-based", next: "SHAP_DEEP_LOCAL" },
+    { label: "Gradient-based", next: "SHAP_GRAD_LOCAL" },
+    { label: "Baseline-relative attribution", next: "IG_TAB" },
+  ]},
+  SHAP_DEEP_LOCAL: { method: "SHAP DeepExplainer",
+    desc: "Uses DeepLIFT-SHAP internally. Force / waterfall plot for deep networks.",
+    libs: ["shap"] },
+  SHAP_GRAD_LOCAL: { method: "SHAP GradientExplainer",
+    desc: "Gradient × input Shapley approximation. Works with PyTorch and TensorFlow.",
+    libs: ["shap"] },
+  IG_TAB: { method: "Integrated Gradients",
+    desc: "Baseline-relative: sums gradients along a straight path from baseline to input. Satisfies completeness.",
+    libs: ["captum"] },
+  ANCHORS_TAB: { method: "Anchors",
+    desc: "High-precision if-then rules that anchor a prediction with a precision guarantee.",
+    libs: ["alibi"], note: "Classification only" },
+  TAB_L_CF: { q: "What kind of counterfactual?", opts: [
+    { label: "Multiple diverse, actionable paths", next: "DICE" },
+    { label: "Single nearest counterfactual", next: "ALIBI_CF" },
+    { label: "Interactive visual exploration", next: "WIT" },
+  ]},
+  DICE: { method: "DiCE — Diverse Counterfactual Explanations",
+    desc: "Generates multiple counterfactuals with different feature changes, supporting actionability constraints.",
+    libs: ["dice-ml"] },
+  ALIBI_CF: { method: "Counterfactual with Prototype",
+    desc: "Single nearest counterfactual guided by class prototypes. Model-agnostic.",
+    libs: ["alibi"] },
+  WIT: { method: "What-If Tool (WIT)",
+    desc: "Interactive Jupyter widget for counterfactual exploration, fairness analysis, and slice-based evaluation.",
+    libs: ["witwidget"] },
+
+  // ── IMAGE ──────────────────────────────────────────────────────────────────
+  IMG_SCOPE: { q: "What scope do you need?", opts: [
+    { label: "Global — understand what the model has learned overall", next: "IMG_G_ACCESS" },
+    { label: "Local — explain a single image prediction", next: "IMG_L_ACCESS" },
+  ]},
+  IMG_G_ACCESS: { q: "What type of model access do you have?", opts: [
+    { label: "Black-box (model-agnostic)", next: "SHAP_KERNEL_IMG_G" },
+    { label: "White-box (model internals)", next: "IMG_G_WB" },
+  ]},
+  SHAP_KERNEL_IMG_G: { method: "SHAP KernelExplainer",
+    desc: "Universal but slow. Masks image patches and measures output changes using Shapley values.",
+    libs: ["shap"] },
+  IMG_G_WB: { q: "What global insight do you need?", opts: [
+    { label: "Does the model respond to a high-level concept (e.g. 'fur', 'stripes')?", next: "TCAV" },
+    { label: "What has each neuron / layer learned?", next: "IMG_G_VIS" },
+  ]},
+  TCAV: { method: "TCAV — Testing with Concept Activation Vectors",
+    desc: "Tests sensitivity to human-defined concepts by training linear probes in activation space.",
+    libs: ["tcav", "captum"] },
+  IMG_G_VIS: { q: "Which visualisation technique?", opts: [
+    { label: "Synthesise an input that maximally activates a neuron", next: "FEAT_VIS" },
+    { label: "Label neurons with semantic concepts (e.g. 'wheel', 'eye')", next: "NET_DISSECT" },
+  ]},
+  FEAT_VIS: { method: "Feature Visualisation / Activation Maximisation",
+    desc: "Synthesise images that maximally activate specific neurons or channels to understand what they detect.",
+    libs: ["lucent", "flashtorch"] },
+  NET_DISSECT: { method: "Network Dissection",
+    desc: "Quantifies interpretability by aligning individual CNN units with human-labelled concept datasets.",
+    libs: ["netdissect"] },
+  IMG_L_ACCESS: { q: "What type of model access do you have?", opts: [
+    { label: "Black-box (model-agnostic)", next: "IMG_L_BB" },
+    { label: "White-box (model internals)", next: "IMG_L_ARCH" },
+  ]},
+  IMG_L_BB: { q: "Which technique?", opts: [
+    { label: "Superpixel-based local surrogate", next: "LIME_IMAGE" },
+    { label: "Random mask saliency", next: "RISE" },
+    { label: "Shapley-based hierarchical masking", next: "SHAP_PART_IMG" },
+  ]},
+  LIME_IMAGE: { method: "LIME for Images",
+    desc: "Segments the image into superpixels, perturbs them, and fits a local linear model.",
+    libs: ["lime"] },
+  RISE: { method: "RISE — Randomised Input Sampling for Explanation",
+    desc: "Generates smooth saliency maps by averaging predictions over many random binary masks.",
+    libs: [] },
+  SHAP_PART_IMG: { method: "SHAP Partition Explainer",
+    desc: "Hierarchical image region masking — faster than KernelExplainer for image data.",
+    libs: ["shap"] },
+  IMG_L_ARCH: { q: "What model architecture?", opts: [
+    { label: "CNN (convolutional neural network)", next: "IMG_L_GRAD" },
+    { label: "Vision Transformer (ViT)", next: "IMG_L_VIT" },
+  ]},
+  IMG_L_GRAD: { q: "Do you have gradient access?", opts: [
+    { label: "Yes — backpropagation available", next: "IMG_L_GRAD_METHOD" },
+    { label: "No — forward passes only", next: "IMG_L_NOGRAD" },
+  ]},
+  IMG_L_GRAD_METHOD: { q: "Which gradient technique?", opts: [
+    { label: "Class-discriminative heatmap (Grad-CAM)", next: "GRADCAM" },
+    { label: "High-resolution class-discriminative (Guided Grad-CAM)", next: "GUIDED_GRADCAM" },
+    { label: "Pixel-level sensitivity — vanilla gradients", next: "SALIENCY" },
+    { label: "Noise-reduced gradients (SmoothGrad)", next: "SMOOTHGRAD" },
+    { label: "Baseline-relative attribution (Integrated Gradients)", next: "IG_IMAGE" },
+    { label: "Reference-based contribution (DeepLIFT)", next: "DEEPLIFT" },
+  ]},
+  GRADCAM: { method: "Grad-CAM / Grad-CAM++",
+    desc: "Class-discriminative activation heatmap using gradients of the class score w.r.t. the last conv layer.",
+    libs: ["captum", "grad-cam", "pytorch-grad-cam"] },
+  GUIDED_GRADCAM: { method: "Guided Grad-CAM",
+    desc: "Combines Grad-CAM with guided backpropagation for high-resolution, class-discriminative saliency.",
+    libs: ["captum"] },
+  SALIENCY: { method: "Saliency Maps (Vanilla Gradients)",
+    desc: "Gradient of the output w.r.t. the input pixels. Fast but noisy.",
+    libs: ["captum", "flashtorch"] },
+  SMOOTHGRAD: { method: "SmoothGrad",
+    desc: "Averages gradients over noisy input copies to reduce visual noise in saliency maps.",
+    libs: ["captum"] },
+  IG_IMAGE: { method: "Integrated Gradients",
+    desc: "Baseline-relative attribution satisfying the completeness axiom — attributions sum to output − baseline output.",
+    libs: ["captum"] },
+  DEEPLIFT: { method: "DeepLIFT",
+    desc: "Reference-based: compares each neuron's activation to a reference (baseline) activation.",
+    libs: ["captum"] },
+  IMG_L_NOGRAD: { q: "Which gradient-free technique?", opts: [
+    { label: "Region masking — measure output change when patches are occluded", next: "OCCLUSION" },
+    { label: "Feature removal — systematically ablate patches", next: "FEAT_ABLATION" },
+    { label: "Shapley value sampling — perturbation-based", next: "SVS" },
+    { label: "Class-discriminative CAM variant (no gradients needed)", next: "SCORECAM" },
+  ]},
+  OCCLUSION: { method: "Occlusion Sensitivity",
+    desc: "Slides a mask over the image and measures prediction change — coarse but easy to interpret.",
+    libs: ["captum"] },
+  FEAT_ABLATION: { method: "Feature Ablation",
+    desc: "Systematically removes image features (pixels / patches) and measures their effect on predictions.",
+    libs: ["captum"] },
+  SVS: { method: "Shapley Value Sampling",
+    desc: "Perturbation-based Shapley estimates without backpropagation. Slower but fully model-agnostic.",
+    libs: ["captum"] },
+  SCORECAM: { method: "ScoreCAM / AblationCAM / EigenCAM",
+    desc: "Gradient-free CAM variants that derive heatmaps directly from channel activations.",
+    libs: ["grad-cam"] },
+  IMG_L_VIT: { q: "Which Vision Transformer technique?", opts: [
+    { label: "Attention-based — aggregate multi-layer attention maps", next: "ATTN_ROLLOUT" },
+    { label: "Gradient-weighted relevance (Chefer et al. 2021)", next: "TRANSFORMER_ATTR" },
+    { label: "Gradient-based, architecture-agnostic", next: "IG_VIT" },
+  ]},
+  ATTN_ROLLOUT: { method: "Attention Rollout",
+    desc: "Recursively multiplies attention matrices across layers to trace information flow from patches to output.",
+    libs: ["vit-explain"] },
+  TRANSFORMER_ATTR: { method: "Transformer Attribution (Chefer et al.)",
+    desc: "Combines relevance propagation with attention and gradients for faithful ViT explanations.",
+    libs: [] },
+  IG_VIT: { method: "Integrated Gradients",
+    desc: "Works on any differentiable model including ViTs. Baseline-relative, satisfies completeness.",
+    libs: ["captum"] },
+
+  // ── TEXT ───────────────────────────────────────────────────────────────────
+  TXT_SCOPE: { q: "What scope do you need?", opts: [
+    { label: "Global — understand overall model behaviour", next: "TXT_G_ACCESS" },
+    { label: "Local — explain a single prediction", next: "TXT_L_TYPE" },
+  ]},
+  TXT_G_ACCESS: { q: "What type of model access do you have?", opts: [
+    { label: "Black-box (model-agnostic)", next: "TXT_G_BB" },
+    { label: "White-box (model internals)", next: "TXT_G_WB" },
+  ]},
+  TXT_G_BB: { q: "What insight do you need?", opts: [
+    { label: "Feature ranking — Shapley-based hierarchical masking (faster)", next: "SHAP_PART_TXT_G" },
+    { label: "Feature ranking — universal fallback (slower)", next: "SHAP_KERNEL_TXT_G" },
+  ]},
+  SHAP_PART_TXT_G: { method: "SHAP Partition Explainer",
+    desc: "Text-optimised hierarchical masking via shap.maskers.Text. Faster than KernelExplainer.",
+    libs: ["shap"] },
+  SHAP_KERNEL_TXT_G: { method: "SHAP KernelExplainer",
+    desc: "Universal fallback when Partition Explainer isn't supported. Slower but works with any model.",
+    libs: ["shap"] },
+  TXT_G_WB: { q: "What global insight do you need?", opts: [
+    { label: "What linguistic knowledge is encoded in hidden layers?", next: "PROBING" },
+    { label: "Does the model respond to a specific concept?", next: "TCAV_TEXT" },
+    { label: "What attention patterns emerge across heads?", next: "ATTN_GLOBAL" },
+  ]},
+  PROBING: { method: "Probing Classifiers",
+    desc: "Train small auxiliary classifiers on frozen hidden representations to test what linguistic properties are encoded.",
+    libs: [] },
+  TCAV_TEXT: { method: "TCAV for Text",
+    desc: "Tests if a human-defined concept (e.g. 'formal language') influences predictions via concept activation vectors.",
+    libs: ["captum"] },
+  ATTN_GLOBAL: { method: "Attention Pattern Analysis",
+    desc: "Aggregate and visualise attention head patterns across examples to understand model focus.",
+    libs: ["bertviz"], note: "Attention ≠ attribution — treat as hypothesis generator, not ground truth" },
+  TXT_L_TYPE: { q: "What type of local explanation do you need?", opts: [
+    { label: "Feature attribution — why this prediction?", next: "TXT_L_ACCESS" },
+    { label: "Counterfactual — what text change would flip the outcome?", next: "TXT_L_CF" },
+    { label: "Interactive exploration — all-in-one NLP tool", next: "LIT" },
+  ]},
+  TXT_L_ACCESS: { q: "What type of model access do you have?", opts: [
+    { label: "Black-box (model-agnostic)", next: "TXT_L_BB" },
+    { label: "White-box — any neural net (gradient-based)", next: "TXT_L_WB_GRAD" },
+    { label: "White-box — transformer-specific", next: "TXT_L_WB_TF" },
+  ]},
+  TXT_L_BB: { q: "Which technique?", opts: [
+    { label: "Perturbation-based — word removal", next: "LIME_TEXT" },
+    { label: "Shapley-based — hierarchical token masking", next: "SHAP_PART_TXT_L" },
+    { label: "Rule-based — if-then rules over words", next: "ANCHORS_TEXT" },
+  ]},
+  LIME_TEXT: { method: "LIME for Text",
+    desc: "Perturbs input by removing words and fits a local linear model to assign token-level importance.",
+    libs: ["lime"] },
+  SHAP_PART_TXT_L: { method: "SHAP Partition Explainer",
+    desc: "Hierarchical token masking, faster than KernelExplainer. Produces token importance bars.",
+    libs: ["shap"] },
+  ANCHORS_TEXT: { method: "Anchors for Text",
+    desc: "High-precision word-level if-then rules with a guaranteed precision threshold.",
+    libs: ["alibi"], note: "Classification only" },
+  TXT_L_WB_GRAD: { q: "Which gradient technique?", opts: [
+    { label: "Baseline-relative token attribution (Integrated Gradients)", next: "IG_TEXT" },
+    { label: "Reference-based contribution — handles saturation (DeepLIFT)", next: "DEEPLIFT_TEXT" },
+    { label: "Layer-wise relevance propagation (LRP)", next: "LRP" },
+    { label: "Noise-reduced gradients (SmoothGrad)", next: "SMOOTHGRAD_TEXT" },
+  ]},
+  IG_TEXT: { method: "Integrated Gradients (Layer IG)",
+    desc: "Applied to the embedding layer. Baseline-relative, satisfies the completeness axiom.",
+    libs: ["captum"] },
+  DEEPLIFT_TEXT: { method: "DeepLIFT",
+    desc: "Handles gradient saturation. Reference-based contribution scores for RNNs and transformers.",
+    libs: ["captum"] },
+  LRP: { method: "Layer-wise Relevance Propagation (LRP)",
+    desc: "Backpropagates a relevance score from output to input tokens using conservation rules.",
+    libs: ["captum", "innvestigate"] },
+  SMOOTHGRAD_TEXT: { method: "SmoothGrad",
+    desc: "Averages gradients over noisy copies of input embeddings to reduce explanation noise.",
+    libs: ["captum"] },
+  TXT_L_WB_TF: { q: "Which transformer-specific technique?", opts: [
+    { label: "Attention visualisation — head / model view", next: "BERTVIZ" },
+    { label: "Sequence generation attribution", next: "INSEQ" },
+    { label: "Mechanistic interpretability", next: "TXT_L_MECH" },
+  ]},
+  BERTVIZ: { method: "BertViz",
+    desc: "Interactive head view and model view for BERT / GPT / T5 attention patterns.",
+    libs: ["bertviz"], note: "Attention ≠ attribution" },
+  INSEQ: { method: "Inseq",
+    desc: "Unified attribution for sequence generation: Integrated Gradients, attention, LIME, and more.",
+    libs: ["inseq"] },
+  TXT_L_MECH: { q: "Which mechanistic interpretability technique?", opts: [
+    { label: "Project layer representations to vocabulary space (Logit Lens)", next: "LOGIT_LENS" },
+    { label: "Intervene on activations to find causal roles (Activation Patching)", next: "ACT_PATCH" },
+  ]},
+  LOGIT_LENS: { method: "Logit Lens",
+    desc: "Projects intermediate residual stream states to vocabulary probabilities — shows how predictions form layer by layer.",
+    libs: ["TransformerLens"] },
+  ACT_PATCH: { method: "Activation Patching",
+    desc: "Patches activations from one run into another to identify which components causally drive a behaviour.",
+    libs: ["TransformerLens"] },
+  TXT_L_CF: { q: "Which counterfactual technique?", opts: [
+    { label: "Ablation-based — drop tokens until prediction flips", next: "TXT_CF_ABLATION" },
+    { label: "Generative — rewrite the input with GPT-2", next: "POLYJUICE" },
+  ]},
+  TXT_CF_ABLATION: { method: "Ablation Flip (LIT)",
+    desc: "Removes tokens one by one until the prediction flips — finds the minimal sufficient subset.",
+    libs: ["lit-nlp"] },
+  POLYJUICE: { method: "Polyjuice",
+    desc: "GPT-2-based controlled counterfactual generation — rewrites input while controlling the perturbation type.",
+    libs: ["polyjuice"] },
+  LIT: { method: "LIT — Learning Interpretability Tool",
+    desc: "All-in-one interactive NLP analysis: LIME, IG, salience maps, counterfactuals, metrics, and slice evaluation.",
+    libs: ["lit-nlp"] },
+
+  // ── TIME SERIES ────────────────────────────────────────────────────────────
+  TS_TASK: { q: "What is your time series task?", opts: [
+    { label: "Classification (TSC) — predict a class from a sequence", next: "TS_TSC_INTERP" },
+    { label: "Forecasting (TSF) — predict future values", next: "TS_TSF_INTERP" },
+  ]},
+  TS_TSC_INTERP: { q: "Is the model inherently interpretable?",
+    hint: "e.g. shapelet-based classifiers, dictionary-based models",
+    opts: [
+      { label: "Yes — shapelet or dictionary-based", next: "TS_GLASS_TSC" },
+      { label: "No — black-box classifier", next: "TS_SCOPE_C" },
+    ]},
+  TS_GLASS_TSC: { method: "Shapelet-based Models",
+    desc: "Discriminative subsequences are themselves interpretable features — no post-hoc XAI needed.",
+    libs: ["tslearn", "sktime"] },
+  TS_SCOPE_C: { q: "What scope do you need?", opts: [
+    { label: "Global — overall model behaviour", next: "TS_G_C_ACCESS" },
+    { label: "Local — explain a single classification", next: "TS_L_C_TYPE" },
+  ]},
+  TS_G_C_ACCESS: { q: "What type of model access do you have?", opts: [
+    { label: "Black-box (model-agnostic)", next: "TS_G_C_BB" },
+    { label: "White-box (model internals)", next: "TS_G_C_WB" },
+  ]},
+  TS_G_C_BB: { q: "What insight do you need?", opts: [
+    { label: "Feature ranking", next: "PFI_TS" },
+    { label: "Feature ranking + direction", next: "SHAP_TS_G" },
+  ]},
+  PFI_TS: { method: "Permutation Feature Importance (PFI)",
+    desc: "Reshape time series to tabular features, then permute each and measure accuracy drop.",
+    libs: ["sklearn.inspection"] },
+  SHAP_TS_G: { method: "SHAP Summary Plot",
+    desc: "Reshape time series to tabular, then use KernelExplainer for direction-aware importance.",
+    libs: ["shap"] },
+  TS_G_C_WB: { q: "Which technique?", opts: [
+    { label: "Gradient-based aggregated importance", next: "IG_TS_GLOBAL" },
+    { label: "Saliency rescaling (temporal relevance)", next: "TSR_GLOBAL" },
+  ]},
+  IG_TS_GLOBAL: { method: "Integrated Gradients (aggregated)",
+    desc: "Compute temporal attribution maps over the dataset and aggregate for global feature importance.",
+    libs: ["captum", "alibi"] },
+  TSR_GLOBAL: { method: "TSR / WinTSR — Temporal Saliency Rescaling",
+    desc: "Rescales saliency scores by time-step relevance for more faithful temporal explanations.",
+    libs: ["tsinterpret"] },
+  TS_L_C_TYPE: { q: "What type of local explanation do you need?", opts: [
+    { label: "Feature attribution — why this classification?", next: "TS_L_C_ACCESS" },
+    { label: "Counterfactual — what sequence change would flip the class?", next: "TS_L_CF" },
+  ]},
+  TS_L_C_ACCESS: { q: "What type of model access do you have?", opts: [
+    { label: "Black-box (model-agnostic)", next: "TS_L_C_BB" },
+    { label: "White-box (model internals)", next: "TS_L_C_WB" },
+  ]},
+  TS_L_C_BB: { q: "Which technique?", opts: [
+    { label: "Shapley-based temporal attributions", next: "SHAP_TS_L" },
+    { label: "Perturbation-based time-step importance", next: "LIME_TS" },
+  ]},
+  SHAP_TS_L: { method: "SHAP KernelExplainer",
+    desc: "Treat each time step as a feature and compute Shapley values for temporal attribution.",
+    libs: ["shap"] },
+  LIME_TS: { method: "LIME",
+    desc: "Perturbs time steps and fits a local linear model — treats each time step as a feature.",
+    libs: ["lime"] },
+  TS_L_C_WB: { q: "Which white-box technique?", opts: [
+    { label: "Gradient-based principled attribution", next: "IG_TS" },
+    { label: "1D CAM heatmap (for 1D-CNN models)", next: "GRADCAM_1D" },
+    { label: "Attention weights (for transformer-based models)", next: "ATTN_TS" },
+  ]},
+  IG_TS: { method: "Integrated Gradients (temporal)",
+    desc: "Temporal attribution map: which time steps drove this classification?",
+    libs: ["captum", "alibi"] },
+  GRADCAM_1D: { method: "1D Grad-CAM",
+    desc: "Class-discriminative temporal heatmap for 1D-CNN classifiers — highlights important time windows.",
+    libs: ["tsinterpret", "captum"] },
+  ATTN_TS: { method: "Attention Weights",
+    desc: "Temporal attention from transformer-based time series models.",
+    libs: [], note: "Attention ≠ attribution" },
+  TS_L_CF: { q: "Which counterfactual technique?", opts: [
+    { label: "Channel-wise perturbation (CoMTE)", next: "COMTE" },
+    { label: "Instance-based nearest unlike neighbour (Native Guide)", next: "NATIVE_GUIDE" },
+  ]},
+  COMTE: { method: "CoMTE — Counterfactual Multivariate Time Series",
+    desc: "Perturbs one channel at a time to find minimal multivariate counterfactual changes.",
+    libs: ["tsinterpret"] },
+  NATIVE_GUIDE: { method: "Native Guide",
+    desc: "Finds the nearest unlike neighbour and refines it into a plausible counterfactual.",
+    libs: ["tsinterpret"] },
+  TS_TSF_INTERP: { q: "Is the model inherently interpretable?",
+    hint: "e.g. Prophet, ARIMA, statsmodels — decompose into trend, seasonality, residuals",
+    opts: [
+      { label: "Yes — decomposition model (Prophet, ARIMA, etc.)", next: "TS_GLASS_TSF" },
+      { label: "No — black-box forecaster", next: "TS_SCOPE_F" },
+    ]},
+  TS_GLASS_TSF: { method: "Decomposition Models",
+    desc: "Trend + seasonality + residuals components are directly interpretable — no post-hoc XAI needed.",
+    libs: ["prophet", "pmdarima", "statsmodels"] },
+  TS_SCOPE_F: { q: "What scope do you need?", opts: [
+    { label: "Global — overall model behaviour", next: "TS_G_F_ACCESS" },
+    { label: "Local — explain a single forecast", next: "TS_L_F_ACCESS" },
+  ]},
+  TS_G_F_ACCESS: { q: "What type of model access do you have?", opts: [
+    { label: "Black-box (model-agnostic)", next: "TS_G_F_BB" },
+    { label: "White-box (model internals)", next: "TS_G_F_WB" },
+  ]},
+  TS_G_F_BB: { q: "What kind of global insight do you need?", opts: [
+    { label: "Feature ranking", next: "PFI_TSF" },
+    { label: "Feature ranking + direction", next: "SHAP_TSF_G" },
+    { label: "Sensitivity analysis — screen important inputs (Morris)", next: "MORRIS" },
+    { label: "Sensitivity analysis — variance decomposition (Sobol)", next: "SOBOL" },
+  ]},
+  PFI_TSF: { method: "Permutation Feature Importance (PFI)",
+    desc: "Permute each input feature and measure the drop in forecast accuracy.",
+    libs: ["sklearn.inspection"] },
+  SHAP_TSF_G: { method: "SHAP Summary Plot",
+    desc: "KernelExplainer with permutation approximation strategy adapted for forecasting models.",
+    libs: ["shap"] },
+  MORRIS: { method: "Morris Method (Elementary Effects)",
+    desc: "Screens which input factors are important via elementary effects. Low cost, good for large input spaces.",
+    libs: ["SALib"] },
+  SOBOL: { method: "Sobol Sensitivity Analysis",
+    desc: "Variance-based decomposition: 1st-order, 2nd-order (interactions), and total-order indices.",
+    libs: ["SALib"] },
+  TS_G_F_WB: { q: "Which white-box technique?", opts: [
+    { label: "Gradient-based aggregated attribution", next: "IG_TSF_GLOBAL" },
+    { label: "Built-in attention — TFT variable importance", next: "TFT_ATTN" },
+  ]},
+  IG_TSF_GLOBAL: { method: "Integrated Gradients (aggregated, forecasting)",
+    desc: "Temporal attribution maps aggregated over the dataset — identifies globally important features and time steps.",
+    libs: ["alibi", "captum"] },
+  TFT_ATTN: { method: "TFT Variable Selection + Temporal Attention",
+    desc: "Built-in variable selection weights and temporal attention directly from the Temporal Fusion Transformer.",
+    libs: ["darts", "pytorch-forecasting"] },
+  TS_L_F_ACCESS: { q: "What type of model access do you have?", opts: [
+    { label: "Black-box (model-agnostic)", next: "TS_L_F_BB" },
+    { label: "White-box (model internals)", next: "TS_L_F_WB" },
+  ]},
+  TS_L_F_BB: { q: "Which technique?", opts: [
+    { label: "Shapley-based with temporal windows", next: "TIMESHAP" },
+    { label: "Shapley-based with permutation approximation", next: "SHAP_TSF_L" },
+    { label: "Perturbation-based local surrogate", next: "LIME_TSF" },
+  ]},
+  TIMESHAP: { method: "TimeSHAP / WindowSHAP",
+    desc: "Window-based Shapley values capturing temporal dependencies across look-back windows.",
+    libs: ["timeshap", "shap"] },
+  SHAP_TSF_L: { method: "SHAP KernelExplainer",
+    desc: "KernelExplainer with permutation approximation adapted for time series forecasters.",
+    libs: ["shap"] },
+  LIME_TSF: { method: "LIME",
+    desc: "Local surrogate on flattened time steps — treats each time step as a feature.",
+    libs: ["lime"] },
+  TS_L_F_WB: { q: "Which white-box technique?", opts: [
+    { label: "Gradient-based temporal attribution", next: "IG_TSF" },
+    { label: "Built-in attention (TFT / transformer forecaster)", next: "TFT_ATTN_LOCAL" },
+  ]},
+  IG_TSF: { method: "Integrated Gradients (temporal, forecasting)",
+    desc: "Attribution map over features × time steps — identifies which past inputs drove the forecast.",
+    libs: ["alibi", "captum"] },
+  TFT_ATTN_LOCAL: { method: "TFT Attention / Temporal Attention Weights",
+    desc: "Built-in temporal attention and variable selection weights for a single TFT forecast.",
+    libs: ["darts", "pytorch-forecasting"] },
+};
+
+// ── Wizard runtime ────────────────────────────────────────────────────────────
+let wizardHistory = [];
+let wizardCurrent = "START";
+
+function wizardStep(nodeId, choiceLabel) {
+  wizardHistory.push({ id: wizardCurrent, label: choiceLabel });
+  wizardCurrent = nodeId;
+  renderWizard();
+}
+function wizardBack() {
+  if (!wizardHistory.length) return;
+  wizardCurrent = wizardHistory.pop().id;
+  renderWizard();
+}
+function wizardRestart() {
+  wizardHistory = [];
+  wizardCurrent = "START";
+  renderWizard();
+}
+
+function renderWizard() {
+  const node = TREE[wizardCurrent];
+
+  // breadcrumb
+  const bc = document.getElementById("wizard-breadcrumb");
+  bc.innerHTML = "";
+  wizardHistory.forEach((step, i) => {
+    if (i > 0) {
+      const sep = document.createElement("span");
+      sep.className = "bc-sep";
+      sep.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+      bc.appendChild(sep);
+    }
+    const s = document.createElement("span");
+    s.className = "bc-step";
+    s.textContent = step.label;
+    bc.appendChild(s);
+  });
+
+  document.getElementById("wizard-back").disabled = wizardHistory.length === 0;
+
+  const content = document.getElementById("wizard-content");
+  content.innerHTML = "";
+
+  if (node.method) {
+    // Result
+    const libsHtml = node.libs && node.libs.length
+      ? node.libs.map(name => {
+          const lib = LIBS.find(l => l.name === name);
+          const href = lib ? (lib.docs || "#") : "#";
+          return `<a class="wizard-lib-chip" href="${href}" target="_blank" rel="noopener">${name}</a>`;
+        }).join("")
+      : `<span class="wizard-no-lib">Typically implemented as custom code — no dedicated library</span>`;
+
+    content.innerHTML = `
+      <div class="wizard-result">
+        <div class="wizard-result-header">
+          <div class="r-label"><i class="fa-solid fa-circle-check"></i> Recommended method</div>
+          <div class="r-method">${node.method}</div>
+        </div>
+        <div class="wizard-result-body">
+          <p class="r-desc">${node.desc}</p>
+          ${node.note ? `<p class="r-note"><i class="fa-solid fa-triangle-exclamation"></i> ${node.note}</p>` : ""}
+          ${node.libs && node.libs.length ? `<div class="r-libs-label">Python libraries</div>` : ""}
+          <div class="wizard-lib-chips">${libsHtml}</div>
+        </div>
+      </div>`;
+  } else {
+    // Question
+    const q = document.createElement("h2");
+    q.className = "wizard-question";
+    q.textContent = node.q;
+    content.appendChild(q);
+    if (node.hint) {
+      const hint = document.createElement("p");
+      hint.className = "wizard-hint";
+      hint.textContent = node.hint;
+      content.appendChild(hint);
+    }
+    const opts = document.createElement("div");
+    opts.className = "wizard-options";
+    node.opts.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.className = "wizard-opt-btn";
+      btn.textContent = opt.label;
+      btn.onclick = () => wizardStep(opt.next, opt.label);
+      opts.appendChild(btn);
+    });
+    content.appendChild(opts);
+  }
+}
+
+// Tab switching
+document.querySelectorAll(".tab-btn").forEach(btn => {
+  btn.addEventListener("click", () => {
+    document.querySelectorAll(".tab-btn").forEach(b => b.classList.remove("active"));
+    document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
+    btn.classList.add("active");
+    document.getElementById(btn.dataset.tab).classList.add("active");
+    if (btn.dataset.tab === "tab-wizard") renderWizard();
+  });
+});
+document.getElementById("wizard-back").addEventListener("click", wizardBack);
+document.getElementById("wizard-restart").addEventListener("click", wizardRestart);
 
 init();
 </script>
