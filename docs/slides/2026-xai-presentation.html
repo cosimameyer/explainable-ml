@@ -335,8 +335,8 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#1E3A4C" data-background-image="img/ghost.png" data-background-position="bottom 2% right 2%" data-background-size="38%" class="quarto-title-block center">
-  <h1 class="title"><p><span class="myfont" style="font-size: 120px;">Why Did The Model<br> Do That?</span></p></h1>
-  <p class="subtitle"></p><p><span style="font-size: 40px;">Debugging the <span class="myfont">Ghost</span> in the Machine</span></p><p></p>
+  <h1 class="title"><p><span class="myfont" style="font-size: 180px;">Why Did The Model<br> Do That?</span></p></h1>
+  <p class="subtitle"></p><p><span style="font-size: 80px;">Debugging the <span class="myfont">Ghost</span> in the Machine</span></p><p></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -351,61 +351,32 @@ Cosima Meyer
 <h2>Who am I?</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="fragment fade-up">
+<div class="fragment">
 <p><br> <br> 👩🏼‍🎓 <strong>PhD in Politicial Science</strong> @ University of Mannheim</p>
 </div>
-<div class="fragment fade-up">
+<div class="fragment">
 <p><br> 👩🏼‍💻 <strong>Data Science</strong> @ SAP</p>
 </div>
 </div><div class="column" style="width:40%;">
 <p><img data-src="img/cosima_squared_picture.png"></p>
 </div>
 </div>
-<aside class="notes">
-<p>“I started my career studying civil wars — trying to understand why conflicts escalate, who’s affected, and what the data actually tells us. Biased data wasn’t an abstract concept. It had real consequences. When I moved into data science, I brought that same question with me: can we actually trust what the model is telling us?”</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="section" class="slide level2" data-menu-title="Introduction-Topic">
 <h2></h2>
-<p><img data-src="img/husky.png" class="fragment absolute" style="top: 100px; left: 100px; width: 450px; height: 400px; "></p>
-<div class="fragment absolute" style="top: 500px; left: 150px; width: 350px; height: 300px; ">
+<p><img data-src="img/husky.png" class="fragment absolute" style="top: 100px; left: 50px; width: 650px; height: 600px; "></p>
+<div class="fragment absolute" style="top: 750px; left: 200px; width: 350px; height: 300px; ">
 <p>Husky classified as <strong>wolf</strong></p>
 </div>
-<p><img data-src="img/snow.png" class="fragment absolute" style="top: 100px; left: 750px; width: 450px; height: 400px; "></p>
-<div class="fragment absolute" style="top: 500px; left: 850px; width: 350px; height: 300px; ">
+<p><img data-src="img/snow.png" class="fragment absolute" style="top: 100px; left: 900px; width: 650px; height: 600px; "></p>
+<div class="fragment absolute" style="top: 750px; left: 1100px; width: 350px; height: 300px; ">
 <p>… because of <strong>snow</strong></p>
 </div>
 <div class="absolute" style="font-size: 0.4em;left: 0px; bottom: 5px; width: 100%; ">
 <p>Images taken from <a href="https://arxiv.org/abs/1602.04938">Ribeiro, M. T., Singh, S., Guestrin, C., Lundberg, S. M., &amp; Lee, S. I. 2016. “Why Should I Trust You?”: Explaining the Predictions of Any Classifier. arXiv</a></p>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“Here’s a classic example. A classifier was asked: husky or wolf? It said wolf. Sounds reasonable — until you look at <em>why</em>. It wasn’t looking at the animal. It was looking at the snow. Snow means wolf. No snow means husky. The model learned a shortcut, not the concept.”</p>
-</blockquote>
-<blockquote>
-<p>“This is funny in a research paper. It’s not funny when the same kind of shortcut drives decisions about loans, medical diagnoses, or hiring.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="how-do-we-detect-this" class="slide level2" data-background-color="#1E3A4C" style="color: white !important;" data-menu-title="Introduction-Topic">
 <h2>How Do We Detect This?</h2>
@@ -413,7 +384,9 @@ Cosima Meyer
 section[data-background-color="#1E3A4C"] p,
 section[data-background-color="#1E3A4C"] strong {
   color: white !important;
+    font-size: 1.4em;
 }
+
 </style>
 <div class="columns">
 <div class="column" style="width:50%;">
@@ -433,24 +406,10 @@ section[data-background-color="#1E3A4C"] strong {
 <p><strong>How do you choose?</strong></p>
 </div>
 </div><div class="column" style="width:50%;">
-<p><img data-src="img/ghost_question.png" class="absolute" style="bottom: 0px; right: 0px; width: 500px; "></p>
+<p><img data-src="img/ghost_question.png" class="absolute" style="bottom: 0px; right: 0px; width: 600px; "></p>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“So you’ve trained a model. It looks good. But something feels off. You search for ‘explainable AI’ and get hit with dozens of methods and libraries. SHAP, LIME, Integrated Gradients, Grad-CAM, counterfactuals… Having worked on real-world XAI projects, I know how hard it is to find the right fit. So today, I want to give you a reusable framework to help you navigate your decisions.</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="an-xai-decision-tree" class="slide level2" data-menu-title="Introduction-Topic">
 <h2>An XAI Decision Tree</h2>
@@ -463,21 +422,7 @@ section[data-background-color="#1E3A4C"] strong {
 <p><img data-src="img/decision_tree_small.png"></p>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“Instead of guessing, I want to give you a structured decision tree. A few simple questions — about your data, your model access, and what you want to explain — and it’ll point you to the right method <em>and</em> the right Python library. Let’s build it together.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="terms-and-terminology" class="slide level2" data-menu-title="Introduction-Topic">
 <h2>Terms and Terminology</h2>
@@ -485,8 +430,8 @@ section[data-background-color="#1E3A4C"] strong {
 .term-grid {
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  gap: 3em;
-  font-size: 0.8em;
+  gap: 2em;
+  font-size: 1.1em;
 }
 .term-tile {
   background: #EBF0F3;
@@ -509,22 +454,22 @@ section[data-background-color="#1E3A4C"] strong {
 <div class="term-grid">
 
 <div class="term-tile fragment">
-<h3>Explainability vs Interpretability</h3>
+<h3>Interpretability vs Explainability</h3><br>
 <p>Can you <b>read</b> the <b>model's logic directly</b>, or do you <b>need a separate method</b> to approximate it?</p>
 </div>
 
 <div class="term-tile fragment">
-<h3>Model-agnostic vs Model-specific</h3>
+<h3>Model-agnostic vs Model-specific</h3><br>
 <p>Does the method treat the <b>model as a black box</b>, or does it <b>exploit its internals</b>?</p>
 </div>
 
 <div class="term-tile fragment">
-<h3>Black-box vs White-box</h3>
+<h3>Black-box vs White-box</h3><br>
 <p>Can you only query the model, or do you have <b>full access</b> to weights and gradients?</p>
 </div>
 
 <div class="term-tile fragment">
-<h3>Global vs Local</h3>
+<h3>Global vs Local</h3><br>
 <p>Explains <b>overall model behavior</b>, or explains a <b>single prediction</b>?</p>
 </div>
 
@@ -541,25 +486,7 @@ section[data-background-color="#1E3A4C"] strong {
 -->
 
 </div>
-<aside class="notes">
-<blockquote>
-<p>“Before we dive in, four quick distinctions to keep in mind.</p>
-</blockquote>
-<p>First: explainability versus interpretability — can you read the model’s logic directly, or do you need a separate method to approximate it?</p>
-<p>Second: is the method model-agnostic — treats the model as a black box — or model-specific, exploiting internals like gradients?</p>
-<p>Third: black-box versus white-box — this is about your <em>access level</em>. Can you only query predictions, or do you have full access to weights?</p>
-<p>And fourth: global versus local — are you explaining the model’s overall behavior, or one specific prediction? These distinctions will come back throughout the talk.”</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="lets-build-the-decision-tree-together" class="slide level2" data-menu-title="Introduction-Topic">
 <h2>Let’s Build the Decision Tree Together 🌳</h2>
@@ -587,21 +514,7 @@ flowchart TD
 <div style="text-align: center; margin-top: 40px; color: #6b7280;">
 <p>One question at a time.</p>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“We start with one node: you want to explain something. The very first question is…”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="whats-your-data-type" class="slide level2" data-menu-title="Introduction-Topic">
 <h2>What’s Your Data Type?</h2>
@@ -667,21 +580,7 @@ flowchart TD
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“What kind of data are you working with? Tabular, image, or text? Each has its own branch because the methods are fundamentally different. Let’s start with tabular — it’s the most common in practice.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="section-1" class="slide level2" data-background-color="#EBF0F3" data-menu-title="Tabular">
 <h2></h2>
@@ -691,6 +590,8 @@ flowchart TD
 </section>
 <section id="first-question-is-it-already-interpretable" class="slide level2" data-menu-title="Tabular">
 <h2>First Question: Is It Already Interpretable?</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.3); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -702,7 +603,7 @@ flowchart TD
     TAB_INTERP{"Inherently&lt;br/&gt;interpretable?"}
     TAB --&gt; TAB_INTERP
 
-    TAB_GLASS["✅ Use built-in explanations&lt;br/&gt;coefficients · rules ·&lt;br/&gt;shape functions"]
+    TAB_GLASS["&lt;br&gt;🎉 Use built-in explanations&lt;br/&gt;coefficients · rules ·&lt;br/&gt;shape functions"]
     TAB_INTERP --&gt;|"Yes — linear, tree,&lt;br/&gt;GAM, EBM"| TAB_GLASS
 
     TAB_SCOPE{"Scope?"}
@@ -720,44 +621,34 @@ flowchart TD
 </div>
 </div>
 </div>
-<div class="columns">
-<div class="column" style="width:50%;">
+</div>
+</div>
+<!--:::: {.columns}
+::: {.column width="50%"}-->
 <div class="fragment">
 <div class="method-card method-blue">
 <p>Is your model already interpretable? <br><strong>You can stop here 🎉</strong></p>
-<p><span class="lib">sklearn</span> <span class="lib">statsmodels</span></p>
+<p><span class="lib">sklearn</span> <span class="lib">statsmodels</span> <span class="lib">interpret</span> (for EBM)</p>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
-<div class="fragment">
-<div class="method-card method-blue">
-<p>Explainable Boosting Machine (EBM) classifier are GAM models who remain fully transparent</p>
-<p><span class="lib">interpret</span></p>
-</div>
-</div>
-</div>
-</div>
-<aside class="notes">
-<blockquote>
-<p>“Before you reach for any XAI tool, ask yourself: is your model already interpretable? If you’re using linear regression, a decision tree, a GAM, or an Explainable Boosting Machine — you can read the model’s logic directly. Coefficients, rules, shape functions. You don’t need a separate explanation method. You can stop here.”</p>
-</blockquote>
-<blockquote>
-<p>“EBMs from the <code>interpret</code> library are worth a special mention — they’re GAMs that remain fully transparent while often matching black-box performance. If you haven’t tried them, they’re worth a look.”</p>
-</blockquote>
-<blockquote>
-<p>“But if you’re working with a black-box model — a random forest, gradient boosting, a neural network — then we need to go deeper.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+<!--:::
+
+::: {.column width="50%"}
+::: {.fragment}
+::: {.method-card .method-blue}
+
+Explainable Boosting Machine (EBM) classifier are GAM models who remain fully transparent
+
+[interpret]{.lib}
+
+:::
+:::
+
+
+:::
+::::
+-->
+
 <!--
 ![](img/ebm.png){width="50%"}
 *[Image Reference](https://interpret.ml/docs/ebm.html)*
@@ -766,7 +657,7 @@ flowchart TD
 <section id="tabular-scope" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular → Scope</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -812,26 +703,12 @@ flowchart TD
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“Next question: scope. Are you trying to understand the model as a whole — its overall behavior — or are you explaining a single, specific prediction? Global versus local. These lead to very different methods.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="tabular-scope-1" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular → Scope</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -886,7 +763,7 @@ Are you explaining the **model as a whole**, or a **single prediction**?
 <section id="tabular-global-3-questions" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular → Global → 3 Questions</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -937,21 +814,7 @@ flowchart TD
 Three **different** questions you can ask about your model globally.
 :::
 -->
-<aside class="notes">
-<blockquote>
-<p>“If you go global, there are three different questions you might be asking. Which features matter most? — that’s ranking. How does a feature affect predictions? — that’s effects. And do features work together? — that’s interactions. Let’s walk through each.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="tabular-global" class="slide level2 path-slide" data-menu-title="Tabular">
 <h2>Tabular → Global</h2>
@@ -961,7 +824,7 @@ Three **different** questions you can ask about your model globally.
 :::
 -->
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1052,21 +915,7 @@ Which **features matter most**?
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“For feature ranking, two approaches. SHAP summary plots give you a global view — each dot is a data point, the x-axis shows the SHAP value, and the color shows the feature value. You see importance <em>and</em> direction at a glance. Use the <code>shap</code> library. Alternatively, Permutation Feature Importance — PFI — is simpler and fully model-agnostic. Shuffle a feature, see how much performance drops. Available in <code>sklearn</code> and also in <code>dalex</code>.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="tabular-global-2" class="slide level2 path-slide" data-menu-title="Tabular">
 <h2>Tabular → Global</h2>
@@ -1076,7 +925,7 @@ Which **features matter most**?
 :::
 -->
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1167,25 +1016,7 @@ How does a **feature affect predictions**?
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“For understanding <em>how</em> a feature affects predictions, Partial Dependence Plots show the average effect of a feature across the dataset. Great for getting the big picture — <code>sklearn</code> and <code>dalex</code> both support them. But if your features are correlated, PDPs can be misleading — that’s where ALE plots come in. ALE accumulates local changes, so it handles correlated features gracefully. For ALE, I’d recommend <code>alibi</code> or <code>effector</code>.”</p>
-</blockquote>
-<hr>
-<p>The ALE on the y-axes of the plot above is in the units of the prediction variable which, in this case, is the value of the house in $100,000’s.</p>
-<p>The median income here is in units of $10,000’s.</p>
-<p>The main interpretation of the ALE plot is qualitative—fixing the feature value and looking at the ALE plot as a function at that point, the tangent at that point (or the slope of linear interpolation between the closest bin endpoints) shows how sensitive the target prediction is with respect to small changes of the feature value. Since we have a linear regression model, the tangent/slope is the same across the whole feature range so the feature sensitivity is identical at any point in the feature range.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 <!--
 Flag PyALE as unmaintained → suggest alibi for ALE plots
 
@@ -1218,7 +1049,7 @@ Flag PyALE as unmaintained → suggest alibi for ALE plots
 :::
 -->
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1270,9 +1101,6 @@ Which **features work together**?
 :::
 -->
 </section>
-<section class="slide level2">
-
-</section>
 <section id="tabular-global-5" class="slide level2 path-slide" data-menu-title="Tabular">
 <h2>Tabular → Global</h2>
 <h3 style="margin-top: 20px;" id="which-features-work-together">Which Features Work Together?</h3>
@@ -1300,26 +1128,12 @@ Which **features work together**?
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“And for interactions — which features work together — SHAP interaction values decompose predictions into main effects plus pairwise interactions. You can also use 2D PDP or ALE plots as a simpler alternative. The <code>shap</code> and <code>shapiq</code> libraries handle this well.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="tabular-local-type" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular → Local → Type?</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1365,21 +1179,7 @@ flowchart TD
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“Now let’s flip to local — explaining a single prediction. Here, there are two fundamentally different questions. ‘Why this prediction?’ — that’s attribution. And ‘What would need to change?’ — that’s counterfactual. These serve different audiences and different purposes.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 <!--
 ::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 1em;"}
 Two fundamentally different questions about a single prediction.
@@ -1394,7 +1194,7 @@ Two fundamentally different questions about a single prediction.
 :::
 -->
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1460,7 +1260,7 @@ flowchart TD
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
-<p><img data-src="img/shap-waterfall.png" style="width:70.0%"></p>
+<p><img data-src="img/shap-waterfall.png" style="width:80.0%"></p>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
 <p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html">Image Reference</a></p>
 </div>
@@ -1470,33 +1270,19 @@ flowchart TD
 <div class="method-card method-blue">
 <p><strong>LIME</strong></p>
 <p>How features influence a single prediction by slightly changing the input and seeing how the prediction changes</p>
-<p><span class="lib-outdated">lime</span> <span class="lib">dalex</span></p>
+<p><span class="lib">dalex</span> <span class="lib-outdated">lime</span></p>
 <!--For rules-based explanations, see Anchors.-->
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
-<p><img data-src="img/lime-library.png" style="width:70.0%"></p>
+<p><img data-src="img/lime-library.png" style="width:80.0%"></p>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
 <p><a href="https://marcotcr.github.io/lime/tutorials/Tutorial%20-%20continuous%20and%20categorical%20features.html">Image Reference</a></p>
 </div>
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“For ‘why this prediction,’ your go-to tools are SHAP and LIME. SHAP gives you feature attributions grounded in game theory — Shapley values. Pick the right explainer for your model: TreeExplainer for tree models, LinearExplainer for linear models, DeepExplainer or KernelExplainer for neural nets. LIME takes a different approach — it perturbs the input slightly and fits a local linear model to see how the prediction changes. Both are also available through <code>dalex</code>, which gives you a unified interface — one Explainer object, and you call <code>predict_parts</code> with the method you want. Great if you don’t want to juggle separate libraries.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="tabular-local-2" class="slide level2 path-slide" data-menu-title="Tabular">
 <h2>Tabular → Local</h2>
@@ -1506,7 +1292,7 @@ flowchart TD
 :::
 -->
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1560,7 +1346,7 @@ flowchart TD
 <div class="method-card method-blue">
 <p><strong>Counterfactuals</strong></p>
 <p>Not <strong>why</strong>, but <strong>what needs to change in the input to achieve a different outcome</strong></p>
-<p><span class="lib">dice-ml</span> <span class="lib">alibi</span></p>
+<p><span class="lib">dice-ml</span> <span class="lib">alibi</span> <span class="lib-outdated">witwidget</span></p>
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
@@ -1569,26 +1355,12 @@ flowchart TD
 <p><a href="https://pureai.com/articles/2020/03/13/open-source-counterfactuals.aspx">Image Reference</a></p>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“Now, ‘what would change’ is a fundamentally different question. Counterfactuals don’t tell you <em>why</em> the model said no — they tell you <em>what the applicant would need to change</em> to get a yes. Incredibly powerful for actionable feedback. Think: ‘If your income were 5K higher, the loan would have been approved.’ The <code>dice-ml</code> and <code>alibi</code> libraries are your friends here.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="tabular" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular ✅</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.2); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1686,21 +1458,7 @@ flowchart TD
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“And that’s the tabular branch — complete. A few questions got us from ‘I have a black-box model’ to a specific method and library. Let’s move on to images.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="section-2" class="slide level2" data-background-color="#EBF0F3" data-menu-title="Image">
 <h2></h2>
@@ -1716,7 +1474,7 @@ Spatial structure, specialized methods
 <section id="image-data" class="slide level2">
 <h2>Image Data</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.25); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1765,7 +1523,7 @@ flowchart TD
 <section id="image-scope" class="slide level2" data-menu-title="Image">
 <h2>Image: Scope</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.25); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1818,26 +1576,12 @@ Again, are you explaining the **model as a whole**, or a **single prediction**?
 <!-- 
 Global is niche. Local is where the action is.
 -->
-<aside class="notes">
-<blockquote>
-<p>“Same first question: global or local? For images, global is more niche — it’s about understanding what the model has <em>learned</em> in general. Local is where most of the action is — explaining why it classified <em>this specific image</em> the way it did.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="image-global" class="slide level2" data-menu-title="Image">
 <h2>Image → Global</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.25); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1917,28 +1661,12 @@ flowchart TD
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“For global image explanations, two powerful approaches. TCAV — Testing with Concept Activation Vectors — lets you test whether a human-defined concept, like ‘striped texture,’ actually influences the model’s predictions. Think: does ‘stripes’ matter when classifying zebras, or is it something else? Then there’s feature visualization — generating synthetic images that maximally activate specific neurons. It shows you what the model has <em>learned</em> to detect at each layer. Both available through <code>captum</code>.”</p>
-</blockquote>
-<p>TCAV: zebra - has stripes, background, something else? does concept, stripes, influence a model’s prediction? teach a model the concept and check the influence</p>
-<p>Feature visualiaztion: understanding what a model has learned (recently also combined with what a model activates -&gt; “attribution” -&gt; optimized feature visualization)</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="image-local-access" class="slide level2" data-menu-title="Image">
 <h2>Image → Local → Access</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.25); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1983,26 +1711,12 @@ flowchart TD
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“For local image explanations, the next question is access. Can you only query the model — black-box — or do you have full access to its internals — white-box? This matters a lot for images.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="image-local-black-box" class="slide level2" data-menu-title="Image">
 <h2>Image → Local → Black-Box</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.25); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2066,7 +1780,7 @@ flowchart TD
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
-<p><img data-src="img/shap-image.png" style="width:80.0%"></p>
+<p><img data-src="img/shap-image.png" style="width:90.0%"></p>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
 <p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/image_examples/image_classification/Image%20Multi%20Class.html">Image Reference</a></p>
 </div>
@@ -2080,31 +1794,19 @@ flowchart TD
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
-<p><img data-src="img/lime-image.png" style="width:80.0%"></p>
+<p><img data-src="img/lime-image.png" style="width:90.0%"></p>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
 <p><a href="https://marcotcr.github.io/lime/tutorials/Tutorial%20-%20images.html">Image Reference</a></p>
 </div>
 </div>
 </div>
 </div>
-<aside class="notes">
-<p>If it’s a black-box, SHAP’s partition explainer uses hierarchical image decomposition to attribute importance to regions. LIME segments the image into superpixels and perturbs them. Both give you heatmaps showing which parts of the image drove the prediction — like showing that the model looked at snow, not the husky.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="image-local-white-box-architecture" class="slide level2" data-menu-title="Image">
 <h2>Image → Local → White-Box → Architecture</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.25); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2149,21 +1851,7 @@ flowchart TD
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“If you have white-box access, architecture matters. The methods differ for CNNs versus Vision Transformers.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 <!--
 ::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 0.85em;"}
 The architecture split matters here.
@@ -2173,7 +1861,7 @@ The architecture split matters here.
 <section id="image-local-white-box-architecture-1" class="slide level2" data-menu-title="Image">
 <h2>Image → Local → White-Box → Architecture</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.25); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2258,26 +1946,12 @@ flowchart TD
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“For CNNs, Grad-CAM gives you gradient-based heatmaps highlighting which spatial regions drove the prediction. Integrated Gradients takes a different approach — it accumulates gradients along a path from a neutral baseline to your actual input, giving pixel-level attribution. Both available through <code>captum</code>.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="image-local-white-box-architecture-3" class="slide level2 path-slide" data-menu-title="Image">
 <h2>Image → Local → White-Box → Architecture</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.25); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2336,7 +2010,7 @@ flowchart TD
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
-<p><img data-src="img/attention-rollout.png" style="width:80.0%"></p>
+<p><img data-src="img/attention-rollout.png" style="width:90.0%"></p>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
 <p><a href="https://github.com/jacobgil/vit-explain">Image Reference</a></p>
 </div>
@@ -2350,33 +2024,19 @@ flowchart TD
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
-<p><img data-src="img/transformer-attribution.png" style="width:80.0%"></p>
+<p><img data-src="img/transformer-attribution.png" style="width:90.0%"></p>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
 <p><a href="https://github.com/jacobgil/vit-explain?tab=readme-ov-file#gradient-attention-rollout-for-class-specific-explainability">Image Reference</a></p>
 </div>
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“For Vision Transformers, attention rollout aggregates attention across layers, and transformer attribution combines attention with gradient information for sharper, class-specific explanations. Again, <code>captum</code> and <code>vit-explain</code> cover these.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="image" class="slide level2" data-menu-title="Image">
 <h2>Image ✅</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.2); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2474,21 +2134,7 @@ flowchart TD
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“Image branch — done. On to text.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="section-3" class="slide level2" data-background-color="#EBF0F3" data-menu-title="Text">
 <h2></h2>
@@ -2504,7 +2150,7 @@ Similar shape to image, with one big caveat
 <section id="text" class="slide level2" data-menu-title="Text">
 <h2>Text</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2547,7 +2193,7 @@ flowchart TD
 <section id="text-scope" class="slide level2" data-menu-title="Text">
 <h2>Text: Scope</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2591,26 +2237,12 @@ flowchart TD
 Are you explaining the **model as a whole**, or a **single prediction**?
 :::
 -->
-<aside class="notes">
-<blockquote>
-<p>“Same structure: global or local? And for local, the key split is again black-box versus white-box.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="text-global" class="slide level2" data-menu-title="Text">
 <h2>Text → Global</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2667,27 +2299,12 @@ flowchart TD
 <p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/api_examples/plots/text.html">Image Reference</a></p>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“For global text explanations, the SHAP partition explainer is specifically designed for text. It uses a hierarchical masking strategy that respects token boundaries — so it’s not just randomly dropping words, it’s doing it intelligently. This gives you a view of which tokens or phrases matter most across your dataset.”</p>
-</blockquote>
-<p>The partition explainer is a model-agnostic estimator based on a hierarchical tree for the features that tell the partition explainer how to recursively compute the SHAP values. The Partition explainer is useful when the features are text or image inputs, but also when features are correlated.</p>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="text-local-access" class="slide level2" data-menu-title="Text">
 <h2>Text → Local → Access</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2730,7 +2347,7 @@ flowchart TD
 <section id="text-local-black-box" class="slide level2" data-menu-title="Text">
 <h2>Text → Local → Black-Box</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2791,26 +2408,12 @@ flowchart TD
 <p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/api_examples/plots/text.html">Image Reference</a></p>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“For local black-box text explanations, same tool — SHAP’s partition explainer. Mask or perturb tokens, measure the impact on the prediction. You get token-level attributions without needing any access to the model’s internals.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="text-local-white-box" class="slide level2" data-menu-title="Text">
 <h2>Text → Local → White-Box</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2878,26 +2481,12 @@ flowchart TD
 The biggest misconception in NLP explainability. Attention weights show what the model **looks at**, not what it **relies on**.
 :::
 -->
-<aside class="notes">
-<blockquote>
-<p>“And if you have white-box access to a transformer, Integrated Gradients is your go-to. Same principle as with images — accumulate gradients from a baseline to your input — but now applied to token embeddings. The <code>captum</code> and <code>inseq</code> libraries handle this. One quick note that’s often a source of confusion: attention weights are <em>not</em> explanations. They show what the model <em>looks at</em>, not what it <em>relies on</em>. There’s a whole debate in the literature on this — but for practical purposes, use proper attribution methods rather than raw attention.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="text-1" class="slide level2" data-menu-title="Text">
 <h2>Text ✅</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.6); transform-origin: top center;">
+<div style="transform: scale(1.2); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2995,27 +2584,13 @@ flowchart TD
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“And that’s the text branch — and the entire decision tree.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="observed-patterns-and-whats-next" class="slide level2 smaller" data-menu-title="Outlook">
 <h2>Observed Patterns and What’s Next</h2>
 <div class="columns">
-<div class="column" style="width:50%;">
-<div style="font-size: 2.5em;">
+<div class="column" style="width:60%;">
+<div style="font-size: 3em;">
 <div class="fragment">
 <div>
 <ul>
@@ -3028,50 +2603,21 @@ flowchart TD
 </div>
 </div>
 </div>
-</div><div class="column" style="width:50%;">
-<div style="font-size: 2em;">
+</div><div class="column" style="width:40%;">
+<div style="font-size: 3em;">
 <div class="fragment">
-<p>Find an interactive (tabular) version of the decision tree here 👇 <a href="https://cosimameyer.github.io/explainable-ml/"><img data-src="img/qr_repo.png" style="width:60.0%"></a> <!----></p>
+<p>Find an interactive (tabular) version of the decision tree here 👇 <br> <a href="https://cosimameyer.github.io/explainable-ml/"><img data-src="img/qr_repo.png" style="width:60.0%"></a> <!----></p>
 </div>
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“Let me leave you with a few patterns to take away.”</p>
-</blockquote>
-<blockquote>
-<p>“First, SHAP shows up in every single branch of this tree. Tabular, image, text — global, local, black-box. It’s the Swiss army knife of XAI. If you learn one tool deeply, make it SHAP.”</p>
-</blockquote>
-<blockquote>
-<p>“Second, Integrated Gradients is the universal white-box method. Whenever you have access to gradients — CNNs, transformers, text models — it works.”</p>
-</blockquote>
-<blockquote>
-<p>“Third — and this is conceptual — ‘why this prediction’ and ‘what would change it’ are fundamentally different questions. Don’t confuse them. Attribution tells you what drove the decision. Counterfactuals tell you what to <em>do about it</em>.”</p>
-</blockquote>
-<blockquote>
-<p>“And finally: start with interpretable models when you can. If a linear model or an EBM gets you 95% of the performance, you might not need a black box at all.”</p>
-</blockquote>
-<blockquote>
-<p>“You can find an interactive version of this decision tree on my GitHub. Scan the QR code or visit the repo.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="more-resources" class="slide level2 smaller" data-background-color="#1E3A4C" style="color: white;" data-menu-title="Resources">
 <h2>More Resources</h2>
 <style>
 section[data-background-color="#1E3A4C"] ul {
-  font-size: 1.2em;
+  font-size: 2em;
 }
 section[data-background-color="#1E3A4C"] li {
   margin-bottom: 0.4em;
@@ -3095,30 +2641,16 @@ section[data-background-color="#1E3A4C"] li {
 </div>
 </div><div class="column" style="width:45%;">
 <div>
-<p><img data-src="img/ghost_happy.png" class="absolute" style="bottom: 0px; right: 0px; width: 500px; "></p>
+<p><img data-src="img/ghost_happy.png" class="absolute" style="bottom: 0px; right: 0px; width: 800px; "></p>
 </div>
 </div>
 </div>
-<aside class="notes">
-<blockquote>
-<p>“I’ve listed some resources here — my GitHub repo with the interactive decision tree, a tutorial on BERT and XAI, and two excellent books by Serg Masís and Christoph Molnar if you want to go deeper. These slides will be available as well.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 </section>
 <section id="section-4" class="slide level2" data-background-color="#1E3A4C" data-menu-title="Closing">
 <h2></h2>
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; gap: 0.6em; color: #FFFFFF; text-align: center;">
-<p><span class="myfont" style="font-size: 120px;">Thank You!</span></p>
+<p><span class="myfont" style="font-size: 220px;">Thank You!</span></p>
 <p><i class="fa-solid fa-globe" aria-label="globe"></i> cosimameyer.com<br>
 <i class="fa-brands fa-github" aria-label="github"></i> cosimameyer</p>
 <!--
@@ -3126,21 +2658,7 @@ section[data-background-color="#1E3A4C"] li {
  @cosima_meyer@mas.to
 -->
 </div>
-<aside class="notes">
-<blockquote>
-<p>“Thank you! I’m happy to take questions — and you can find me online at cosimameyer.com or on GitHub.”</p>
-</blockquote>
-<style type="text/css">
-        span.MJX_Assistive_MathML {
-          position:absolute!important;
-          clip: rect(1px, 1px, 1px, 1px);
-          padding: 1px 0 0 0!important;
-          border: 0!important;
-          height: 1px!important;
-          width: 1px!important;
-          overflow: hidden!important;
-          display:block!important;
-      }</style></aside>
+
 <div class="footer footer-default">
 
 </div>
@@ -3322,12 +2840,12 @@ section[data-background-color="#1E3A4C"] li {
         // The "normal" size of the presentation, aspect ratio will be preserved
         // when the presentation is scaled to fit different resolutions. Can be
         // specified using percentage units.
-        width: 1280,
+        width: 1600,
 
-        height: 720,
+        height: 900,
 
         // Factor of the display size that should remain empty around the content
-        margin: 5.0e-2,
+        margin: 0.1,
 
         math: {
           mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
