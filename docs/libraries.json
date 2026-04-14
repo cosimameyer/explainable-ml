@@ -464,6 +464,22 @@
     "whitebox": true
   },
   {
+    "name": "shapiq",
+    "known_for": "Extends the well-known `shap package for both researchers working on game theory in machine learning, as well as the end-users explaining models",
+    "description": "[\"Shapley Interaction Quantification (shapiq) is a Python package for (1) approximating any-order Shapley interactions, (2) benchmarking game-theoretical algorithms for machine learning, (3) explaining feature interactions of model predictions. [...] SHAP-IQ extends individual Shapley values by quantifying the synergy effect between entities (aka players in the jargon of game theory) like explanatory features, data points, or weak learners in ensemble models.\"](https://github.com/mmschlk/shapiq)",
+    "repo": "mmschlk/shapiq",
+    "docs": "hhttps://shapiq.readthedocs.io/en/latest/",
+    "pypi": "https://pypi.org/project/shapiq/",
+    "global": true,
+    "local": true,
+    "tabular": true,
+    "text": true,
+    "image": true,
+    "timeseries": true,
+    "blackbox": true,
+    "whitebox": true
+  },
+  {
     "name": "sklearn.inspection",
     "known_for": "PFI, PDP, ICE plots for scikit-learn models",
     "description": "[\"The sklearn.inspection module provides tools to help understand the predictions from a model and what affects them. This can be used to evaluate assumptions and biases of a model, design a better model, or to diagnose issues with model performance.\"](https://scikit-learn.org/stable/inspection.html#inspection)",
