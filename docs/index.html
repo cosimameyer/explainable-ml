@@ -715,7 +715,97 @@ async function init() {
   loadGitHubData();
 }
 
+// ── guide runtime ────────────────────────────────────────────────────────────
+let guideHistory = [];
+let guideCurrent = "START";
 
+function guideStep(nodeId, choiceLabel) {
+  guideHistory.push({ id: guideCurrent, label: choiceLabel });
+  guideCurrent = nodeId;
+  renderguide();
+}
+function guideBack() {
+  if (!guideHistory.length) return;
+  guideCurrent = guideHistory.pop().id;
+  renderguide();
+}
+function guideRestart() {
+  guideHistory = [];
+  guideCurrent = "START";
+  renderguide();
+}
+
+function renderguide() {
+  const node = TREE[guideCurrent];
+
+  // breadcrumb
+  const bc = document.getElementById("guide-breadcrumb");
+  bc.innerHTML = "";
+  guideHistory.forEach((step, i) => {
+    if (i > 0) {
+      const sep = document.createElement("span");
+      sep.className = "bc-sep";
+      sep.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+      bc.appendChild(sep);
+    }
+    const s = document.createElement("span");
+    s.className = "bc-step";
+    s.textContent = step.label;
+    bc.appendChild(s);
+  });
+
+  document.getElementById("guide-back").disabled = guideHistory.length === 0;
+
+  const content = document.getElementById("guide-content");
+  content.innerHTML = "";
+
+  if (node.method) {
+    // Result
+    const libsHtml = node.libs && node.libs.length
+      ? node.libs.map(name => {
+          const lib = LIBS.find(l => l.name === name);
+          const href = lib ? (lib.docs || "#") : "#";
+          return `<a class="guide-lib-chip" href="${href}" target="_blank" rel="noopener">${name}</a>`;
+        }).join("")
+      : `<span class="guide-no-lib">Typically implemented as custom code — no dedicated library</span>`;
+
+    content.innerHTML = `
+      <div class="guide-result">
+        <div class="guide-result-header">
+          <div class="r-label"><i class="fa-solid fa-circle-check"></i> Recommended method</div>
+          <div class="r-method">${node.method}</div>
+        </div>
+        <div class="guide-result-body">
+          <p class="r-desc">${node.desc}</p>
+          ${node.note ? `<p class="r-note"><i class="fa-solid fa-triangle-exclamation"></i> ${node.note}</p>` : ""}
+          ${node.libs && node.libs.length ? `<div class="r-libs-label">Python libraries</div>` : ""}
+          <div class="guide-lib-chips">${libsHtml}</div>
+        </div>
+      </div>`;
+  } else {
+    // Question
+    const q = document.createElement("h2");
+    q.className = "guide-question";
+    q.textContent = node.q;
+    content.appendChild(q);
+    if (node.hint) {
+      const hint = document.createElement("p");
+      hint.className = "guide-hint";
+      hint.textContent = node.hint;
+      content.appendChild(hint);
+    }
+    const opts = document.createElement("div");
+    opts.className = "guide-options";
+    node.opts.forEach(opt => {
+      const btn = document.createElement("button");
+      btn.className = "guide-opt-btn";
+      btn.textContent = opt.label;
+      btn.onclick = () => guideStep(opt.next, opt.label);
+      opts.appendChild(btn);
+    });
+    content.appendChild(opts);
+  }
+}
 
 // Tab switching
 document.querySelectorAll(".tab-btn").forEach(btn => {
