@@ -264,9 +264,9 @@
   .tab-panel { display: none; }
   .tab-panel.active { display: block; }
 
-  /* ── Wizard ─────────────────────────────────────────────────────────── */
-  .wizard-wrap { max-width: 680px; margin: 48px auto; padding: 0 40px 60px; }
-  .wizard-breadcrumb {
+  /* ── Guide ─────────────────────────────────────────────────────────── */
+  .guide-wrap { max-width: 680px; margin: 48px auto; padding: 0 40px 60px; }
+  .guide-breadcrumb {
     display: flex; flex-wrap: wrap; align-items: center; gap: 6px;
     font-size: 11px; color: var(--muted); margin-bottom: 32px; min-height: 20px;
   }
@@ -275,58 +275,58 @@
     padding: 3px 8px; border-radius: 3px; font-size: 11px;
   }
   .bc-sep { color: var(--brand-mid); font-size: 10px; }
-  .wizard-question {
+  .guide-question {
     font-size: 20px; font-weight: 600; color: var(--brand-navy);
     margin: 0 0 8px; line-height: 1.3;
   }
-  .wizard-hint { font-size: 12.5px; color: var(--muted); margin: 0 0 28px; }
-  .wizard-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
-  .wizard-opt-btn {
+  .guide-hint { font-size: 12.5px; color: var(--muted); margin: 0 0 28px; }
+  .guide-options { display: flex; flex-direction: column; gap: 10px; margin-bottom: 32px; }
+  .guide-opt-btn {
     text-align: left; padding: 14px 18px;
     border: 1px solid var(--border); border-radius: 6px;
     background: var(--bg); color: var(--brand-navy);
     font-family: inherit; font-size: 13.5px; cursor: pointer;
     transition: border-color 0.12s, background 0.12s; line-height: 1.4;
   }
-  .wizard-opt-btn:hover { border-color: var(--brand-navy); background: var(--panel); }
-  .wizard-nav { display: flex; gap: 10px; }
-  .wizard-nav-btn {
+  .guide-opt-btn:hover { border-color: var(--brand-navy); background: var(--panel); }
+  .guide-nav { display: flex; gap: 10px; }
+  .guide-nav-btn {
     padding: 7px 14px; border: 1px solid var(--border); border-radius: 4px;
     background: transparent; color: var(--muted);
     font-family: inherit; font-size: 12px; cursor: pointer;
     display: inline-flex; align-items: center; gap: 6px;
     transition: color 0.12s, border-color 0.12s;
   }
-  .wizard-nav-btn:hover { color: var(--brand-navy); border-color: var(--brand-navy); }
-  .wizard-nav-btn:disabled { opacity: 0.35; cursor: default; }
-  .wizard-result { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
-  .wizard-result-header { background: var(--brand-navy); color: #fff; padding: 20px 24px; }
-  .wizard-result-header .r-label {
+  .guide-nav-btn:hover { color: var(--brand-navy); border-color: var(--brand-navy); }
+  .guide-nav-btn:disabled { opacity: 0.35; cursor: default; }
+  .guide-result { border: 1px solid var(--border); border-radius: 8px; overflow: hidden; margin-bottom: 32px; }
+  .guide-result-header { background: var(--brand-navy); color: #fff; padding: 20px 24px; }
+  .guide-result-header .r-label {
     font-size: 10px; font-weight: 600; text-transform: uppercase;
     letter-spacing: 1px; opacity: 0.65; margin-bottom: 6px;
   }
-  .wizard-result-header .r-method { font-size: 18px; font-weight: 600; line-height: 1.3; }
-  .wizard-result-body { padding: 20px 24px; }
-  .wizard-result-body .r-desc { font-size: 13.5px; color: var(--muted); margin: 0 0 16px; line-height: 1.55; }
-  .wizard-result-body .r-note { font-size: 12px; color: var(--dated); margin: 0 0 16px; }
-  .wizard-result-body .r-libs-label {
+  .guide-result-header .r-method { font-size: 18px; font-weight: 600; line-height: 1.3; }
+  .guide-result-body { padding: 20px 24px; }
+  .guide-result-body .r-desc { font-size: 13.5px; color: var(--muted); margin: 0 0 16px; line-height: 1.55; }
+  .guide-result-body .r-note { font-size: 12px; color: var(--dated); margin: 0 0 16px; }
+  .guide-result-body .r-libs-label {
     font-size: 11px; font-weight: 600; text-transform: uppercase;
     letter-spacing: 0.7px; color: var(--muted); margin-bottom: 10px;
   }
-  .wizard-lib-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-  .wizard-lib-chip {
+  .guide-lib-chips { display: flex; flex-wrap: wrap; gap: 8px; }
+  .guide-lib-chip {
     padding: 5px 12px; border: 1px solid var(--brand-mid); border-radius: 4px;
     font-size: 12.5px; font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
     color: var(--brand-navy); cursor: pointer; background: transparent;
     transition: background 0.12s, border-color 0.12s; text-decoration: none; display: inline-block;
   }
-  .wizard-lib-chip:hover { background: var(--brand-navy); color: #fff; border-color: var(--brand-navy); }
-  .wizard-no-lib { font-size: 12.5px; color: var(--muted); font-style: italic; }
+  .guide-lib-chip:hover { background: var(--brand-navy); color: #fff; border-color: var(--brand-navy); }
+  .guide-no-lib { font-size: 12.5px; color: var(--muted); font-style: italic; }
 
   @media (max-width: 900px) {
     .tab-nav { padding: 0 20px; }
-    .wizard-wrap { padding: 0 20px 40px; margin-top: 32px; }
-    .wizard-question { font-size: 17px; }
+    .guide-wrap { padding: 0 20px 40px; margin-top: 32px; }
+    .guide-question { font-size: 17px; }
   }
 </style>
 </head>
@@ -336,8 +336,9 @@
   <h1>Explainable ML — Python Libraries</h1>
   <div class="subtitle">
     Interactive filter for the curated list in
-    <a href="https://github.com/" id="repo-link">explainable-ml</a>.
-    Click capability filters (any <i class="fa-solid fa-arrow-right"></i> require <i class="fa-solid fa-arrow-right"></i> exclude). Stars and last-commit data fetched live from GitHub.
+    <a href="https://github.com/" id="repo-link">explainable-ml</a>.<br>
+    Click capability filters (any <i class="fa-solid fa-arrow-right"></i> require <i class="fa-solid fa-arrow-right"></i> exclude).<br>
+    <i>Stars and last-commit data fetched from GitHub.</i>
   </div>
 </header>
 
@@ -345,8 +346,8 @@
   <button class="tab-btn active" data-tab="tab-libraries">
     <i class="fa-solid fa-table-list"></i> Libraries
   </button>
-  <button class="tab-btn" data-tab="tab-wizard">
-    <i class="fa-solid fa-wand-magic-sparkles"></i> Decision Wizard
+  <button class="tab-btn" data-tab="tab-guide">
+    <i class="fa-regular fa-compass"></i> Decision Guide
   </button>
 </nav>
 
@@ -390,20 +391,20 @@
 </div>
 </div><!-- #tab-libraries -->
 
-<div id="tab-wizard" class="tab-panel">
-  <div class="wizard-wrap">
-    <div class="wizard-breadcrumb" id="wizard-breadcrumb"></div>
-    <div id="wizard-content"></div>
-    <div class="wizard-nav">
-      <button class="wizard-nav-btn" id="wizard-back" disabled>
+<div id="tab-guide" class="tab-panel">
+  <div class="guide-wrap">
+    <div class="guide-breadcrumb" id="guide-breadcrumb"></div>
+    <div id="guide-content"></div>
+    <div class="guide-nav">
+      <button class="guide-nav-btn" id="guide-back" disabled>
         <i class="fa-solid fa-arrow-left"></i> Back
       </button>
-      <button class="wizard-nav-btn" id="wizard-restart">
+      <button class="guide-nav-btn" id="guide-restart">
         <i class="fa-solid fa-rotate-left"></i> Start over
       </button>
     </div>
   </div>
-</div><!-- #tab-wizard -->
+</div><!-- #tab-guide -->
 
 <script>
 const COLUMNS = [
@@ -710,7 +711,7 @@ async function init() {
   loadGitHubData();
 }
 
-// ── Decision Wizard ──────────────────────────────────────────────────────────
+// ── Decision Guide ──────────────────────────────────────────────────────────
 const TREE = {
   START: { q: "What data type are you working with?", opts: [
     { label: "Tabular", next: "TAB_INTERP" },
@@ -1242,33 +1243,33 @@ const TREE = {
     libs: ["darts", "pytorch-forecasting"] },
 };
 
-// ── Wizard runtime ────────────────────────────────────────────────────────────
-let wizardHistory = [];
-let wizardCurrent = "START";
+// ── guide runtime ────────────────────────────────────────────────────────────
+let guideHistory = [];
+let guideCurrent = "START";
 
-function wizardStep(nodeId, choiceLabel) {
-  wizardHistory.push({ id: wizardCurrent, label: choiceLabel });
-  wizardCurrent = nodeId;
-  renderWizard();
+function guideStep(nodeId, choiceLabel) {
+  guideHistory.push({ id: guideCurrent, label: choiceLabel });
+  guideCurrent = nodeId;
+  renderguide();
 }
-function wizardBack() {
-  if (!wizardHistory.length) return;
-  wizardCurrent = wizardHistory.pop().id;
-  renderWizard();
+function guideBack() {
+  if (!guideHistory.length) return;
+  guideCurrent = guideHistory.pop().id;
+  renderguide();
 }
-function wizardRestart() {
-  wizardHistory = [];
-  wizardCurrent = "START";
-  renderWizard();
+function guideRestart() {
+  guideHistory = [];
+  guideCurrent = "START";
+  renderguide();
 }
 
-function renderWizard() {
-  const node = TREE[wizardCurrent];
+function renderguide() {
+  const node = TREE[guideCurrent];
 
   // breadcrumb
-  const bc = document.getElementById("wizard-breadcrumb");
+  const bc = document.getElementById("guide-breadcrumb");
   bc.innerHTML = "";
-  wizardHistory.forEach((step, i) => {
+  guideHistory.forEach((step, i) => {
     if (i > 0) {
       const sep = document.createElement("span");
       sep.className = "bc-sep";
@@ -1281,9 +1282,9 @@ function renderWizard() {
     bc.appendChild(s);
   });
 
-  document.getElementById("wizard-back").disabled = wizardHistory.length === 0;
+  document.getElementById("guide-back").disabled = guideHistory.length === 0;
 
-  const content = document.getElementById("wizard-content");
+  const content = document.getElementById("guide-content");
   content.innerHTML = "";
 
   if (node.method) {
@@ -1292,42 +1293,42 @@ function renderWizard() {
       ? node.libs.map(name => {
           const lib = LIBS.find(l => l.name === name);
           const href = lib ? (lib.docs || "#") : "#";
-          return `<a class="wizard-lib-chip" href="${href}" target="_blank" rel="noopener">${name}</a>`;
+          return `<a class="guide-lib-chip" href="${href}" target="_blank" rel="noopener">${name}</a>`;
         }).join("")
-      : `<span class="wizard-no-lib">Typically implemented as custom code — no dedicated library</span>`;
+      : `<span class="guide-no-lib">Typically implemented as custom code — no dedicated library</span>`;
 
     content.innerHTML = `
-      <div class="wizard-result">
-        <div class="wizard-result-header">
+      <div class="guide-result">
+        <div class="guide-result-header">
           <div class="r-label"><i class="fa-solid fa-circle-check"></i> Recommended method</div>
           <div class="r-method">${node.method}</div>
         </div>
-        <div class="wizard-result-body">
+        <div class="guide-result-body">
           <p class="r-desc">${node.desc}</p>
           ${node.note ? `<p class="r-note"><i class="fa-solid fa-triangle-exclamation"></i> ${node.note}</p>` : ""}
           ${node.libs && node.libs.length ? `<div class="r-libs-label">Python libraries</div>` : ""}
-          <div class="wizard-lib-chips">${libsHtml}</div>
+          <div class="guide-lib-chips">${libsHtml}</div>
         </div>
       </div>`;
   } else {
     // Question
     const q = document.createElement("h2");
-    q.className = "wizard-question";
+    q.className = "guide-question";
     q.textContent = node.q;
     content.appendChild(q);
     if (node.hint) {
       const hint = document.createElement("p");
-      hint.className = "wizard-hint";
+      hint.className = "guide-hint";
       hint.textContent = node.hint;
       content.appendChild(hint);
     }
     const opts = document.createElement("div");
-    opts.className = "wizard-options";
+    opts.className = "guide-options";
     node.opts.forEach(opt => {
       const btn = document.createElement("button");
-      btn.className = "wizard-opt-btn";
+      btn.className = "guide-opt-btn";
       btn.textContent = opt.label;
-      btn.onclick = () => wizardStep(opt.next, opt.label);
+      btn.onclick = () => guideStep(opt.next, opt.label);
       opts.appendChild(btn);
     });
     content.appendChild(opts);
@@ -1341,11 +1342,11 @@ document.querySelectorAll(".tab-btn").forEach(btn => {
     document.querySelectorAll(".tab-panel").forEach(p => p.classList.remove("active"));
     btn.classList.add("active");
     document.getElementById(btn.dataset.tab).classList.add("active");
-    if (btn.dataset.tab === "tab-wizard") renderWizard();
+    if (btn.dataset.tab === "tab-guide") renderguide();
   });
 });
-document.getElementById("wizard-back").addEventListener("click", wizardBack);
-document.getElementById("wizard-restart").addEventListener("click", wizardRestart);
+document.getElementById("guide-back").addEventListener("click", guideBack);
+document.getElementById("guide-restart").addEventListener("click", guideRestart);
 
 init();
 </script>
