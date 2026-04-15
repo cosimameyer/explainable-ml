@@ -219,6 +219,17 @@
   .freshness-fresh i, .freshness-stale i, .freshness-dated i, .freshness-ancient i { color: currentColor; }
 
   .loading { color: var(--brand-mid); font-size: 11px; }
+  .license { white-space: nowrap; }
+  .license-tag {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--brand-muted);
+    background: var(--brand-light);
+    border: 1px solid var(--brand-mid);
+    border-radius: 3px;
+    padding: 2px 6px;
+    font-family: "SF Mono", Menlo, Monaco, Consolas, monospace;
+  }
 
   .col-toggles { display: flex; flex-wrap: wrap; gap: 6px; }
 
@@ -417,6 +428,7 @@ const COLUMNS = [
   { key: "link",       label: "Links",       type: "link" },
   { key: "stars",      label: "Stars",       type: "stars" },
   { key: "updated",    label: "Last commit", type: "updated" },
+  { key: "license",    label: "License",     type: "license" },
   { key: "global",     label: "Global",      type: "bool", group: "scope" },
   { key: "local",      label: "Local",       type: "bool", group: "scope" },
   { key: "tabular",    label: "Tabular",     type: "bool", group: "datatype" },
@@ -605,6 +617,11 @@ function renderBody() {
         if (lib.docs) parts.push(`<a href="${lib.docs}" target="_blank" rel="noopener"><i class="fa-solid fa-book"></i></a>`);
         if (lib.pypi) parts.push(`<a href="${lib.pypi}" target="_blank" rel="noopener"><i class="fa-brands fa-python"></i></a>`);
         td.innerHTML = parts.join("");
+      } else if (col.type === "license") {
+        td.className = "license";
+        td.innerHTML = lib._license
+          ? `<span class="license-tag">${lib._license}</span>`
+          : lib.repo ? '<span class="loading">—</span>' : '';
       } else if (col.type === "stars") {
         td.className = "stars";
         td.innerHTML = `<i class="fa-solid fa-star"></i>${formatStars(lib._stars)}`;
@@ -662,6 +679,7 @@ async function loadGitHubData() {
     if (c) {
       lib._stars = c.stars;
       lib._updated = c.pushed ? new Date(c.pushed) : null;
+      lib._license = c.license || null;
     }
   });
   render();
@@ -676,7 +694,8 @@ async function loadGitHubData() {
       const j = await r.json();
       lib._stars = j.stargazers_count;
       lib._updated = j.pushed_at ? new Date(j.pushed_at) : null;
-      fresh[lib.repo] = { stars: j.stargazers_count, pushed: j.pushed_at };
+      lib._license = j.license ? (j.license.spdx_id || j.license.name || null) : null;
+      fresh[lib.repo] = { stars: j.stargazers_count, pushed: j.pushed_at, license: lib._license };
     } catch (e) {}
   }));
 
