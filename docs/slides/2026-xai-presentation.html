@@ -351,11 +351,11 @@ Cosima Meyer
 <h2>Who am I?</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div class="fragment">
+<div class="fragment" style="font-size: 1.5em;">
 <p><br> <br> 👩🏼‍🎓 <strong>PhD in Politicial Science</strong> @ University of Mannheim</p>
 </div>
-<div class="fragment">
-<p><br> 👩🏼‍💻 <strong>Data Science</strong> @ SAP</p>
+<div class="fragment" style="font-size: 1.5em;">
+<p><br> 👩🏼‍💻 Transitioned into <strong>Data Science</strong></p>
 </div>
 </div><div class="column" style="width:40%;">
 <p><img data-src="img/cosima_squared_picture.png"></p>
@@ -366,11 +366,11 @@ Cosima Meyer
 <section id="section" class="slide level2" data-menu-title="Introduction-Topic">
 <h2></h2>
 <p><img data-src="img/husky.png" class="fragment absolute" style="top: 100px; left: 50px; width: 650px; height: 600px; "></p>
-<div class="fragment absolute" style="top: 750px; left: 200px; width: 350px; height: 300px; ">
+<div class="fragment absolute" style="font-size: 1.2em;top: 750px; left: 200px; width: 500px; height: 300px; ">
 <p>Husky classified as <strong>wolf</strong></p>
 </div>
 <p><img data-src="img/snow.png" class="fragment absolute" style="top: 100px; left: 900px; width: 650px; height: 600px; "></p>
-<div class="fragment absolute" style="top: 750px; left: 1100px; width: 350px; height: 300px; ">
+<div class="fragment absolute" style="font-size: 1.2em;top: 750px; left: 1100px; width: 500px; height: 300px; ">
 <p>… because of <strong>snow</strong></p>
 </div>
 <div class="absolute" style="font-size: 0.4em;left: 0px; bottom: 5px; width: 100%; ">
@@ -412,18 +412,111 @@ section[data-background-color="#1E3A4C"] strong {
 
 </section>
 <section id="an-xai-decision-tree" class="slide level2" data-menu-title="Introduction-Topic">
-<h2>An XAI Decision Tree</h2>
-<div class="columns" style="display: flex; align-items: center;">
-<div class="column fragment" style="width:20%;">
-<p><img data-src="img/decision_tree_large.png"></p>
-</div><div class="column fragment" style="width:20%;">
-<p><img data-src="img/arrow.png"></p>
-</div><div class="column fragment" style="width:60%;">
-<p><img data-src="img/decision_tree_small.png"></p>
+<h2>An XAI Decision Tree…</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.2); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    START(("🔍 Explain?"))
+    DTYPE{"Data type?"}
+    START --&gt; DTYPE
+
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB_G{"Insight?"}
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_L{"Type?"}
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+
+    DTYPE --&gt;|Tabular| TAB
+    TAB --&gt; TAB_SCOPE
+    TAB_SCOPE --&gt;|Global| TAB_G
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+    TAB_SCOPE --&gt;|Local| TAB_L
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG_G["Global"]
+    IMG_L{"Access?"}
+    IMG_BB["Black-Box"]
+    IMG_WB["White-Box"]
+    %% IMG_A{"Architecture?"}
+    %% IMG_CNN["CNN"]
+    %% IMG_VIT["ViT"]
+
+    DTYPE --&gt;|Image| IMG
+    IMG --&gt; IMG_S
+    IMG_S --&gt;|Global| IMG_G
+    IMG_S --&gt;|Local| IMG_L
+    IMG_L --&gt; IMG_BB
+    IMG_L --&gt; IMG_WB
+    %% IMG_A --&gt;|CNN| IMG_CNN
+    %% IMG_A --&gt;|ViT| IMG_VIT
+
+    TXT["📝 Text"]
+    TXT_S{"Scope?"}
+    TXT_G["Global"]
+    TXT_L{"Access?"}
+    TXT_BB["Black-Box"]
+    TXT_WB["White-Box"]
+
+    DTYPE --&gt;|Text| TXT
+    TXT --&gt; TXT_S
+    TXT_S --&gt;|Global| TXT_G
+    TXT_S --&gt;|Local| TXT_L
+    TXT_L --&gt; TXT_BB
+    TXT_L --&gt; TXT_WB
+
+    style START fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2.5px,color:#1E3A4C
+    style DTYPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_SCOPE fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_G fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_S fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_L fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_S fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_L fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-1" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 
 </section>
+<section id="as-well-as-context-info" class="slide level2" data-menu-title="Introduction-Topic">
+<h2>… As Well As Context Info</h2>
+
+<img data-src="img/methods_card.png" class="r-stretch quarto-figure-center"></section>
 <section id="terms-and-terminology" class="slide level2" data-menu-title="Introduction-Topic">
 <h2>Terms and Terminology</h2>
 <style>
@@ -496,13 +589,13 @@ section[data-background-color="#1E3A4C"] strong {
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
 flowchart TD
     START(("🔍 Explain?"))
 
     style START fill:#ffffff,stroke:#1E3A4C,stroke-width:2.5px,color:#1E3A4C
 </pre>
-<div id="mermaid-tooltip-1" class="mermaidTooltip">
+<div id="mermaid-tooltip-2" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -524,7 +617,7 @@ flowchart TD
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-3">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
 flowchart TD
     START(("🔍 Explain?"))
     DTYPE{"Data type?"}
@@ -533,7 +626,7 @@ flowchart TD
     style START fill:#ffffff,stroke:#1E3A4C,stroke-width:2.5px,color:#1E3A4C
     style DTYPE fill:#EBF0F3,stroke:#ADC0CA,stroke-width:5px,color:#1E3A4C
 </pre>
-<div id="mermaid-tooltip-2" class="mermaidTooltip">
+<div id="mermaid-tooltip-3" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -551,15 +644,15 @@ flowchart TD
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-3">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-4">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
 flowchart TD
     START(("🔍 Explain?"))
     DTYPE{"Data type?"}
     START --&gt; DTYPE
 
-    TAB["📊 Tabular"]
-    IMG["🖼️ Image"]
-    TXT["📝 Text"]
+    TAB["&lt;br&gt;📊 Tabular&lt;br&gt;"]
+    IMG["&lt;br&gt;🖼️ Image&lt;br&gt;"]
+    TXT["&lt;br&gt;📝 Text"&lt;br&gt;]
 
     DTYPE --&gt; TAB
     DTYPE --&gt; IMG
@@ -571,7 +664,7 @@ flowchart TD
     style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
 </pre>
-<div id="mermaid-tooltip-3" class="mermaidTooltip">
+<div id="mermaid-tooltip-4" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -597,13 +690,13 @@ flowchart TD
 <div>
 <p>
 
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-4">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-5">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_INTERP{"Inherently&lt;br/&gt;interpretable?"}
     TAB --&gt; TAB_INTERP
 
-    TAB_GLASS["&lt;br&gt;🎉 Use built-in explanations&lt;br/&gt;coefficients · rules ·&lt;br/&gt;shape functions"]
+    TAB_GLASS["&lt;br&gt;🎉 Use built-in explanations&lt;br&gt;"]
     TAB_INTERP --&gt;|"Yes — linear, tree,&lt;br/&gt;GAM, EBM"| TAB_GLASS
 
     TAB_SCOPE{"Scope?"}
@@ -614,7 +707,7 @@ flowchart TD
     style TAB_GLASS fill:#d1fae5,stroke:#059669,stroke-width:5px,color:#065f46
     style TAB_SCOPE fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
 </pre>
-<div id="mermaid-tooltip-4" class="mermaidTooltip">
+<div id="mermaid-tooltip-5" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -662,7 +755,7 @@ Explainable Boosting Machine (EBM) classifier are GAM models who remain fully tr
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-5">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-6">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_SCOPE{"Scope?"}
@@ -694,7 +787,7 @@ flowchart TD
     style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
 </pre>
-<div id="mermaid-tooltip-5" class="mermaidTooltip">
+<div id="mermaid-tooltip-6" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -707,61 +800,6 @@ flowchart TD
 </section>
 <section id="tabular-scope-1" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular → Scope</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.5); transform-origin: top center;">
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-6">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
-flowchart TD
-    TAB["📊 Tabular"]
-    TAB_SCOPE{"Scope?"}
-    TAB --&gt; TAB_SCOPE
-
-    TAB_G{"What insight?"}
-    TAB_SCOPE --&gt;|"Global"| TAB_G
-    TAB_GR["Ranking"]
-    TAB_GE["Effects"]
-    TAB_GI["Interactions"]
-    TAB_G --&gt; TAB_GR
-    TAB_G --&gt; TAB_GE
-    TAB_G --&gt; TAB_GI
-
-    TAB_L{"Type?"}
-    TAB_SCOPE --&gt;|"Local"| TAB_L
-    TAB_LW["Why this?"]
-    TAB_LC["What if?"]
-    TAB_L --&gt; TAB_LW
-    TAB_L --&gt; TAB_LC
-
-    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
-    style TAB_SCOPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TAB_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style TAB_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-</pre>
-<div id="mermaid-tooltip-6" class="mermaidTooltip">
-
-</div>
-<p></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<!--
-::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 2em;"}
-Are you explaining the **model as a whole**, or a **single prediction**?
-:::
--->
-</section>
-<section id="tabular-global-3-questions" class="slide level2" data-menu-title="Tabular">
-<h2>Tabular → Global → 3 Questions</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
@@ -793,10 +831,10 @@ flowchart TD
     style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
     style TAB_SCOPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TAB_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TAB_GR fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TAB_GE fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TAB_GI fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TAB_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
 </pre>
@@ -811,18 +849,12 @@ flowchart TD
 </div>
 <!--
 ::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 2em;"}
-Three **different** questions you can ask about your model globally.
+Are you explaining the **model as a whole**, or a **single prediction**?
 :::
 -->
-
 </section>
-<section id="tabular-global" class="slide level2 path-slide" data-menu-title="Tabular">
-<h2>Tabular → Global</h2>
-<!--
-::: {.path}
-[Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Feature Ranking]{.node .node-leaf}
-:::
--->
+<section id="tabular-global-3-questions" class="slide level2" data-menu-title="Tabular">
+<h2>Tabular → Global → 3 Questions</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
@@ -855,8 +887,8 @@ flowchart TD
     style TAB_SCOPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TAB_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TAB_GR fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GI fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TAB_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
     style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
@@ -872,56 +904,16 @@ flowchart TD
 </div>
 <!--
 ::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 2em;"}
-Which **features matter most**?
+Three **different** questions you can ask about your model globally.
 :::
 -->
+
 </section>
-<section id="tabular-global-1" class="slide level2 path-slide" data-menu-title="Tabular">
+<section id="tabular-global" class="slide level2 path-slide" data-menu-title="Tabular">
 <h2>Tabular → Global</h2>
 <!--
 ::: {.path}
 [Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Feature Ranking]{.node .node-leaf}
-:::
--->
-<h3 style="margin-top: 20px;" id="which-features-matter-most">Which Features Matter Most?</h3>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="fragment">
-<div class="method-card method-blue">
-<p><strong>SHAP Summary Plot</strong></p>
-<p>Global view of feature importance across an entire dataset</p>
-<p><span class="lib">shap</span></p>
-</div>
-</div>
-<div class="fragment" style="text-align: center;">
-<p><img data-src="img/shap_beeswarm.png" style="width:80.0%"></p>
-<div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
-<p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/api_examples/plots/beeswarm.html">Image Reference</a></p>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="fragment">
-<div class="method-card method-blue">
-<p><strong>Permutation Feature Importance (PFI)</strong></p>
-<p>Simple, model-agnostic way to measure how much each feature matters to your model’s performance</p>
-<p><span class="lib">sklearn</span> <span class="lib">dalex</span></p>
-</div>
-</div>
-<div class="fragment" style="text-align: center;">
-<p><img data-src="img/pfi.png" style="width:70.0%"></p>
-<div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
-<p><a href="https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html">Image Reference</a></p>
-</div>
-</div>
-</div>
-</div>
-
-</section>
-<section id="tabular-global-2" class="slide level2 path-slide" data-menu-title="Tabular">
-<h2>Tabular → Global</h2>
-<!-- 
-::: {.path}
-[Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Feature Effects]{.node .node-leaf}
 :::
 -->
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
@@ -955,6 +947,112 @@ flowchart TD
     style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
     style TAB_SCOPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TAB_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GR fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-9" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!--
+::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 2em;"}
+Which **features matter most**?
+:::
+-->
+</section>
+<section id="tabular-global-1" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Global</h2>
+<!--
+::: {.path}
+[Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Feature Ranking]{.node .node-leaf}
+:::
+-->
+<h3 style="margin-top: 20px;" id="which-features-matter-most">Which Features Matter Most?</h3>
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>SHAP Summary Plot</strong></p>
+<p>Ranks features by importance and shows how each feature’s values push predictions higher or lower</p>
+<p><span class="lib">shap</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/shap_beeswarm.png" style="width:50.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
+<p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/api_examples/plots/beeswarm.html">Image Reference</a></p>
+</div>
+</div>
+
+<!-- 
+::: {.column width="50%"}
+::: {.fragment}
+::: {.method-card .method-blue}
+**Permutation Feature Importance (PFI)**
+
+Simple, model-agnostic way to measure how much each feature matters to your model's performance
+
+[sklearn]{.lib} [dalex]{.lib}
+:::
+:::
+
+::: {.fragment style="text-align: center;"}
+
+![](img/pfi.png){width="70%"}
+
+::: {style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;"}
+[Image Reference](https://scikit-learn.org/stable/auto_examples/inspection/plot_permutation_importance.html)
+:::
+
+:::
+::: -->
+
+</section>
+<section id="tabular-global-2" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Global</h2>
+<!-- 
+::: {.path}
+[Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Feature Effects]{.node .node-leaf}
+:::
+-->
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-10">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB --&gt; TAB_SCOPE
+
+    TAB_G{"What insight?"}
+    TAB_SCOPE --&gt;|"Global"| TAB_G
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+
+    TAB_L{"Type?"}
+    TAB_SCOPE --&gt;|"Local"| TAB_L
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB_SCOPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TAB_GE fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
@@ -962,7 +1060,7 @@ flowchart TD
     style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
 </pre>
-<div id="mermaid-tooltip-9" class="mermaidTooltip">
+<div id="mermaid-tooltip-10" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -991,11 +1089,11 @@ How does a **feature affect predictions**?
 <div class="method-card method-blue">
 <p><strong>Partial Dependence Plots (PDP)</strong></p>
 <p>How a feature affects the model’s prediction on average, across the dataset</p>
-<p><span class="lib">sklearn</span> <span class="lib">dalex</span> <span class="lib-outdated">PiML</span></p>
+<p><span class="lib">dalex</span> <span class="lib">effector</span> <span class="lib">sklearn</span> <span class="lib-outdated">pdpbox</span> <span class="lib">PiML</span></p>
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
-<p><img data-src="img/pdp_sklearn.png" style="width:50.0%"></p>
+<p><img data-src="img/pdp-molnar.png" style="width:50.0%"></p>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
 <p><a href="https://scikit-learn.org/0.24/auto_examples/inspection/plot_partial_dependence.html">Image Reference</a></p>
 </div>
@@ -1005,13 +1103,13 @@ How does a **feature affect predictions**?
 <div class="method-card method-blue">
 <p><strong>Accumulated Local Effects (ALE) Plots</strong></p>
 <p>How a feature affects predictions by accumulating local changes (good when features are correlated)</p>
-<p><span class="lib">alibi</span> <span class="lib">effector</span> <span class="lib-outdated">PyALE</span> <span class="lib-outdated">ALEPython</span></p>
+<p><span class="lib">alibi</span> <span class="lib">dalex</span> <span class="lib">effector</span> <span class="lib-outdated">PyALE</span> <span class="lib-outdated">ALEPython</span></p>
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
-<p><img data-src="img/ale-alibi.png" style="width:80.0%"></p>
+<p><img data-src="img/ale-molnar.png" style="width:85.0%"></p>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
-<p><a href="https://github.com/ramonpzg/alibi/blob/9714f6455e007ab3dc4b2fba2ce94385014d7727/doc/source/examples/ale_regression_california.ipynb">Image Reference</a></p>
+<p><a href="https://christophm.github.io/interpretable-ml-book/ale.html">Image Reference</a></p>
 </div>
 </div>
 </div>
@@ -1054,7 +1152,7 @@ Flag PyALE as unmaintained → suggest alibi for ALE plots
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-10">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-11">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_SCOPE{"Scope?"}
@@ -1086,7 +1184,7 @@ flowchart TD
     style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
 </pre>
-<div id="mermaid-tooltip-10" class="mermaidTooltip">
+<div id="mermaid-tooltip-11" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -1104,27 +1202,16 @@ Which **features work together**?
 <section id="tabular-global-5" class="slide level2 path-slide" data-menu-title="Tabular">
 <h2>Tabular → Global</h2>
 <h3 style="margin-top: 20px;" id="which-features-work-together">Which Features Work Together?</h3>
-<div class="columns">
-<div class="column" style="width:50%;">
 <div class="fragment">
 <div class="method-card method-blue">
 <p><strong>SHAP Interaction Values</strong></p>
-<p>Decompose predictions into main effects + pairwise interactions</p>
+<p>Decomposes predictions into main effects and pairwise feature interactions</p>
 <p><span class="lib">shap</span> <span class="lib">shapiq</span></p>
 </div>
-</div>
 <div class="fragment" style="text-align: center;">
-<p><img data-src="img/shap_interaction_values.png" style="width:80.0%"></p>
+<p><img data-src="img/shap_interaction_values.png" style="width:50.0%"></p>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
 <p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/tabular_examples/tree_based_models/NHANES%20I%20Survival%20Model.html">Image Reference</a></p>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="fragment">
-<div class="method-card method-blue">
-<p><em>Alternative: 2D PDP or ALE plots</em></p>
-<p><span class="lib">sklearn</span> <span class="lib">alibi</span> <span class="lib">effector</span> <span class="lib-outdated">pdpbox</span> <span class="lib-outdated">PyALE</span> <span class="lib-outdated">ALEPython</span></p>
-</div>
 </div>
 </div>
 </div>
@@ -1132,67 +1219,6 @@ Which **features work together**?
 </section>
 <section id="tabular-local-type" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular → Local → Type?</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.5); transform-origin: top center;">
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-11">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
-flowchart TD
-    TAB["📊 Tabular"]
-    TAB_SCOPE{"Scope?"}
-    TAB --&gt; TAB_SCOPE
-
-    TAB_G{"What insight?"}
-    TAB_SCOPE --&gt;|"Global"| TAB_G
-    TAB_GR["Ranking"]
-    TAB_GE["Effects"]
-    TAB_GI["Interactions"]
-    TAB_G --&gt; TAB_GR
-    TAB_G --&gt; TAB_GE
-    TAB_G --&gt; TAB_GI
-
-    TAB_L{"Type?"}
-    TAB_SCOPE --&gt;|"Local"| TAB_L
-    TAB_LW["Why this?"]
-    TAB_LC["What if?"]
-    TAB_L --&gt; TAB_LW
-    TAB_L --&gt; TAB_LC
-
-    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
-    style TAB_SCOPE fill:#EBF0F3,stroke:#ADC0CA,stroke-width:5px,color:#9ca3af
-    style TAB_G fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
-    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style TAB_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TAB_LW fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TAB_LC fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-</pre>
-<div id="mermaid-tooltip-11" class="mermaidTooltip">
-
-</div>
-<p></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!--
-::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 1em;"}
-Two fundamentally different questions about a single prediction.
-:::
--->
-</section>
-<section id="tabular-local" class="slide level2 path-slide" data-menu-title="Tabular">
-<h2>Tabular → Local</h2>
-<!--
-::: {.path}
-[Tabular]{.node .node-tab} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [Why this prediction?]{.node .node-leaf}
-:::
--->
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
@@ -1229,7 +1255,7 @@ flowchart TD
     style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TAB_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TAB_LW fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_LC fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
 </pre>
 <div id="mermaid-tooltip-12" class="mermaidTooltip">
 
@@ -1240,55 +1266,18 @@ flowchart TD
 </div>
 </div>
 </div>
+
+<!--
+::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 1em;"}
+Two fundamentally different questions about a single prediction.
+:::
+-->
 </section>
-<section id="tabular-local-1" class="slide level2 path-slide" data-menu-title="Tabular">
+<section id="tabular-local" class="slide level2 path-slide" data-menu-title="Tabular">
 <h2>Tabular → Local</h2>
 <!--
 ::: {.path}
 [Tabular]{.node .node-tab} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [Why this prediction?]{.node .node-leaf}
-:::
--->
-<h3 style="margin-top: 20px;" id="why-this-prediction">Why This Prediction?</h3>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="fragment">
-<div class="method-card method-blue">
-<p><strong>SHAP</strong></p>
-<p>Feature attributions via Shapley values</p>
-<p>Use the right explainer for your model (Tree, Linear, Deep, Kernel)</p>
-<p><span class="lib">shap</span> <span class="lib">dalex</span></p>
-</div>
-</div>
-<div class="fragment" style="text-align: center;">
-<p><img data-src="img/shap-waterfall.png" style="width:80.0%"></p>
-<div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
-<p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html">Image Reference</a></p>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="fragment">
-<div class="method-card method-blue">
-<p><strong>LIME</strong></p>
-<p>How features influence a single prediction by slightly changing the input and seeing how the prediction changes</p>
-<p><span class="lib">dalex</span> <span class="lib-outdated">lime</span></p>
-<!--For rules-based explanations, see Anchors.-->
-</div>
-</div>
-<div class="fragment" style="text-align: center;">
-<p><img data-src="img/lime-library.png" style="width:80.0%"></p>
-<div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
-<p><a href="https://marcotcr.github.io/lime/tutorials/Tutorial%20-%20continuous%20and%20categorical%20features.html">Image Reference</a></p>
-</div>
-</div>
-</div>
-</div>
-
-</section>
-<section id="tabular-local-2" class="slide level2 path-slide" data-menu-title="Tabular">
-<h2>Tabular → Local</h2>
-<!--
-::: {.path}
-[Tabular]{.node .node-tab} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [What would change?]{.node .node-leaf}
 :::
 -->
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
@@ -1326,10 +1315,107 @@ flowchart TD
     style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TAB_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_LW fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TAB_LC fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-13" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="tabular-local-1" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Local</h2>
+<!--
+::: {.path}
+[Tabular]{.node .node-tab} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [Why this prediction?]{.node .node-leaf}
+:::
+-->
+<h3 style="margin-top: 20px;" id="why-this-prediction">Why This Prediction?</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>SHAP Waterfall Plot</strong></p>
+<p>Shows how each feature pushes a single prediction up or down from the baseline</p>
+<p><span class="lib">shap</span> <span class="lib">dalex</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/shap-waterfall.png" style="width:80.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
+<p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/overviews/An%20introduction%20to%20explainable%20AI%20with%20Shapley%20values.html">Image Reference</a></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>LIME</strong></p>
+<p>Shows how features influence a single prediction by slighting changing the input and fitting a local surrogate model</p>
+<p><span class="lib">dalex</span> <span class="lib-outdated">lime</span></p>
+<!--For rules-based explanations, see Anchors.-->
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/lime-library.png" style="width:80.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: -5px;">
+<p><a href="https://marcotcr.github.io/lime/tutorials/Tutorial%20-%20continuous%20and%20categorical%20features.html">Image Reference</a></p>
+</div>
+</div>
+</div>
+</div>
+
+</section>
+<section id="tabular-local-2" class="slide level2 path-slide" data-menu-title="Tabular">
+<h2>Tabular → Local</h2>
+<!--
+::: {.path}
+[Tabular]{.node .node-tab} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [What would change?]{.node .node-leaf}
+:::
+-->
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-14">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TAB["📊 Tabular"]
+    TAB_SCOPE{"Scope?"}
+    TAB --&gt; TAB_SCOPE
+
+    TAB_G{"What insight?"}
+    TAB_SCOPE --&gt;|"Global"| TAB_G
+    TAB_GR["Ranking"]
+    TAB_GE["Effects"]
+    TAB_GI["Interactions"]
+    TAB_G --&gt; TAB_GR
+    TAB_G --&gt; TAB_GE
+    TAB_G --&gt; TAB_GI
+
+    TAB_L{"Type?"}
+    TAB_SCOPE --&gt;|"Local"| TAB_L
+    TAB_LW["Why this?"]
+    TAB_LC["What if?"]
+    TAB_L --&gt; TAB_LW
+    TAB_L --&gt; TAB_LC
+
+    style TAB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TAB_SCOPE fill:#EBF0F3,stroke:#ADC0CA,stroke-width:5px,color:#9ca3af
+    style TAB_G fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style TAB_GR fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GE fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_GI fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TAB_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TAB_LW fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TAB_LC fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
 </pre>
-<div id="mermaid-tooltip-13" class="mermaidTooltip">
+<div id="mermaid-tooltip-14" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -1346,14 +1432,16 @@ flowchart TD
 <div class="method-card method-blue">
 <p><strong>Counterfactuals</strong></p>
 <p>Not <strong>why</strong>, but <strong>what needs to change in the input to achieve a different outcome</strong></p>
-<p><span class="lib">dice-ml</span> <span class="lib">alibi</span> <span class="lib-outdated">witwidget</span></p>
+<p><span class="lib">dice-ml</span> <span class="lib">alibi</span></p>
 </div>
 </div>
-<div class="fragment" style="text-align: center;">
-<p><img data-src="img/counterfactuals.png" style="width:80.0%"></p>
+<p><br></p>
+<div class="r-stack" style="text-align: center;">
+<p><img data-src="img/counterfactual_single.png" class="fragment" style="width:80.0%"></p>
+<p><img data-src="img/counterfactuals.png" class="fragment" style="width:80.0%"></p>
+</div>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
 <p><a href="https://pureai.com/articles/2020/03/13/open-source-counterfactuals.aspx">Image Reference</a></p>
-</div>
 </div>
 
 </section>
@@ -1365,7 +1453,7 @@ flowchart TD
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-14">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-15">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
 flowchart TD
     START(("🔍 Explain?"))
     DTYPE{"Data type?"}
@@ -1396,18 +1484,20 @@ flowchart TD
     IMG_G["Global"]
     IMG_L{"Access?"}
     IMG_BB["Black-Box"]
-    IMG_A{"Architecture?"}
-    IMG_CNN["CNN"]
-    IMG_VIT["ViT"]
+    IMG_WB["White-Box"]
+    
+    %% IMG_A{"Architecture?"}
+    %% IMG_CNN["CNN"]
+    %% IMG_VIT["ViT"]
 
     DTYPE --&gt;|Image| IMG
     IMG --&gt; IMG_S
     IMG_S --&gt;|Global| IMG_G
     IMG_S --&gt;|Local| IMG_L
-    IMG_L --&gt;|Black-Box| IMG_BB
-    IMG_L --&gt;|White-Box| IMG_A
-    IMG_A --&gt;|CNN| IMG_CNN
-    IMG_A --&gt;|ViT| IMG_VIT
+    IMG_L --&gt; IMG_BB
+    IMG_L --&gt; IMG_WB
+    %% IMG_A --&gt;|CNN| IMG_CNN
+    %% IMG_A --&gt;|ViT| IMG_VIT
 
     TXT["📝 Text"]
     TXT_S{"Scope?"}
@@ -1420,8 +1510,8 @@ flowchart TD
     TXT --&gt; TXT_S
     TXT_S --&gt;|Global| TXT_G
     TXT_S --&gt;|Local| TXT_L
-    TXT_L --&gt;|Black-Box| TXT_BB
-    TXT_L --&gt;|White-Box| TXT_WB
+    TXT_L --&gt; TXT_BB
+    TXT_L --&gt; TXT_WB
 
     style START fill:#ffffff,stroke:#1E3A4C,stroke-width:2.5px,color:#1E3A4C
     style DTYPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
@@ -1439,9 +1529,7 @@ flowchart TD
     style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style IMG_L fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
     style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_A fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
-    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TXT fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
     style TXT_S fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
     style TXT_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
@@ -1449,7 +1537,7 @@ flowchart TD
     style TXT_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TXT_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
 </pre>
-<div id="mermaid-tooltip-14" class="mermaidTooltip">
+<div id="mermaid-tooltip-15" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -1471,59 +1559,10 @@ Spatial structure, specialized methods
 :::
 -->
 </section>
-<section id="image-data" class="slide level2">
-<h2>Image Data</h2>
+<section id="image" class="slide level2">
+<h2>Image</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.25); transform-origin: top center;">
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-15">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
-flowchart TD
-    IMG["🖼️ Image"]
-    IMG_S{"Scope?"}
-    IMG --&gt; IMG_S
-
-    IMG_G["Global"]
-    IMG_S --&gt;|"Global"| IMG_G
-
-    IMG_L{"Access?"}
-    IMG_S --&gt;|"Local"| IMG_L
-
-    IMG_BB["Black-Box"]
-    IMG_L --&gt;|"Black-Box"| IMG_BB
-
-    IMG_A{"Architecture?"}
-    IMG_L --&gt;|"White-Box"| IMG_A
-    IMG_CNN["CNN"]
-    IMG_VIT["ViT"]
-    IMG_A --&gt;|"CNN"| IMG_CNN
-    IMG_A --&gt;|"ViT"| IMG_VIT
-
-    style IMG fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
-    style IMG_S fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
-    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
-    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_A fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
-    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-</pre>
-<div id="mermaid-tooltip-15" class="mermaidTooltip">
-
-</div>
-<p></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="image-scope" class="slide level2" data-menu-title="Image">
-<h2>Image: Scope</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.25); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1541,25 +1580,68 @@ flowchart TD
     IMG_S --&gt;|"Local"| IMG_L
 
     IMG_BB["Black-Box"]
-    IMG_L --&gt;|"Black-Box"| IMG_BB
+    IMG_L --&gt;  IMG_BB
 
-    IMG_A{"Architecture?"}
-    IMG_L --&gt;|"White-Box"| IMG_A
-    IMG_CNN["CNN"]
-    IMG_VIT["ViT"]
-    IMG_A --&gt;|"CNN"| IMG_CNN
-    IMG_A --&gt;|"ViT"| IMG_VIT
+    IMG_WB["White-Box"]
+    IMG_L --&gt;  IMG_WB
+
+    style IMG fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_S fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-16" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="image-scope" class="slide level2" data-menu-title="Image">
+<h2>Image: Scope</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-17">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG --&gt; IMG_S
+
+    IMG_G["Global"]
+    IMG_S --&gt;|"Global"| IMG_G
+
+    IMG_L{"Access?"}
+    IMG_S --&gt;|"Local"| IMG_L
+
+    IMG_BB["Black-Box"]
+    IMG_L --&gt;  IMG_BB
+
+    IMG_WB["White-Box"]
+    IMG_L --&gt;  IMG_WB
+    %% IMG_A{"Architecture?"}
+    %% IMG_L --&gt;  IMG_A
+    %% IMG_CNN["CNN"]
+    %% IMG_VIT["ViT"]
+    %% IMG_A --&gt;|"CNN"| IMG_CNN
+    %% IMG_A --&gt;|"ViT"| IMG_VIT
 
     style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
     style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style IMG_G fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_A fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
-    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
 </pre>
-<div id="mermaid-tooltip-16" class="mermaidTooltip">
+<div id="mermaid-tooltip-17" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -1581,92 +1663,7 @@ Global is niche. Local is where the action is.
 <section id="image-global" class="slide level2" data-menu-title="Image">
 <h2>Image → Global</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.25); transform-origin: top center;">
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-17">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
-flowchart TD
-    IMG["🖼️ Image"]
-    IMG_S{"Scope?"}
-    IMG --&gt; IMG_S
-
-    IMG_G["Global"]
-    IMG_S --&gt;|"Global"| IMG_G
-
-    IMG_L{"Access?"}
-    IMG_S --&gt;|"Local"| IMG_L
-
-    IMG_BB["Black-Box"]
-    IMG_L --&gt;|"Black-Box"| IMG_BB
-
-    IMG_A{"Architecture?"}
-    IMG_L --&gt;|"White-Box"| IMG_A
-    IMG_CNN["CNN"]
-    IMG_VIT["ViT"]
-    IMG_A --&gt;|"CNN"| IMG_CNN
-    IMG_A --&gt;|"ViT"| IMG_VIT
-
-    style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
-    style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_G fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
-    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_A fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
-    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-</pre>
-<div id="mermaid-tooltip-17" class="mermaidTooltip">
-
-</div>
-<p></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="image-global-1" class="slide level2 path-slide" data-menu-title="Image">
-<h2>Image → Global</h2>
-<h3 style="margin-top: 20px;" id="what-concepts-has-the-model-learned">What Concepts Has the Model Learned?</h3>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="fragment">
-<div class="method-card method-blue">
-<p><strong>Testing with Concept Activation Vectors (TCAV)</strong></p>
-<p>Tests whether a concept (e.g., “striped texture”) influences predictions</p>
-<p><span class="lib">captum</span> <span class="lib-outdated">tcav</span></p>
-</div>
-</div>
-<div class="fragment" style="text-align: center;">
-<p><img data-src="img/tcav.png" style="width:70.0%"></p>
-<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
-<p><a href="https://captum.ai/tutorials/TCAV_Image">Image Reference</a></p>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="fragment">
-<div class="method-card method-blue">
-<p><strong>Feature Visualization</strong></p>
-<p>Generates images that maximally activate specific neurons</p>
-<p><span class="lib">captum</span> <span class="lib">tf-keras-vis</span> <span class="lib-outdated">lucid</span> <span class="lib-outdated">lucent</span> <span class="lib-outdated">flashtorch</span></p>
-</div>
-</div>
-<div class="fragment" style="text-align: center;">
-<p><img data-src="img/feature-visualization.png" style="width:100.0%"></p>
-<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
-<p><a href="https://distill.pub/2017/feature-visualization/">Image Reference</a></p>
-</div>
-</div>
-</div>
-</div>
-
-</section>
-<section id="image-local-access" class="slide level2" data-menu-title="Image">
-<h2>Image → Local → Access</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.25); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1684,23 +1681,23 @@ flowchart TD
     IMG_S --&gt;|"Local"| IMG_L
 
     IMG_BB["Black-Box"]
-    IMG_L --&gt;|"Black-Box"| IMG_BB
+    IMG_L --&gt;  IMG_BB
 
-    IMG_A{"Architecture?"}
-    IMG_L --&gt;|"White-Box"| IMG_A
-    IMG_CNN["CNN"]
-    IMG_VIT["ViT"]
-    IMG_A --&gt;|"CNN"| IMG_CNN
-    IMG_A --&gt;|"ViT"| IMG_VIT
+    IMG_WB["White-Box"]
+    IMG_L --&gt;  IMG_WB
+    %% IMG_A{"Architecture?"}
+    %% IMG_L --&gt;  IMG_A
+    %% IMG_CNN["CNN"]
+    %% IMG_VIT["ViT"]
+    %% IMG_A --&gt;|"CNN"| IMG_CNN
+    %% IMG_A --&gt;|"ViT"| IMG_VIT
 
     style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
     style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_A fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_CNN fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
-    style IMG_VIT fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
+    style IMG_G fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_L fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
+    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
 </pre>
 <div id="mermaid-tooltip-18" class="mermaidTooltip">
 
@@ -1711,12 +1708,51 @@ flowchart TD
 </div>
 </div>
 </div>
+</section>
+<section id="image-global-1" class="slide level2 path-slide" data-menu-title="Image">
+<h2>Image → Global</h2>
+<h3 style="margin-top: 20px;" id="what-concepts-has-the-model-learned">What Concepts Has the Model Learned?</h3>
+<div class="columns">
+<div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Testing with Concept Activation Vectors (TCAV)</strong></p>
+<p>Tests whether a human-defined concept (e.g., “striped texture”) influences a model’s predictions using directional derivatives</p>
+<p><span class="lib">captum</span> <span class="lib-outdated">tcav</span></p>
+</div>
+</div>
+<div class="fragment" style="text-align: center;">
+<p><img data-src="img/tcav.png" style="width:70.0%"></p>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://captum.ai/tutorials/TCAV_Image">Image Reference</a></p>
+</div>
+</div>
+</div><div class="column" style="width:50%;">
+<div class="fragment">
+<div class="method-card method-blue">
+<p><strong>Feature Visualization</strong></p>
+<p>Reveals what a neuron has learned by generating images that maximally activate it</p>
+<p><span class="lib">tf-keras-vis</span> <span class="lib-outdated">lucid</span> <span class="lib-outdated">lucent</span> <span class="lib-outdated">flashtorch</span></p>
+</div>
+</div>
+<div class="r-stack">
+<p><img data-src="img/feature-visualization-1.png" class="fragment" style="width:65.0%"></p>
+<p><img data-src="img/feature-visualization-2.png" class="fragment" style="width:65.0%"></p>
+<p><img data-src="img/feature-visualization-3.png" class="fragment" style="width:65.0%"></p>
+<p><img data-src="img/feature-visualization-4.png" class="fragment" style="width:65.0%"></p>
+<p><img data-src="img/feature-visualization-5.png" class="fragment" style="width:65.0%"></p>
+</div>
+<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
+<p><a href="https://distill.pub/2017/feature-visualization/">Image Reference</a></p>
+</div>
+</div>
+</div>
 
 </section>
-<section id="image-local-black-box" class="slide level2" data-menu-title="Image">
-<h2>Image → Local → Black-Box</h2>
+<section id="image-local-access" class="slide level2" data-menu-title="Image">
+<h2>Image → Local → Access</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.25); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1734,25 +1770,75 @@ flowchart TD
     IMG_S --&gt;|"Local"| IMG_L
 
     IMG_BB["Black-Box"]
-    IMG_L --&gt;|"Black-Box"| IMG_BB
+    IMG_L --&gt;  IMG_BB
 
-    IMG_A{"Architecture?"}
-    IMG_L --&gt;|"White-Box"| IMG_A
-    IMG_CNN["CNN"]
-    IMG_VIT["ViT"]
-    IMG_A --&gt;|"CNN"| IMG_CNN
-    IMG_A --&gt;|"ViT"| IMG_VIT
+    IMG_WB["White-Box"]
+    IMG_L --&gt;  IMG_WB
+    %% IMG_A{"Architecture?"}
+    %% IMG_L --&gt;  IMG_A
+    %% IMG_CNN["CNN"]
+    %% IMG_VIT["ViT"]
+    %% IMG_A --&gt;|"CNN"| IMG_CNN
+    %% IMG_A --&gt;|"ViT"| IMG_VIT
 
     style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
     style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style IMG_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_A fill:#EBF0F3,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
-    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_WB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
 </pre>
 <div id="mermaid-tooltip-19" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</section>
+<section id="image-local-black-box" class="slide level2" data-menu-title="Image">
+<h2>Image → Local → Black-Box</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-20">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    IMG["🖼️ Image"]
+    IMG_S{"Scope?"}
+    IMG --&gt; IMG_S
+
+    IMG_G["Global"]
+    IMG_S --&gt;|"Global"| IMG_G
+
+    IMG_L{"Access?"}
+    IMG_S --&gt;|"Local"| IMG_L
+
+    IMG_BB["Black-Box"]
+    IMG_L --&gt;  IMG_BB
+
+    IMG_WB["White-Box"]
+    IMG_L --&gt;  IMG_WB
+    %% IMG_A{"Architecture?"}
+    %% IMG_L --&gt;  IMG_A
+    %% IMG_CNN["CNN"]
+    %% IMG_VIT["ViT"]
+    %% IMG_A --&gt;|"CNN"| IMG_CNN
+    %% IMG_A --&gt;|"ViT"| IMG_VIT
+
+    style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+</pre>
+<div id="mermaid-tooltip-20" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -1775,7 +1861,7 @@ flowchart TD
 <div class="fragment">
 <div class="method-card method-blue">
 <p><strong>SHAP Partition Explainer</strong></p>
-<p>Uses a hierarchical decomposition</p>
+<p>Attributes importance to image regions using hierarchical decomposition of superpixels</p>
 <p><span class="lib">shap</span></p>
 </div>
 </div>
@@ -1789,7 +1875,7 @@ flowchart TD
 <div class="fragment">
 <div class="method-card method-blue">
 <p><strong>Image Segmentation</strong></p>
-<p>Segment the image into superpixels and perturbs them</p>
+<p>Explains predictions by segmenting the image into superpixels and measuring each region’s influence</p>
 <p><span class="lib-outdated">lime</span></p>
 </div>
 </div>
@@ -1803,65 +1889,10 @@ flowchart TD
 </div>
 
 </section>
-<section id="image-local-white-box-architecture" class="slide level2" data-menu-title="Image">
-<h2>Image → Local → White-Box → Architecture</h2>
+<section id="image-local-white-box" class="slide level2" data-menu-title="Image">
+<h2>Image → Local → White-Box</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.25); transform-origin: top center;">
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-20">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
-flowchart TD
-    IMG["🖼️ Image"]
-    IMG_S{"Scope?"}
-    IMG --&gt; IMG_S
-
-    IMG_G["Global"]
-    IMG_S --&gt;|"Global"| IMG_G
-
-    IMG_L{"Access?"}
-    IMG_S --&gt;|"Local"| IMG_L
-
-    IMG_BB["Black-Box"]
-    IMG_L --&gt;|"Black-Box"| IMG_BB
-
-    IMG_A{"Architecture?"}
-    IMG_L --&gt;|"White-Box"| IMG_A
-    IMG_CNN["CNN"]
-    IMG_VIT["ViT"]
-    IMG_A --&gt;|"CNN"| IMG_CNN
-    IMG_A --&gt;|"ViT"| IMG_VIT
-
-    style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
-    style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_A fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_CNN fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_VIT fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-</pre>
-<div id="mermaid-tooltip-20" class="mermaidTooltip">
-
-</div>
-<p></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<!--
-::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 0.85em;"}
-The architecture split matters here.
-:::
--->
-</section>
-<section id="image-local-white-box-architecture-1" class="slide level2" data-menu-title="Image">
-<h2>Image → Local → White-Box → Architecture</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.25); transform-origin: top center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1879,23 +1910,23 @@ flowchart TD
     IMG_S --&gt;|"Local"| IMG_L
 
     IMG_BB["Black-Box"]
-    IMG_L --&gt;|"Black-Box"| IMG_BB
+    IMG_L --&gt;  IMG_BB
 
-    IMG_A{"Architecture?"}
-    IMG_L --&gt;|"White-Box"| IMG_A
-    IMG_CNN["CNN"]
-    IMG_VIT["ViT"]
-    IMG_A --&gt;|"CNN"| IMG_CNN
-    IMG_A --&gt;|"ViT"| IMG_VIT
+    IMG_WB["White-Box"]
+    IMG_L --&gt;  IMG_WB
+    %% IMG_A{"Architecture?"}
+    %% IMG_L --&gt;  IMG_A
+    %% IMG_CNN["CNN"]
+    %% IMG_VIT["ViT"]
+    %% IMG_A --&gt;|"CNN"| IMG_CNN
+    %% IMG_A --&gt;|"ViT"| IMG_VIT
 
     style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
     style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_A fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_CNN fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_WB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
 </pre>
 <div id="mermaid-tooltip-21" class="mermaidTooltip">
 
@@ -1906,9 +1937,14 @@ flowchart TD
 </div>
 </div>
 </div>
+<!--
+::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 0.85em;"}
+The architecture split matters here.
+:::
+-->
 </section>
-<section id="image-local-white-box-architecture-2" class="slide level2 path-slide" data-menu-title="Image">
-<h2>Image → Local → White-Box → Architecture</h2>
+<section id="image-local-white-box-1" class="slide level2 path-slide" data-menu-title="Image">
+<h2>Image → Local → White-Box</h2>
 <!--
 ::: {.path}
 [Image]{.node .node-img} [→]{.arrow} [White-Box]{.node .node-q} [→]{.arrow} [CNN]{.node .node-leaf}
@@ -1920,7 +1956,7 @@ flowchart TD
 <div class="fragment">
 <div class="method-card method-blue">
 <p><strong>Gradient-Based Heatmaps</strong></p>
-<p>Grad-CAM highlights which spatial regions drive the prediction</p>
+<p>Highlights which spatial regions of the image drive the prediction using class-specific gradient signals</p>
 <p><span class="lib">captum</span> <span class="lib">grad-cam</span> <span class="lib-outdated">pytorch-grad-cam</span></p>
 </div>
 </div>
@@ -1934,12 +1970,17 @@ flowchart TD
 <div class="fragment">
 <div class="method-card method-blue">
 <p><strong>Integrated Gradients</strong></p>
-<p>Attribute a model’s prediction to its input features by accumulating gradients along a linear path from a neutral baseline to the actual input.</p>
+<p>Highlights which pixels drive a prediction by accumulating gradients from a neutral baseline to the actual input</p>
 <p><span class="lib">captum</span></p>
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
-<p><img data-src="img/tf-integrated-gradients.png" style="width:50.0%"></p>
+<div class="r-stack">
+<p><img data-src="img/tf-integrated-gradients-1.png" class="fragment" style="width:80.0%"></p>
+<p><img data-src="img/tf-integrated-gradients-2.png" class="fragment" style="width:80.0%"></p>
+<p><img data-src="img/tf-integrated-gradients-3.png" class="fragment" style="width:80.0%"></p>
+<p><img data-src="img/tf-integrated-gradients-4.png" class="fragment" style="width:80.0%"></p>
+</div>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
 <p><a href="https://www.tensorflow.org/tutorials/interpretability/integrated_gradients">Image Reference</a></p>
 </div>
@@ -1948,92 +1989,7 @@ flowchart TD
 </div>
 
 </section>
-<section id="image-local-white-box-architecture-3" class="slide level2 path-slide" data-menu-title="Image">
-<h2>Image → Local → White-Box → Architecture</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.25); transform-origin: top center;">
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-22">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
-flowchart TD
-    IMG["🖼️ Image"]
-    IMG_S{"Scope?"}
-    IMG --&gt; IMG_S
-
-    IMG_G["Global"]
-    IMG_S --&gt;|"Global"| IMG_G
-
-    IMG_L{"Access?"}
-    IMG_S --&gt;|"Local"| IMG_L
-
-    IMG_BB["Black-Box"]
-    IMG_L --&gt;|"Black-Box"| IMG_BB
-
-    IMG_A{"Architecture?"}
-    IMG_L --&gt;|"White-Box"| IMG_A
-    IMG_CNN["CNN"]
-    IMG_VIT["ViT"]
-    IMG_A --&gt;|"CNN"| IMG_CNN
-    IMG_A --&gt;|"ViT"| IMG_VIT
-
-    style IMG fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
-    style IMG_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_A fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_VIT fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-</pre>
-<div id="mermaid-tooltip-22" class="mermaidTooltip">
-
-</div>
-<p></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="image-local-white-box-architecture-4" class="slide level2 path-slide" data-menu-title="Image">
-<h2>Image → Local → White-Box → Architecture</h2>
-<h3 style="margin-top: 20px;" id="attention-rollout-transformer-attribution">Attention Rollout &amp; Transformer Attribution</h3>
-<div class="columns">
-<div class="column" style="width:50%;">
-<div class="fragment">
-<div class="method-card method-blue">
-<p><strong>Attention Rollout</strong></p>
-<p>Aggregates attention across layers</p>
-<p><span class="lib">captum</span> <span class="lib">vit-explain</span></p>
-</div>
-</div>
-<div class="fragment" style="text-align: center;">
-<p><img data-src="img/attention-rollout.png" style="width:90.0%"></p>
-<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
-<p><a href="https://github.com/jacobgil/vit-explain">Image Reference</a></p>
-</div>
-</div>
-</div><div class="column" style="width:50%;">
-<div class="fragment">
-<div class="method-card method-blue">
-<p><strong>Transformer Attribution</strong></p>
-<p>Combines attention with gradient information</p>
-<p><span class="lib">captum</span> <span class="lib">vit-explain</span></p>
-</div>
-</div>
-<div class="fragment" style="text-align: center;">
-<p><img data-src="img/transformer-attribution.png" style="width:90.0%"></p>
-<div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
-<p><a href="https://github.com/jacobgil/vit-explain?tab=readme-ov-file#gradient-attention-rollout-for-class-specific-explainability">Image Reference</a></p>
-</div>
-</div>
-</div>
-</div>
-
-</section>
-<section id="image" class="slide level2" data-menu-title="Image">
+<section id="image-1" class="slide level2" data-menu-title="Image">
 <h2>Image ✅</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
 <div style="transform: scale(1.2); transform-origin: top center;">
@@ -2041,7 +1997,7 @@ flowchart TD
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-23">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-22">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
 flowchart TD
     START(("🔍 Explain?"))
     DTYPE{"Data type?"}
@@ -2072,18 +2028,14 @@ flowchart TD
     IMG_G["Global"]
     IMG_L{"Access?"}
     IMG_BB["Black-Box"]
-    IMG_A{"Architecture?"}
-    IMG_CNN["CNN"]
-    IMG_VIT["ViT"]
+    IMG_WB["White-Box"]
 
     DTYPE --&gt;|Image| IMG
     IMG --&gt; IMG_S
     IMG_S --&gt;|Global| IMG_G
     IMG_S --&gt;|Local| IMG_L
-    IMG_L --&gt;|Black-Box| IMG_BB
-    IMG_L --&gt;|White-Box| IMG_A
-    IMG_A --&gt;|CNN| IMG_CNN
-    IMG_A --&gt;|ViT| IMG_VIT
+    IMG_L --&gt; IMG_BB
+    IMG_L --&gt; IMG_WB
 
     TXT["📝 Text"]
     TXT_S{"Scope?"}
@@ -2096,8 +2048,8 @@ flowchart TD
     TXT --&gt; TXT_S
     TXT_S --&gt;|Global| TXT_G
     TXT_S --&gt;|Local| TXT_L
-    TXT_L --&gt;|Black-Box| TXT_BB
-    TXT_L --&gt;|White-Box| TXT_WB
+    TXT_L --&gt; TXT_BB
+    TXT_L --&gt; TXT_WB
 
     style START fill:#ffffff,stroke:#1E3A4C,stroke-width:2.5px,color:#1E3A4C
     style DTYPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
@@ -2115,9 +2067,7 @@ flowchart TD
     style IMG_G fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style IMG_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style IMG_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_A fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_CNN fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style IMG_VIT fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style IMG_WB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C  
     style TXT fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
     style TXT_S fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
     style TXT_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
@@ -2125,7 +2075,7 @@ flowchart TD
     style TXT_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TXT_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
 </pre>
-<div id="mermaid-tooltip-23" class="mermaidTooltip">
+<div id="mermaid-tooltip-22" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -2139,7 +2089,7 @@ flowchart TD
 <section id="section-3" class="slide level2" data-background-color="#EBF0F3" data-menu-title="Text">
 <h2></h2>
 <div class="r-fit-text" style="text-align: center;">
-<p><span style="color: #1E3A4C;">Text / NLP</span></p>
+<p><span style="color: #1E3A4C;">Text</span></p>
 </div>
 <!--
 ::: {style="text-align: center; color: #6b7280;"}
@@ -2149,6 +2099,49 @@ Similar shape to image, with one big caveat
 </section>
 <section id="text" class="slide level2" data-menu-title="Text">
 <h2>Text</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-23">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TXT["📝 Text"]
+    TXT_S{"Scope?"}
+    TXT --&gt; TXT_S
+
+    TXT_G["Global"]
+    TXT_S --&gt;|"Global"| TXT_G
+
+    TXT_L{"Access?"}
+    TXT_S --&gt;|"Local"| TXT_L
+
+    TXT_BB["Black-Box"]
+    TXT_L --&gt;  TXT_BB
+
+    TXT_WB["White-Box"]
+    TXT_L --&gt;  TXT_WB
+
+    style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TXT_G fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
+    style TXT_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TXT_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
+    style TXT_WB fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-23" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="text-scope" class="slide level2" data-menu-title="Text">
+<h2>Text: Scope</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
@@ -2168,53 +2161,10 @@ flowchart TD
     TXT_S --&gt;|"Local"| TXT_L
 
     TXT_BB["Black-Box"]
-    TXT_L --&gt;|"Black-Box"| TXT_BB
+    TXT_L --&gt;  TXT_BB
 
     TXT_WB["White-Box"]
-    TXT_L --&gt;|"White-Box"| TXT_WB
-
-    style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
-    style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
-    style TXT_G fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
-    style TXT_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
-    style TXT_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
-    style TXT_WB fill:#ffffff,stroke:#1E3A4C,stroke-width:1.5px,color:#1E3A4C
-</pre>
-<div id="mermaid-tooltip-24" class="mermaidTooltip">
-
-</div>
-<p></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="text-scope" class="slide level2" data-menu-title="Text">
-<h2>Text: Scope</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.5); transform-origin: top center;">
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-25">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
-flowchart TD
-    TXT["📝 Text"]
-    TXT_S{"Scope?"}
-    TXT --&gt; TXT_S
-
-    TXT_G["Global"]
-    TXT_S --&gt;|"Global"| TXT_G
-
-    TXT_L{"Access?"}
-    TXT_S --&gt;|"Local"| TXT_L
-
-    TXT_BB["Black-Box"]
-    TXT_L --&gt;|"Black-Box"| TXT_BB
-
-    TXT_WB["White-Box"]
-    TXT_L --&gt;|"White-Box"| TXT_WB
+    TXT_L --&gt;  TXT_WB
 
     style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
     style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
@@ -2223,7 +2173,7 @@ flowchart TD
     style TXT_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TXT_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
 </pre>
-<div id="mermaid-tooltip-25" class="mermaidTooltip">
+<div id="mermaid-tooltip-24" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -2247,7 +2197,7 @@ Are you explaining the **model as a whole**, or a **single prediction**?
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-26">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-25">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
 flowchart TD
     TXT["📝 Text"]
     TXT_S{"Scope?"}
@@ -2260,10 +2210,10 @@ flowchart TD
     TXT_S --&gt;|"Local"| TXT_L
 
     TXT_BB["Black-Box"]
-    TXT_L --&gt;|"Black-Box"| TXT_BB
+    TXT_L --&gt;  TXT_BB
 
     TXT_WB["White-Box"]
-    TXT_L --&gt;|"White-Box"| TXT_WB
+    TXT_L --&gt;  TXT_WB
 
     style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
     style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
@@ -2272,7 +2222,7 @@ flowchart TD
     style TXT_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TXT_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
 </pre>
-<div id="mermaid-tooltip-26" class="mermaidTooltip">
+<div id="mermaid-tooltip-25" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -2288,13 +2238,12 @@ flowchart TD
 <div class="fragment">
 <div class="method-card method-blue">
 <p><strong>SHAP Partition Explainer</strong></p>
-<p>Specifically designed for text</p>
-<p>Uses a hierarchical masking strategy that respects token boundaries</p>
+<p>Measures token and phrase importance across a dataset using hierarchical masking that respects token boundaries</p>
 <p><span class="lib">shap</span></p>
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
-<p><img data-src="img/shap-text-global.png" style="width:50.0%"></p>
+<p><img data-src="img/shap-text-global.png" style="width:55.0%"></p>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
 <p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/api_examples/plots/text.html">Image Reference</a></p>
 </div>
@@ -2303,6 +2252,50 @@ flowchart TD
 </section>
 <section id="text-local-access" class="slide level2" data-menu-title="Text">
 <h2>Text → Local → Access</h2>
+<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="transform: scale(1.5); transform-origin: top center;">
+<div class="cell" data-reveal="true">
+<div class="cell-output-display">
+<div>
+<p>
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-26">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+flowchart TD
+    TXT["📝 Text"]
+    TXT_S{"Scope?"}
+    TXT --&gt; TXT_S
+
+    TXT_G["Global"]
+    TXT_S --&gt;|"Global"| TXT_G
+
+    TXT_L{"Access?"}
+    TXT_S --&gt;|"Local"| TXT_L
+
+    TXT_BB["Black-Box"]
+    TXT_L --&gt;  TXT_BB
+
+    TXT_WB["White-Box"]
+    TXT_L --&gt;  TXT_WB
+
+    style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
+    style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style TXT_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+    style TXT_WB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
+</pre>
+<div id="mermaid-tooltip-26" class="mermaidTooltip">
+
+</div>
+<p></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+
+</section>
+<section id="text-local-black-box" class="slide level2" data-menu-title="Text">
+<h2>Text → Local → Black-Box</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
@@ -2322,53 +2315,10 @@ flowchart TD
     TXT_S --&gt;|"Local"| TXT_L
 
     TXT_BB["Black-Box"]
-    TXT_L --&gt;|"Black-Box"| TXT_BB
+    TXT_L --&gt;  TXT_BB
 
     TXT_WB["White-Box"]
-    TXT_L --&gt;|"White-Box"| TXT_WB
-
-    style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
-    style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TXT_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style TXT_L fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TXT_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-    style TXT_WB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
-</pre>
-<div id="mermaid-tooltip-27" class="mermaidTooltip">
-
-</div>
-<p></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-<section id="text-local-black-box" class="slide level2" data-menu-title="Text">
-<h2>Text → Local → Black-Box</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.5); transform-origin: top center;">
-<div class="cell" data-reveal="true">
-<div class="cell-output-display">
-<div>
-<p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-28">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
-flowchart TD
-    TXT["📝 Text"]
-    TXT_S{"Scope?"}
-    TXT --&gt; TXT_S
-
-    TXT_G["Global"]
-    TXT_S --&gt;|"Global"| TXT_G
-
-    TXT_L{"Access?"}
-    TXT_S --&gt;|"Local"| TXT_L
-
-    TXT_BB["Black-Box"]
-    TXT_L --&gt;|"Black-Box"| TXT_BB
-
-    TXT_WB["White-Box"]
-    TXT_L --&gt;|"White-Box"| TXT_WB
+    TXT_L --&gt;  TXT_WB
 
     style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
     style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
@@ -2377,7 +2327,7 @@ flowchart TD
     style TXT_BB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TXT_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
 </pre>
-<div id="mermaid-tooltip-28" class="mermaidTooltip">
+<div id="mermaid-tooltip-27" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -2398,7 +2348,7 @@ flowchart TD
 <div class="fragment">
 <div class="method-card method-blue">
 <p><strong>SHAP Partition Explainer</strong></p>
-<p>Same SHAP toolkit as other domains → mask or perturb tokens, measure impact</p>
+<p>Attributes importance to individual tokens by masking and measuring prediction changes</p>
 <p><span class="lib">shap</span> <span class="lib-outdated">lime</span></p>
 </div>
 </div>
@@ -2418,7 +2368,7 @@ flowchart TD
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-29">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-28">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
 flowchart TD
     TXT["📝 Text"]
     TXT_S{"Scope?"}
@@ -2431,10 +2381,10 @@ flowchart TD
     TXT_S --&gt;|"Local"| TXT_L
 
     TXT_BB["Black-Box"]
-    TXT_L --&gt;|"Black-Box"| TXT_BB
+    TXT_L --&gt;  TXT_BB
 
     TXT_WB["White-Box"]
-    TXT_L --&gt;|"White-Box"| TXT_WB
+    TXT_L --&gt;  TXT_WB
 
     style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
     style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
@@ -2443,7 +2393,7 @@ flowchart TD
     style TXT_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TXT_WB fill:#ffffff,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
 </pre>
-<div id="mermaid-tooltip-29" class="mermaidTooltip">
+<div id="mermaid-tooltip-28" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -2464,7 +2414,7 @@ flowchart TD
 <div class="fragment">
 <div class="method-card method-blue">
 <p><strong>Integrated Gradients</strong></p>
-<p>Attribute a model’s prediction to its input features by accumulating gradients along a linear path from a neutral baseline to the actual input</p>
+<p>Highlights which tokens drive a prediction by accumulating gradients from a neutral baseline to the actual input</p>
 <p><span class="lib">captum</span> <span class="lib">inseq</span> <span class="lib-outdated">transformers-interpret</span></p>
 </div>
 </div>
@@ -2491,7 +2441,7 @@ The biggest misconception in NLP explainability. Attention weights show what the
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-30">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-29">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
 flowchart TD
     START(("🔍 Explain?"))
     DTYPE{"Data type?"}
@@ -2522,18 +2472,19 @@ flowchart TD
     IMG_G["Global"]
     IMG_L{"Access?"}
     IMG_BB["Black-Box"]
-    IMG_A{"Architecture?"}
-    IMG_CNN["CNN"]
-    IMG_VIT["ViT"]
+    IMG_WB["White-Box"]
+    %% IMG_A{"Architecture?"}
+    %% IMG_CNN["CNN"]
+    %% IMG_VIT["ViT"]
 
     DTYPE --&gt;|Image| IMG
     IMG --&gt; IMG_S
     IMG_S --&gt;|Global| IMG_G
     IMG_S --&gt;|Local| IMG_L
-    IMG_L --&gt;|Black-Box| IMG_BB
-    IMG_L --&gt;|White-Box| IMG_A
-    IMG_A --&gt;|CNN| IMG_CNN
-    IMG_A --&gt;|ViT| IMG_VIT
+    IMG_L --&gt; IMG_BB
+    IMG_L --&gt; IMG_WB
+    %% IMG_A --&gt;|CNN| IMG_CNN
+    %% IMG_A --&gt;|ViT| IMG_VIT
 
     TXT["📝 Text"]
     TXT_S{"Scope?"}
@@ -2546,8 +2497,8 @@ flowchart TD
     TXT --&gt; TXT_S
     TXT_S --&gt;|Global| TXT_G
     TXT_S --&gt;|Local| TXT_L
-    TXT_L --&gt;|Black-Box| TXT_BB
-    TXT_L --&gt;|White-Box| TXT_WB
+    TXT_L --&gt; TXT_BB
+    TXT_L --&gt; TXT_WB
 
     style START fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2.5px,color:#1E3A4C
     style DTYPE fill:#EBF0F3,stroke:#1E3A4C,stroke-width:2px,color:#1E3A4C
@@ -2565,9 +2516,7 @@ flowchart TD
     style IMG_G fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style IMG_L fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
     style IMG_BB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_A fill:#ffffff,stroke:#ADC0CA,stroke-width:2px,color:#9ca3af
-    style IMG_CNN fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
-    style IMG_VIT fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
+    style IMG_WB fill:#ffffff,stroke:#ADC0CA,stroke-width:1.5px,color:#9ca3af
     style TXT fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TXT_S fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TXT_G fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
@@ -2575,7 +2524,7 @@ flowchart TD
     style TXT_BB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
     style TXT_WB fill:#EBF0F3,stroke:#1E3A4C,stroke-width:5px,color:#1E3A4C
 </pre>
-<div id="mermaid-tooltip-30" class="mermaidTooltip">
+<div id="mermaid-tooltip-29" class="mermaidTooltip">
 
 </div>
 <p></p>
@@ -2590,7 +2539,7 @@ flowchart TD
 <h2>Observed Patterns and What’s Next</h2>
 <div class="columns">
 <div class="column" style="width:60%;">
-<div style="font-size: 3em;">
+<div style="font-size: 3.5em;">
 <div class="fragment">
 <div>
 <ul>
@@ -2634,9 +2583,8 @@ section[data-background-color="#1E3A4C"] li {
 <h3 id="books-and-papers">Books and Papers</h3>
 <ul>
 <li><a href="https://www.packtpub.com/en-de/product/interpretable-machine-learning-with-python-9781803243627?srsltid=AfmBOorf6dLkzbhjoDJN41FPaFhcTXpX7jtWBDSc80ZoOk-k1B3y61keQmo">Masís, Serg. Interpretable Machine Learning with Python: Build Explainable, Fair, and Robust High-performance Models With Hands-on, Real-world Examples, 2nd ed., 2023</a></li>
-<li><a href="https://github.com/christophM/interpretable-ml-book">Molnar, Christoph. Interpretable Machine Learning: A Guide for Making Black Box Models Explainable. 3rd ed., 2025</a></li>
-<li><a href="https://arxiv.org/abs/1902.10186">Jain, Sarthak &amp; Wallace, Byron C. Attention is not Explanation, 2019</a></li>
-<li><a href="https://arxiv.org/abs/1908.04626">Wiegreffe, Sarah &amp; Pinter, Yuval. Attention is not not Explanation, 2019</a></li>
+<li><a href="https://github.com/christophM/interpretable-ml-book">Molnar, Christoph. Interpretable Machine Learning: A Guide for Making Black Box Models Explainable. 3rd ed., 2025</a> <!-- - [Jain, Sarthak & Wallace, Byron C. Attention is not Explanation, 2019](https://arxiv.org/abs/1902.10186)
+- [Wiegreffe, Sarah & Pinter, Yuval. Attention is not not Explanation, 2019](https://arxiv.org/abs/1908.04626) --></li>
 </ul>
 </div>
 </div><div class="column" style="width:45%;">
