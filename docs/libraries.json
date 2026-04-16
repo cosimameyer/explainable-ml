@@ -13,7 +13,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": false
+    "whitebox": false,
+    "_stars": 170,
+    "_updated": "2023-02-28T19:26:41Z",
+    "_license": "Apache-2.0"
   },
   {
     "name": "alibi",
@@ -29,7 +32,10 @@
     "image": true,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 2623,
+    "_updated": "2025-10-17T13:23:21Z",
+    "_license": "NOASSERTION"
   },
   {
     "name": "bertviz",
@@ -45,7 +51,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 8011,
+    "_updated": "2026-01-08T22:38:46Z",
+    "_license": "Apache-2.0"
   },
   {
     "name": "captum",
@@ -61,7 +70,10 @@
     "image": true,
     "timeseries": true,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 5608,
+    "_updated": "2026-04-15T17:19:27Z",
+    "_license": "BSD-3-Clause"
   },
   {
     "name": "dalex",
@@ -77,7 +89,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": false
+    "whitebox": false,
+    "_stars": 1463,
+    "_updated": "2026-01-20T01:18:00Z",
+    "_license": "GPL-3.0"
   },
   {
     "name": "darts",
@@ -93,7 +108,10 @@
     "image": false,
     "timeseries": true,
     "blackbox": true,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 9330,
+    "_updated": "2026-04-16T12:36:44Z",
+    "_license": "Apache-2.0"
   },
   {
     "name": "dice-ml",
@@ -109,7 +127,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 1507,
+    "_updated": "2025-07-13T17:34:53Z",
+    "_license": "MIT"
   },
   {
     "name": "ecco",
@@ -125,7 +146,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 2094,
+    "_updated": "2024-08-15T19:08:06Z",
+    "_license": "BSD-3-Clause"
   },
   {
     "name": "effector",
@@ -141,7 +165,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": false
+    "whitebox": false,
+    "_stars": 117,
+    "_updated": "2026-03-18T15:14:03Z",
+    "_license": "MIT"
   },
   {
     "name": "flashtorch",
@@ -157,7 +184,10 @@
     "image": true,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 746,
+    "_updated": "2023-09-21T07:22:50Z",
+    "_license": "MIT"
   },
   {
     "name": "grad-cam",
@@ -173,7 +203,10 @@
     "image": true,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 12744,
+    "_updated": "2026-03-29T04:51:57Z",
+    "_license": "MIT"
   },
   {
     "name": "innvestigate",
@@ -189,7 +222,10 @@
     "image": true,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 1306,
+    "_updated": "2025-04-11T14:13:23Z",
+    "_license": "NOASSERTION"
   },
   {
     "name": "inseq",
@@ -205,7 +241,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 463,
+    "_updated": "2026-03-06T18:10:26Z",
+    "_license": "Apache-2.0"
   },
   {
     "name": "interpret",
@@ -221,7 +260,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 6830,
+    "_updated": "2026-04-16T03:49:36Z",
+    "_license": "MIT"
   },
   {
     "name": "lime",
@@ -237,7 +279,10 @@
     "image": true,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": false
+    "whitebox": false,
+    "_stars": 12118,
+    "_updated": "2024-07-25T20:32:21Z",
+    "_license": "BSD-2-Clause"
   },
   {
     "name": "lit-nlp",
@@ -253,7 +298,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 3652,
+    "_updated": "2026-04-15T07:20:48Z",
+    "_license": "Apache-2.0"
   },
   {
     "name": "lucid",
@@ -269,7 +317,10 @@
     "image": true,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 4703,
+    "_updated": "2023-02-06T16:41:16Z",
+    "_license": "Apache-2.0"
   },
   {
     "name": "lucent",
@@ -285,7 +336,10 @@
     "image": true,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 655,
+    "_updated": "2025-03-21T11:01:03Z",
+    "_license": "Apache-2.0"
   },
   {
     "name": "netdissect",
@@ -301,7 +355,10 @@
     "image": true,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 453,
+    "_updated": "2018-08-25T23:19:14Z",
+    "_license": "MIT"
   },
   {
     "name": "pdpbox",
@@ -317,7 +374,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": false
+    "whitebox": false,
+    "_stars": 861,
+    "_updated": "2024-09-03T22:24:30Z",
+    "_license": "MIT"
   },
   {
     "name": "PiML",
@@ -333,7 +393,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 1284,
+    "_updated": "2025-03-30T15:42:16Z",
+    "_license": "Apache-2.0"
   },
   {
     "name": "pmdarima",
@@ -349,7 +412,10 @@
     "image": false,
     "timeseries": true,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 1720,
+    "_updated": "2025-11-17T16:09:28Z",
+    "_license": "MIT"
   },
   {
     "name": "polyjuice",
@@ -365,7 +431,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": false
+    "whitebox": false,
+    "_stars": 97,
+    "_updated": "2022-08-14T20:45:37Z",
+    "_license": "BSD-3-Clause"
   },
   {
     "name": "prophet",
@@ -381,7 +450,10 @@
     "image": false,
     "timeseries": true,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 20126,
+    "_updated": "2026-04-08T06:18:48Z",
+    "_license": "MIT"
   },
   {
     "name": "PyALE",
@@ -397,7 +469,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": false
+    "whitebox": false,
+    "_stars": 67,
+    "_updated": "2024-03-27T09:52:18Z",
+    "_license": "MIT"
   },
   {
     "name": "pytorch-forecasting",
@@ -413,7 +488,10 @@
     "image": false,
     "timeseries": true,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 4867,
+    "_updated": "2026-04-14T19:51:27Z",
+    "_license": "MIT"
   },
   {
     "name": "pytorch-grad-cam",
@@ -429,7 +507,10 @@
     "image": true,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 84,
+    "_updated": "2020-12-07T11:46:05Z",
+    "_license": null
   },
   {
     "name": "pyts",
@@ -445,7 +526,10 @@
     "image": false,
     "timeseries": true,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 1873,
+    "_updated": "2025-06-18T15:41:19Z",
+    "_license": "BSD-3-Clause"
   },
   {
     "name": "SALib",
@@ -461,7 +545,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": false
+    "whitebox": false,
+    "_stars": 985,
+    "_updated": "2026-04-01T11:33:53Z",
+    "_license": "MIT"
   },
   {
     "name": "shap",
@@ -477,7 +564,10 @@
     "image": true,
     "timeseries": true,
     "blackbox": true,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 25302,
+    "_updated": "2026-04-15T20:07:22Z",
+    "_license": "MIT"
   },
   {
     "name": "shapiq",
@@ -493,7 +583,10 @@
     "image": true,
     "timeseries": true,
     "blackbox": true,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 715,
+    "_updated": "2026-04-16T12:16:44Z",
+    "_license": "MIT"
   },
   {
     "name": "sklearn.inspection",
@@ -509,7 +602,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 65843,
+    "_updated": "2026-04-16T11:39:04Z",
+    "_license": "BSD-3-Clause"
   },
   {
     "name": "sktime",
@@ -525,7 +621,10 @@
     "image": false,
     "timeseries": true,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 9736,
+    "_updated": "2026-04-15T22:55:20Z",
+    "_license": "BSD-3-Clause"
   },
   {
     "name": "statsmodels",
@@ -541,7 +640,10 @@
     "image": false,
     "timeseries": true,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 11363,
+    "_updated": "2026-04-16T11:24:42Z",
+    "_license": "BSD-3-Clause"
   },
   {
     "name": "tcav",
@@ -557,7 +659,10 @@
     "image": true,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 653,
+    "_updated": "2026-02-05T15:53:41Z",
+    "_license": "Apache-2.0"
   },
   {
     "name": "tf-keras-vis",
@@ -573,7 +678,10 @@
     "image": true,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 338,
+    "_updated": "2025-03-12T03:55:24Z",
+    "_license": "MIT"
   },
   {
     "name": "timeshap",
@@ -589,7 +697,10 @@
     "image": false,
     "timeseries": true,
     "blackbox": true,
-    "whitebox": false
+    "whitebox": false,
+    "_stars": 198,
+    "_updated": "2023-12-21T12:00:39Z",
+    "_license": "NOASSERTION"
   },
   {
     "name": "TransformerLens",
@@ -605,7 +716,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 3319,
+    "_updated": "2026-04-16T18:11:52Z",
+    "_license": "MIT"
   },
   {
     "name": "transformers-interpret",
@@ -621,7 +735,10 @@
     "image": false,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 1411,
+    "_updated": "2023-08-30T22:52:59Z",
+    "_license": "Apache-2.0"
   },
   {
     "name": "tsinterpret",
@@ -637,7 +754,10 @@
     "image": false,
     "timeseries": true,
     "blackbox": true,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 143,
+    "_updated": "2025-11-19T09:23:59Z",
+    "_license": "BSD-3-Clause"
   },
   {
     "name": "tslearn",
@@ -653,7 +773,10 @@
     "image": false,
     "timeseries": true,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 3140,
+    "_updated": "2026-04-10T14:18:07Z",
+    "_license": "BSD-2-Clause"
   },
   {
     "name": "vit-explain",
@@ -669,7 +792,10 @@
     "image": true,
     "timeseries": false,
     "blackbox": false,
-    "whitebox": true
+    "whitebox": true,
+    "_stars": 1075,
+    "_updated": "2022-03-12T05:26:04Z",
+    "_license": "MIT"
   },
   {
     "name": "witwidget",
@@ -685,6 +811,9 @@
     "image": true,
     "timeseries": false,
     "blackbox": true,
-    "whitebox": false
+    "whitebox": false,
+    "_stars": 1000,
+    "_updated": "2026-04-15T07:27:43Z",
+    "_license": "Apache-2.0"
   }
 ]
