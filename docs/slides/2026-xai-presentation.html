@@ -414,7 +414,7 @@ section[data-background-color="#1E3A4C"] strong {
 <section id="an-xai-decision-tree" class="slide level2" data-menu-title="Introduction-Topic">
 <h2>An XAI Decision Tree…</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.2); transform-origin: top center;">
+<div style="transform: scale(1.1); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -517,8 +517,8 @@ flowchart TD
 <h2>… As Well As Context Info</h2>
 
 <img data-src="img/methods_card.png" class="r-stretch quarto-figure-center"></section>
-<section id="terms-and-terminology" class="slide level2" data-menu-title="Introduction-Topic">
-<h2>Terms and Terminology</h2>
+<section id="key-distinctions" class="slide level2" data-menu-title="Introduction-Topic">
+<h2>Key Distinctions</h2>
 <style>
 .term-grid {
   display: grid;
@@ -551,10 +551,10 @@ flowchart TD
 <p>Can you <b>read</b> the <b>model's logic directly</b>, or do you <b>need a separate method</b> to approximate it?</p>
 </div>
 
-<div class="term-tile fragment">
+<!-- <div class="term-tile fragment">
 <h3>Model-agnostic vs Model-specific</h3><br>
 <p>Does the method treat the <b>model as a black box</b>, or does it <b>exploit its internals</b>?</p>
-</div>
+</div> -->
 
 <div class="term-tile fragment">
 <h3>Black-box vs White-box</h3><br>
@@ -565,6 +565,9 @@ flowchart TD
 <h3>Global vs Local</h3><br>
 <p>Explains <b>overall model behavior</b>, or explains a <b>single prediction</b>?</p>
 </div>
+
+<img src="img/ghost_happy.png" alt="Happy ghost">
+
 
 <!--
 <div class="term-tile fragment">
@@ -1064,7 +1067,7 @@ How does a **feature affect predictions**?
 <div class="method-card method-blue">
 <p><strong>Partial Dependence Plots (PDP)</strong></p>
 <p>How a feature affects the model’s prediction on average, across the dataset</p>
-<p><span class="lib">dalex</span> <span class="lib">effector</span> <span class="lib">sklearn</span> <span class="lib-outdated">pdpbox</span> <span class="lib">PiML</span></p>
+<p><span class="lib">dalex</span> <span class="lib">effector</span> <span class="lib">PiML</span> <span class="lib">sklearn</span> <span class="lib-outdated">pdpbox</span></p>
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
@@ -1423,7 +1426,7 @@ flowchart TD
 <section id="tabular" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular ✅</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.2); transform-origin: top center;">
+<div style="transform: scale(1.1); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -1967,7 +1970,7 @@ The architecture split matters here.
 <section id="image-1" class="slide level2" data-menu-title="Image">
 <h2>Image ✅</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.2); transform-origin: top center;">
+<div style="transform: scale(1.1); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2411,7 +2414,7 @@ The biggest misconception in NLP explainability. Attention weights show what the
 <section id="text-1" class="slide level2" data-menu-title="Text">
 <h2>Text ✅</h2>
 <div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
-<div style="transform: scale(1.2); transform-origin: top center;">
+<div style="transform: scale(1.1); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
@@ -2519,7 +2522,7 @@ flowchart TD
 <div>
 <ul>
 <li class="fragment"><p><strong>SHAP</strong> appears in every single branch — it’s the Swiss army knife</p></li>
-<li class="fragment"><p><strong>Integrated Gradients</strong> feels like a universal white-box method</p></li>
+<li class="fragment"><p><strong>Integrated Gradients</strong> feels like a universal white-box method for unstructured data</p></li>
 <li class="fragment"><p><strong>“Why this prediction?”</strong> and <strong>“What would change it?”</strong> are fundamentally different questions</p></li>
 <li class="fragment"><p>Start with <strong>interpretable models</strong> when you can</p></li>
 </ul>
@@ -2555,7 +2558,7 @@ section[data-background-color="#1E3A4C"] li {
 <li><a href="https://github.com/cosimameyer/explainable-ml">Meyer, Cosima. Explainable ML (GitHub Repository), 2026</a></li>
 <li><a href="https://socialsciencedatalab.mzes.uni-mannheim.de/article/bert-explainable-ai/">Küpfer, Andreas &amp; Meyer, Cosima. BERT and Explainable AI, 2023</a></li>
 </ul>
-<h3 id="books-and-papers">Books and Papers</h3>
+<h3 id="books">Books</h3>
 <ul>
 <li><a href="https://www.packtpub.com/en-de/product/interpretable-machine-learning-with-python-9781803243627?srsltid=AfmBOorf6dLkzbhjoDJN41FPaFhcTXpX7jtWBDSc80ZoOk-k1B3y61keQmo">Masís, Serg. Interpretable Machine Learning with Python: Build Explainable, Fair, and Robust High-performance Models With Hands-on, Real-world Examples, 2nd ed., 2023</a></li>
 <li><a href="https://github.com/christophM/interpretable-ml-book">Molnar, Christoph. Interpretable Machine Learning: A Guide for Making Black Box Models Explainable. 3rd ed., 2025</a> <!-- - [Jain, Sarthak & Wallace, Byron C. Attention is not Explanation, 2019](https://arxiv.org/abs/1902.10186)
