@@ -349,7 +349,7 @@
     Interactive filter for the curated list in
     <a href="https://github.com/" id="repo-link">explainable-ml</a>.<br>
     Click capability filters (any <i class="fa-solid fa-arrow-right"></i> require <i class="fa-solid fa-arrow-right"></i> exclude).<br>
-    <i>Stars and last-commit data fetched from GitHub.</i>
+    <i>Stars and last-commit data updated periodically via GitHub Actions.</i>
   </div>
 </header>
 
@@ -660,51 +660,13 @@ function reset() {
 document.getElementById("search").addEventListener("input", render);
 document.getElementById("reset").addEventListener("click", reset);
 
-// Live-fetch stars and last commit from GitHub API, with localStorage caching
-async function loadGitHubData() {
-  const CACHE_KEY = "explainable-ml-gh-cache-v1";
-  const CACHE_TTL = 6 * 60 * 60 * 1000; // 6 hours
-  let cache = {};
-  try {
-    const raw = localStorage.getItem(CACHE_KEY);
-    if (raw) {
-      const parsed = JSON.parse(raw);
-      if (parsed.ts && (Date.now() - parsed.ts) < CACHE_TTL) cache = parsed.data || {};
-    }
-  } catch (e) {}
-
-  // Apply cached values immediately
+// GitHub metadata (stars, last commit, license) is pre-baked into libraries.json
+// by scripts/fetch_licenses.py — no runtime API calls needed.
+function loadGitHubData() {
   LIBS.forEach(lib => {
-    const c = cache[lib.repo];
-    if (c) {
-      lib._stars = c.stars;
-      lib._updated = c.pushed ? new Date(c.pushed) : null;
-      lib._license = c.license || null;
-    }
+    if (lib._updated) lib._updated = new Date(lib._updated);
   });
   render();
-
-  // Fetch fresh data in background (unauthenticated limit: 60/hr per IP)
-  const fresh = {};
-  await Promise.all(LIBS.map(async lib => {
-    if (!lib.repo) return;
-    try {
-      const r = await fetch(`https://api.github.com/repos/${lib.repo}`);
-      if (!r.ok) return;
-      const j = await r.json();
-      lib._stars = j.stargazers_count;
-      lib._updated = j.pushed_at ? new Date(j.pushed_at) : null;
-      lib._license = j.license ? (j.license.spdx_id || j.license.name || null) : null;
-      fresh[lib.repo] = { stars: j.stargazers_count, pushed: j.pushed_at, license: lib._license };
-    } catch (e) {}
-  }));
-
-  if (Object.keys(fresh).length > 0) {
-    try {
-      localStorage.setItem(CACHE_KEY, JSON.stringify({ ts: Date.now(), data: { ...cache, ...fresh } }));
-    } catch (e) {}
-    render();
-  }
 }
 
 try {
