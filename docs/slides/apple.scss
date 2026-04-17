@@ -261,14 +261,23 @@ $code-bg: $brand-light;
 }
 
   .mermaid svg {
-    max-width: 100%;       /* Prevent it from going wider than the slide */
-    max-height: 60vh;      /* Prevent it from pushing content off the bottom */
-    height: auto !important; /* Override hardcoded heights */
-    width: auto !important;
-    // max-height: 420px;
-    // max-width: 95%;
-    // height: auto;
-    // width: auto;
+    /* Use 100% width so the SVG fills its container and the viewBox handles
+       proportional scaling — avoids intrinsic build-time dimensions being
+       narrower than the rendered font causes node text to clip. */
+    width: 100% !important;
+    max-width: 100%;
+    height: auto !important; /* Preserve aspect ratio */
+    /* Keep a ceiling so tall diagrams don't push content off the slide */
+    max-height: 680px;
+    /* Allow node labels that slightly exceed the SVG viewBox to remain visible */
+    overflow: visible !important;
+  }
+
+  /* When htmlLabels:false, mermaid uses SVG <text> — overflow:visible lets
+     any text that overflows a node's clip rect remain visible */
+  .mermaid svg text,
+  .mermaid svg .label {
+    overflow: visible;
   }
 
   .mermaid-large .mermaid svg {
@@ -298,6 +307,44 @@ $code-bg: $brand-light;
 
 #title-slide {
   color: white;
+  text-align: center;   /* Centre all title-slide content */
+}
+
+#title-slide h1 {
+  /* 0.85em × 28px base = 23.8px h1 base; span 6em × 23.8px = 142.8px per line. */
+  font-size: 0.85em !important;
+  line-height: 1.0 !important;
+}
+
+/* The title span lives inside a <p> inside <h1>; reset the p's generous
+   line-height (1.6) so 2 lines of large text don't overflow the slide */
+#title-slide h1 p {
+  line-height: 1.1 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0.15em !important;
+}
+
+/* Subtitle: centred, narrower max-width, and smaller font.
+   The inline style="font-size:2.6em" is overridden to ~1.6em so the
+   subtitle reads clearly as secondary text beneath the large title.
+   margin-top pushes the subtitle down away from the title. */
+#title-slide .subtitle,
+#title-slide .subtitle + p {
+  line-height: 1.3 !important;
+  max-width: 70%;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 8% !important;
+}
+
+/* Override the inline font-size on the subtitle span */
+#title-slide .subtitle + p > span {
+  font-size: 1.6em !important;
+}
+
+/* Author: centred */
+#title-slide .quarto-title-authors {
+  text-align: center;
 }
 
 #title-slide h1,

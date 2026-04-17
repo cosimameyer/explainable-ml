@@ -335,8 +335,8 @@
     <div class="slides">
 
 <section id="title-slide" data-background-color="#1E3A4C" data-background-image="img/ghost.png" data-background-position="bottom 2% right 2%" data-background-size="38%" class="quarto-title-block center">
-  <h1 class="title"><p><span class="myfont" style="font-size: 180px;">Why Did The Model<br> Do That?</span></p></h1>
-  <p class="subtitle"></p><p><span style="font-size: 80px;">Debugging the <span class="myfont">Ghost</span> in the Machine</span></p><p></p>
+  <h1 class="title"><p><span class="myfont" style="font-size: 6em;">Why Did The Model<br> Do That?</span></p></h1>
+  <p class="subtitle"></p><p><span style="font-size: 2.6em;">Debugging the <span class="myfont">Ghost</span><br> in the Machine</span></p><p></p>
 
 <div class="quarto-title-authors">
 <div class="quarto-title-author">
@@ -413,13 +413,13 @@ section[data-background-color="#1E3A4C"] strong {
 </section>
 <section id="an-xai-decision-tree" class="slide level2" data-menu-title="Introduction-Topic">
 <h2>An XAI Decision Tree…</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.1); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-1">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     START(("🔍 Explain?"))
     DTYPE{"Data type?"}
@@ -517,7 +517,7 @@ flowchart TD
 <h2>… As Well As Context Info</h2>
 
 <img data-src="img/methods_card.png" class="r-stretch quarto-figure-center"></section>
-<section id="key-distinctions" class="slide level2" data-menu-title="Introduction-Topic" data-background-image="img/ghost_happy.png" data-background-size="400px" data-background-position="right 20px bottom 20px" data-background-opacity="0.8">
+<section id="key-distinctions" class="slide level2" data-menu-title="Introduction-Topic" data-background-image="img/ghost_happy.png" data-background-size="min(30vw, 400px)" data-background-position="right 20px bottom 20px" data-background-opacity="0.8">
 <h2>Key Distinctions</h2>
 <style>
 .term-grid {
@@ -579,13 +579,13 @@ flowchart TD
 </section>
 <section id="lets-build-the-decision-tree-together" class="slide level2" data-menu-title="Introduction-Topic">
 <h2>Let’s Build the Decision Tree Together 🌳</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.6); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-2">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     START(("🔍 Explain?"))
 
@@ -600,20 +600,17 @@ flowchart TD
 </div>
 </div>
 </div>
-<div style="text-align: center; margin-top: 40px; color: #6b7280;">
-<p>One question at a time.</p>
-</div>
 
 </section>
 <section id="whats-your-data-type" class="slide level2" data-menu-title="Introduction-Topic">
 <h2>What’s Your Data Type?</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.6); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-3">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-3">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     START(("🔍 Explain?"))
     DTYPE{"Data type?"}
@@ -634,13 +631,13 @@ flowchart TD
 </section>
 <section id="whats-your-data-type-1" class="slide level2" data-menu-title="Introduction-Topic">
 <h2>What’s Your Data Type?</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.6); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-4">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-4">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     START(("🔍 Explain?"))
     DTYPE{"Data type?"}
@@ -679,14 +676,14 @@ flowchart TD
 </section>
 <section id="first-question-is-it-already-interpretable" class="slide level2" data-menu-title="Tabular">
 <h2>First Question: Is It Already Interpretable?</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.3); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
 
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-5">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-5">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_INTERP{"Inherently&lt;br/&gt;interpretable?"}
@@ -720,13 +717,13 @@ flowchart TD
 </section>
 <section id="tabular-scope" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular → Scope</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-6">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-6">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_SCOPE{"Scope?"}
@@ -771,13 +768,13 @@ flowchart TD
 </section>
 <section id="tabular-scope-1" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular → Scope</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-7">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-7">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_SCOPE{"Scope?"}
@@ -818,21 +815,16 @@ flowchart TD
 </div>
 </div>
 </div>
-<!--
-::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 2em;"}
-Are you explaining the **model as a whole**, or a **single prediction**?
-:::
--->
 </section>
 <section id="tabular-global-3-questions" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular → Global → 3 Questions</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-8">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-8">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_SCOPE{"Scope?"}
@@ -887,13 +879,13 @@ Three **different** questions you can ask about your model globally.
 [Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Feature Ranking]{.node .node-leaf}
 :::
 -->
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-9">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-9">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_SCOPE{"Scope?"}
@@ -934,11 +926,6 @@ flowchart TD
 </div>
 </div>
 </div>
-<!--
-::: {style="text-align: center; margin-top: 20px; color: #6b7280; font-size: 2em;"}
-Which **features matter most**?
-:::
--->
 </section>
 <section id="tabular-global-1" class="slide level2 path-slide" data-menu-title="Tabular">
 <h2>Tabular → Global</h2>
@@ -993,13 +980,13 @@ Simple, model-agnostic way to measure how much each feature matters to your mode
 [Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Feature Effects]{.node .node-leaf}
 :::
 -->
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-10">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-10">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_SCOPE{"Scope?"}
@@ -1117,13 +1104,13 @@ Flag PyALE as unmaintained → suggest alibi for ALE plots
 [Tabular]{.node .node-tab} [→]{.arrow} [Global]{.node .node-q} [→]{.arrow} [Interactions]{.node .node-leaf}
 :::
 -->
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-11">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-11">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_SCOPE{"Scope?"}
@@ -1190,13 +1177,13 @@ Which **features work together**?
 </section>
 <section id="tabular-local-type" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular → Local → Type?</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-12">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-12">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_SCOPE{"Scope?"}
@@ -1251,13 +1238,13 @@ Two fundamentally different questions about a single prediction.
 [Tabular]{.node .node-tab} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [Why this prediction?]{.node .node-leaf}
 :::
 -->
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-13">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-13">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_SCOPE{"Scope?"}
@@ -1348,13 +1335,13 @@ flowchart TD
 [Tabular]{.node .node-tab} [→]{.arrow} [Local]{.node .node-q} [→]{.arrow} [What would change?]{.node .node-leaf}
 :::
 -->
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-14">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-14">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TAB["📊 Tabular"]
     TAB_SCOPE{"Scope?"}
@@ -1418,13 +1405,13 @@ flowchart TD
 </section>
 <section id="tabular" class="slide level2" data-menu-title="Tabular">
 <h2>Tabular ✅</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.1); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-15">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-15">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     START(("🔍 Explain?"))
     DTYPE{"Data type?"}
@@ -1532,13 +1519,13 @@ Spatial structure, specialized methods
 </section>
 <section id="image" class="slide level2">
 <h2>Image</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-16">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-16">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     IMG["🖼️ Image"]
     IMG_S{"Scope?"}
@@ -1575,13 +1562,13 @@ flowchart TD
 </section>
 <section id="image-scope" class="slide level2" data-menu-title="Image">
 <h2>Image: Scope</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-17">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-17">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     IMG["🖼️ Image"]
     IMG_S{"Scope?"}
@@ -1633,13 +1620,13 @@ Global is niche. Local is where the action is.
 </section>
 <section id="image-global" class="slide level2" data-menu-title="Image">
 <h2>Image → Global</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-18">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-18">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     IMG["🖼️ Image"]
     IMG_S{"Scope?"}
@@ -1707,11 +1694,11 @@ flowchart TD
 </div>
 </div>
 <div class="r-stack">
-<p><img data-src="img/feature-visualization-1.png" class="fragment" style="width:65.0%"></p>
-<p><img data-src="img/feature-visualization-2.png" class="fragment" style="width:65.0%"></p>
-<p><img data-src="img/feature-visualization-3.png" class="fragment" style="width:65.0%"></p>
-<p><img data-src="img/feature-visualization-4.png" class="fragment" style="width:65.0%"></p>
-<p><img data-src="img/feature-visualization-5.png" class="fragment" style="width:65.0%"></p>
+<p><img data-src="img/feature-visualization-1.png" class="fragment" style="width:75.0%"></p>
+<p><img data-src="img/feature-visualization-2.png" class="fragment" style="width:75.0%"></p>
+<p><img data-src="img/feature-visualization-3.png" class="fragment" style="width:75.0%"></p>
+<p><img data-src="img/feature-visualization-4.png" class="fragment" style="width:75.0%"></p>
+<p><img data-src="img/feature-visualization-5.png" class="fragment" style="width:75.0%"></p>
 </div>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
 <p><a href="https://distill.pub/2017/feature-visualization/">Image Reference</a></p>
@@ -1722,13 +1709,13 @@ flowchart TD
 </section>
 <section id="image-local-access" class="slide level2" data-menu-title="Image">
 <h2>Image → Local → Access</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-19">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-19">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     IMG["🖼️ Image"]
     IMG_S{"Scope?"}
@@ -1772,13 +1759,13 @@ flowchart TD
 </section>
 <section id="image-local-black-box" class="slide level2" data-menu-title="Image">
 <h2>Image → Local → Black-Box</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-20">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-20">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     IMG["🖼️ Image"]
     IMG_S{"Scope?"}
@@ -1837,7 +1824,7 @@ flowchart TD
 </div>
 </div>
 <div class="fragment" style="text-align: center;">
-<p><img data-src="img/shap-image.png" style="width:90.0%"></p>
+<p><img data-src="img/shap-image.png" style="width:60.0%"></p>
 <div style="font-size: 0.4em; color: #5A7A8A; margin-top: 2px;">
 <p><a href="https://shap.readthedocs.io/en/latest/example_notebooks/image_examples/image_classification/Image%20Multi%20Class.html">Image Reference</a></p>
 </div>
@@ -1862,13 +1849,13 @@ flowchart TD
 </section>
 <section id="image-local-white-box" class="slide level2" data-menu-title="Image">
 <h2>Image → Local → White-Box</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-21">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-21">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     IMG["🖼️ Image"]
     IMG_S{"Scope?"}
@@ -1962,13 +1949,13 @@ The architecture split matters here.
 </section>
 <section id="image-1" class="slide level2" data-menu-title="Image">
 <h2>Image ✅</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.1); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-22">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-22">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     START(("🔍 Explain?"))
     DTYPE{"Data type?"}
@@ -2070,13 +2057,13 @@ Similar shape to image, with one big caveat
 </section>
 <section id="text" class="slide level2" data-menu-title="Text">
 <h2>Text</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-23">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-23">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TXT["📝 Text"]
     TXT_S{"Scope?"}
@@ -2113,13 +2100,13 @@ flowchart TD
 </section>
 <section id="text-scope" class="slide level2" data-menu-title="Text">
 <h2>Text: Scope</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-24">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-24">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TXT["📝 Text"]
     TXT_S{"Scope?"}
@@ -2162,13 +2149,13 @@ Are you explaining the **model as a whole**, or a **single prediction**?
 </section>
 <section id="text-global" class="slide level2" data-menu-title="Text">
 <h2>Text → Global</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-25">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-25">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TXT["📝 Text"]
     TXT_S{"Scope?"}
@@ -2223,13 +2210,13 @@ flowchart TD
 </section>
 <section id="text-local-access" class="slide level2" data-menu-title="Text">
 <h2>Text → Local → Access</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-26">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-26">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TXT["📝 Text"]
     TXT_S{"Scope?"}
@@ -2267,13 +2254,13 @@ flowchart TD
 </section>
 <section id="text-local-black-box" class="slide level2" data-menu-title="Text">
 <h2>Text → Local → Black-Box</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-27">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-27">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TXT["📝 Text"]
     TXT_S{"Scope?"}
@@ -2333,13 +2320,13 @@ flowchart TD
 </section>
 <section id="text-local-white-box" class="slide level2" data-menu-title="Text">
 <h2>Text → Local → White-Box</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.5); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-28">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-28">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     TXT["📝 Text"]
     TXT_S{"Scope?"}
@@ -2406,13 +2393,13 @@ The biggest misconception in NLP explainability. Attention weights show what the
 </section>
 <section id="text-1" class="slide level2" data-menu-title="Text">
 <h2>Text ✅</h2>
-<div style="height: 85vh; overflow: auto; display: flex; justify-content: center;">
+<div style="height: 800px; overflow: hidden; display: flex; justify-content: center;">
 <div style="transform: scale(1.1); transform-origin: top center;">
 <div class="cell" data-reveal="true">
 <div class="cell-output-display">
 <div>
 <p>
-</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-29">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 8}}}%%
+</p><pre class="mermaid mermaid-js" data-tooltip-selector="#mermaid-tooltip-29">%%{init: {'theme': 'base', 'themeVariables': {'primaryColor': '#EBF0F3', 'primaryBorderColor': '#1E3A4C', 'lineColor': '#ADC0CA'}, 'flowchart': {'htmlLabels': false, 'nodeSpacing': 15, 'rankSpacing': 25, 'curve': 'basis', 'padding': 12}}}%%
 flowchart TD
     START(("🔍 Explain?"))
     DTYPE{"Data type?"}
@@ -2569,7 +2556,7 @@ section[data-background-color="#1E3A4C"] li {
 <section id="section-4" class="slide level2" data-background-color="#1E3A4C" data-menu-title="Closing">
 <h2></h2>
 <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; gap: 0.6em; color: #FFFFFF; text-align: center;">
-<p><span class="myfont" style="font-size: 220px;">Thank You!</span></p>
+<p><span class="myfont" style="font-size: 7em;">Thank You!</span></p>
 <p><i class="fa-solid fa-globe" aria-label="globe"></i> cosimameyer.com<br>
 <i class="fa-brands fa-github" aria-label="github"></i> cosimameyer</p>
 <!--
@@ -2764,7 +2751,12 @@ section[data-background-color="#1E3A4C"] li {
         height: 900,
 
         // Factor of the display size that should remain empty around the content
-        margin: 0.1,
+        margin: 4.0e-2,
+
+        // Bounds for smallest/largest possible scale to apply to content
+        minScale: 0.2,
+
+        maxScale: 2,
 
         math: {
           mathjax: 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js',
@@ -2927,6 +2919,17 @@ section[data-background-color="#1E3A4C"] li {
     </script>
     <script>
       (function () {
+        // Only equalize heights when the layout is wide enough for
+        // side-by-side cards; on narrow viewports let them stack naturally.
+        var wideQuery = window.matchMedia('(min-width: 900px)');
+
+        function resetAllCards() {
+          // Global reset: clear min-height on every card in the entire deck
+          // so stale heights from a previous viewport size are gone.
+          document.querySelectorAll('.reveal .slides .method-card')
+            .forEach(function (c) { c.style.minHeight = ''; });
+        }
+
         function equalizeMethodCards(slide) {
           if (!slide) return;
           // Group method-cards by the .columns row they belong to.
@@ -2938,7 +2941,7 @@ section[data-background-color="#1E3A4C"] li {
             cards.forEach(function (c) { c.style.minHeight = ''; });
             var max = 0;
             cards.forEach(function (c) {
-              var h = c.getBoundingClientRect().height;
+              var h = c.offsetHeight; // offsetHeight is in CSS px (unaffected by reveal's scale transform)
               if (h > max) max = h;
             });
             if (max > 0) {
@@ -2954,7 +2957,7 @@ section[data-background-color="#1E3A4C"] li {
             looseCards.forEach(function (c) { c.style.minHeight = ''; });
             var max2 = 0;
             looseCards.forEach(function (c) {
-              var h = c.getBoundingClientRect().height;
+              var h = c.offsetHeight; // offsetHeight is in CSS px (unaffected by reveal's scale transform)
               if (h > max2) max2 = h;
             });
             if (max2 > 0) {
@@ -2966,16 +2969,61 @@ section[data-background-color="#1E3A4C"] li {
         }
 
         function equalizeAll() {
+          // Always reset first so narrow-viewport heights are not inherited.
+          resetAllCards();
+          // Only apply JS-driven equalization on wide layouts.
+          if (!wideQuery.matches) return;
           document.querySelectorAll('.reveal .slides section').forEach(equalizeMethodCards);
+        }
+
+        // Debounced resize handler (~150 ms) to avoid layout thrash on drags.
+        var resizeTimer;
+        function onResize() {
+          clearTimeout(resizeTimer);
+          resizeTimer = setTimeout(equalizeAll, 150);
         }
 
         if (window.Reveal) {
           Reveal.on('ready', equalizeAll);
-          Reveal.on('slidechanged', function (e) { equalizeMethodCards(e.currentSlide); });
-          Reveal.on('resize', equalizeAll);
+          Reveal.on('slidechanged', function (e) {
+            if (wideQuery.matches) {
+              equalizeMethodCards(e.currentSlide);
+            } else {
+              resetAllCards();
+            }
+          });
+          // Re-equalize whenever a fragment is shown or hidden, because
+          // method-cards are often wrapped in .fragment divs and their
+          // natural height is only measurable once they become visible.
+          function onFragment(e) {
+            if (!wideQuery.matches) { resetAllCards(); return; }
+            // Reveal.js fragment transition is ~260 ms; wait 350 ms so
+            // getBoundingClientRect measures the fully-visible card height.
+            setTimeout(function () {
+              var slide = (e.fragment && e.fragment.closest)
+                ? e.fragment.closest('section')
+                : null;
+              equalizeMethodCards(slide || Reveal.getCurrentSlide());
+            }, 350);
+          }
+          Reveal.on('fragmentshown', onFragment);
+          Reveal.on('fragmenthidden', onFragment);
+          Reveal.on('resize', onResize);
         } else {
           document.addEventListener('DOMContentLoaded', equalizeAll);
           window.addEventListener('load', equalizeAll);
+          window.addEventListener('resize', onResize);
+        }
+
+        // Re-run whenever the viewport crosses the 900px breakpoint.
+        wideQuery.addEventListener('change', equalizeAll);
+
+        // Re-run after all fonts (Inter) have loaded, because card heights
+        // depend on text reflow with the actual web font.
+        if (document.fonts && document.fonts.ready) {
+          document.fonts.ready.then(function () {
+            setTimeout(equalizeAll, 100);
+          });
         }
       })();
     </script>

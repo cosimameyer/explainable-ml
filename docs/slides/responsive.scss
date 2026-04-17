@@ -1,0 +1,94 @@
+/*-- scss:rules --*/
+
+/*----------------------------------------------------
+  Global defensive rules (fire at all viewport sizes)
+----------------------------------------------------*/
+
+/* Prevent images from ever overflowing their container */
+.reveal .slides img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Prevent long technical terms from blowing out column widths */
+.reveal .columns > .column {
+  min-width: 0;
+  word-break: break-word;
+}
+
+/*----------------------------------------------------
+  ≤ 900 px  — tablets and smaller desktops
+  Cards stack, two-column layouts become single-column
+----------------------------------------------------*/
+@media (max-width: 900px) {
+
+  /* Stack .columns layouts vertically */
+  .reveal .slides section .columns {
+    display: block !important;
+  }
+
+  /* Prevent stacked cards from inheriting wide-layout heights */
+  .reveal .slides .method-card {
+    min-height: 0 !important;
+  }
+
+  /* Boost base font size so text doesn't become illegible after
+     reveal's uniform scale-down */
+  :root {
+    --r-main-font-size: 32px;
+  }
+}
+
+/*----------------------------------------------------
+  ≤ 720 px  — small tablets / phone landscape
+----------------------------------------------------*/
+@media (max-width: 720px) {
+
+  /* Reduce the reveal margin further to use all available viewport */
+  .reveal .slides {
+    margin: 0.02 !important;
+  }
+
+  /* Hide decorative right-anchored background images that crop badly */
+  .hide-bg-on-mobile {
+    --slide-background-size: 0 !important;
+    background-image: none !important;
+  }
+}
+
+/*----------------------------------------------------
+  max-height ≤ 450 px  — phone landscape (thin viewport)
+----------------------------------------------------*/
+@media (max-height: 450px) {
+
+  /* Trim top/bottom padding on slides so content fits */
+  .reveal .slides section {
+    padding-top: 0.25em !important;
+    padding-bottom: 0.25em !important;
+  }
+
+  /* Compress heading margins to recover vertical space */
+  .reveal h2 {
+    margin-bottom: 0.3em !important;
+  }
+}
+
+/*----------------------------------------------------
+  Touch devices — enlarge interactive controls
+----------------------------------------------------*/
+@media (pointer: coarse) {
+
+  /* Make sure reveal controls are easy to tap */
+  .reveal .controls .navigate-left,
+  .reveal .controls .navigate-right,
+  .reveal .controls .navigate-up,
+  .reveal .controls .navigate-down {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Larger click targets for fragment reveals */
+  .reveal .fragment {
+    cursor: pointer;
+  }
+}
