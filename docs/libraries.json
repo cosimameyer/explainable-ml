@@ -570,6 +570,25 @@
     "_license": "MIT"
   },
   {
+    "name": "shapash",
+    "known_for": "Interactive web app and audit reports for model explainability, with readable labels and quality metrics (stability, consistency, compacity)",
+    "description": "[\"User-friendly Explainability and Interpretability to Develop Reliable and Transparent Machine Learning Models\"](https://github.com/MAIF/shapash)",
+    "repo": "MAIF/shapash",
+    "docs": "https://shapash.readthedocs.io/en/latest/",
+    "pypi": "https://pypi.org/project/shapash/",
+    "global": true,
+    "local": true,
+    "tabular": true,
+    "text": false,
+    "image": false,
+    "timeseries": false,
+    "blackbox": true,
+    "whitebox": true,
+    "_stars": null,
+    "_updated": null,
+    "_license": null
+  },
+  {
     "name": "shapiq",
     "known_for": "Extends the well-known `shap` package for both researchers working on game theory in machine learning, as well as the end-users explaining models",
     "description": "[\"Shapley Interaction Quantification (shapiq) is a Python package for (1) approximating any-order Shapley interactions, (2) benchmarking game-theoretical algorithms for machine learning, (3) explaining feature interactions of model predictions. [...] SHAP-IQ extends individual Shapley values by quantifying the synergy effect between entities (aka players in the jargon of game theory) like explanatory features, data points, or weak learners in ensemble models.\"](https://github.com/mmschlk/shapiq)",
