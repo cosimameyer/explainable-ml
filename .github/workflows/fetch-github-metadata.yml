@@ -4,9 +4,13 @@ on:
   schedule:
     - cron: "0 3 * * 1"   # every Monday at 03:00 UTC
   workflow_dispatch:        # allow manual trigger from the Actions tab
+  push:
+    branches:
+      - main
 
 permissions:
   contents: write
+  pull-requests: write
 
 jobs:
   refresh:
@@ -14,6 +18,9 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.SECRET_WRITE }}
+          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -31,4 +38,20 @@ jobs:
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add docs/libraries.json
           git diff --cached --quiet || git commit -m "chore: refresh GitHub metadata in libraries.json"
-          git push
+
+      - name: Create pull request
+        id: cpr
+        uses: peter-evans/create-pull-request@v7
+        with:
+          token: ${{ secrets.SECRET_WRITE }}
+          commit-message: "chore: refresh GitHub metadata in libraries.json"
+          branch: bot/refresh-github-metadata
+          delete-branch: true
+          title: "chore: refresh GitHub metadata in libraries.json"
+          body: "Automated update of GitHub metadata (stars, last-commit, license) in libraries.json."
+
+      - name: Auto-merge PR
+        if: steps.cpr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.SECRET_WRITE }}
+        run: gh pr merge --squash "${{ steps.cpr.outputs.pull-request-number }}" -R cosimameyer/explainable-ml
