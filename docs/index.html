@@ -241,10 +241,19 @@
   }
   .name-cell { white-space: nowrap; }
 
+  .disclaimer {
+    padding: 12px 40px 20px;
+    font-size: 13px;
+    color: var(--muted);
+  }
+  .disclaimer a { color: var(--brand-navy); text-decoration: none; border-bottom: 1px solid var(--brand-mid); }
+  .disclaimer a:hover { border-bottom-color: var(--brand-navy); }
+
   @media (max-width: 900px) {
     header, .controls, .count, .table-wrap { padding-left: 20px; padding-right: 20px; }
     .control-label { min-width: auto; width: 100%; }
     .known-for { max-width: 260px; }
+    .disclaimer { padding-left: 20px; padding-right: 20px; }
   }
 
   /* ── Tabs ──────────────────────────────────────────────────────────── */
@@ -400,6 +409,10 @@
     <tbody id="body"></tbody>
   </table>
 </div>
+<p class="disclaimer">
+  While the selection of libraries, their descriptions, and associated categories have been compiled with care, inaccuracies or omissions may still occur. Feedback and suggestions are warmly welcomed.
+  <a href="https://github.com/cosimameyer/explainable-ml/issues/new/choose" target="_blank" rel="noopener">Please feel free to open a GitHub issue</a>.
+</p>
 </div><!-- #tab-libraries -->
 
 <div id="tab-guide" class="tab-panel">
