@@ -54,4 +54,4 @@ jobs:
         if: steps.cpr.outputs.pull-request-number != ''
         env:
           GH_TOKEN: ${{ secrets.SECRET_WRITE }}
-        run: gh pr merge --squash --auto "${{ steps.cpr.outputs.pull-request-number }}" -R cosimameyer/explainable-ml
+        run: gh pr merge --squash --admin "${{ steps.cpr.outputs.pull-request-number }}" -R cosimameyer/explainable-ml
