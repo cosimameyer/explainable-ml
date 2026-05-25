@@ -29,6 +29,7 @@ jobs:
         run: python scripts/generate_readme_table.py
 
       - name: Create pull request if README changed
+        id: cpr
         uses: peter-evans/create-pull-request@v7
         with:
           commit-message: "chore: regenerate README table from libraries.json"
@@ -37,3 +38,9 @@ jobs:
           title: "chore: regenerate README table from libraries.json"
           body: "Automated update of the README table generated from `docs/libraries.json`."
           labels: "automated"
+
+      - name: Auto-merge PR
+        if: steps.cpr.outputs.pull-request-number != ''
+        env:
+          GH_TOKEN: ${{ secrets.SECRET_WRITE }}
+        run: gh pr merge --squash --admin "${{ steps.cpr.outputs.pull-request-number }}" -R ${{ github.repository }}
