@@ -40,7 +40,7 @@ jobs:
           labels: "automated"
 
       - name: Auto-merge PR
-        if: steps.cpr.outputs.pull-request-number != ''
+        if: steps.cpr.outputs.pull-request-operation != 'none'
         env:
           GH_TOKEN: ${{ secrets.SECRET_WRITE }}
         run: gh pr merge --squash --admin "${{ steps.cpr.outputs.pull-request-number }}" -R ${{ github.repository }}

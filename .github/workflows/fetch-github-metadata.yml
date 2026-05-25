@@ -23,7 +23,6 @@ jobs:
         uses: actions/checkout@v4
         with:
           token: ${{ secrets.SECRET_WRITE }}
-          fetch-depth: 0
 
       - name: Set up Python
         uses: actions/setup-python@v5
@@ -54,7 +53,7 @@ jobs:
           body: "Automated update of GitHub metadata (stars, last-commit, license) in libraries.json."
 
       - name: Auto-merge PR
-        if: steps.cpr.outputs.pull-request-number != ''
+        if: steps.cpr.outputs.pull-request-operation != 'none'
         env:
           GH_TOKEN: ${{ secrets.SECRET_WRITE }}
         run: gh pr merge --squash --admin "${{ steps.cpr.outputs.pull-request-number }}" -R ${{ github.repository }}
