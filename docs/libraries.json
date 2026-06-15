@@ -622,7 +622,7 @@
     "timeseries": false,
     "blackbox": true,
     "whitebox": true,
-    "_stars": 66340,
+    "_stars": 66339,
     "_updated": "2026-06-13T11:13:42Z",
     "_license": "BSD-3-Clause"
   },
