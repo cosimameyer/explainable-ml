@@ -33,7 +33,7 @@
     "timeseries": false,
     "blackbox": true,
     "whitebox": true,
-    "_stars": 2636,
+    "_stars": 2637,
     "_updated": "2025-10-17T13:23:21Z",
     "_license": "NOASSERTION"
   },
@@ -52,7 +52,7 @@
     "timeseries": false,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 8117,
+    "_stars": 8127,
     "_updated": "2026-01-08T22:38:46Z",
     "_license": "Apache-2.0"
   },
@@ -71,8 +71,8 @@
     "timeseries": true,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 5667,
-    "_updated": "2026-07-07T16:12:37Z",
+    "_stars": 5672,
+    "_updated": "2026-07-18T00:04:39Z",
     "_license": "BSD-3-Clause"
   },
   {
@@ -91,7 +91,7 @@
     "blackbox": true,
     "whitebox": false,
     "_stars": 1481,
-    "_updated": "2026-01-20T01:18:00Z",
+    "_updated": "2026-07-15T11:00:33Z",
     "_license": "GPL-3.0"
   },
   {
@@ -109,8 +109,8 @@
     "timeseries": true,
     "blackbox": true,
     "whitebox": true,
-    "_stars": 9464,
-    "_updated": "2026-07-10T13:03:09Z",
+    "_stars": 9468,
+    "_updated": "2026-07-18T13:17:37Z",
     "_license": "Apache-2.0"
   },
   {
@@ -128,7 +128,7 @@
     "timeseries": false,
     "blackbox": true,
     "whitebox": true,
-    "_stars": 1519,
+    "_stars": 1520,
     "_updated": "2025-07-13T17:34:53Z",
     "_license": "MIT"
   },
@@ -147,7 +147,7 @@
     "timeseries": false,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 2101,
+    "_stars": 2100,
     "_updated": "2024-08-15T19:08:06Z",
     "_license": "BSD-3-Clause"
   },
@@ -167,7 +167,7 @@
     "blackbox": true,
     "whitebox": false,
     "_stars": 121,
-    "_updated": "2026-07-13T01:23:11Z",
+    "_updated": "2026-07-16T12:53:45Z",
     "_license": "MIT"
   },
   {
@@ -204,7 +204,7 @@
     "timeseries": false,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 12913,
+    "_stars": 12920,
     "_updated": "2026-07-10T13:19:18Z",
     "_license": "MIT"
   },
@@ -261,8 +261,8 @@
     "timeseries": false,
     "blackbox": true,
     "whitebox": true,
-    "_stars": 6893,
-    "_updated": "2026-06-29T16:46:59Z",
+    "_stars": 6897,
+    "_updated": "2026-07-13T16:52:55Z",
     "_license": "MIT"
   },
   {
@@ -280,7 +280,7 @@
     "timeseries": false,
     "blackbox": true,
     "whitebox": false,
-    "_stars": 12153,
+    "_stars": 12155,
     "_updated": "2024-07-25T20:32:21Z",
     "_license": "BSD-2-Clause"
   },
@@ -318,7 +318,7 @@
     "timeseries": false,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 4705,
+    "_stars": 4707,
     "_updated": "2023-02-06T16:41:16Z",
     "_license": "Apache-2.0"
   },
@@ -337,7 +337,7 @@
     "timeseries": false,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 662,
+    "_stars": 663,
     "_updated": "2025-03-21T11:01:03Z",
     "_license": "Apache-2.0"
   },
@@ -375,7 +375,7 @@
     "timeseries": false,
     "blackbox": true,
     "whitebox": false,
-    "_stars": 861,
+    "_stars": 860,
     "_updated": "2024-09-03T22:24:30Z",
     "_license": "MIT"
   },
@@ -413,7 +413,7 @@
     "timeseries": true,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 1725,
+    "_stars": 1730,
     "_updated": "2025-11-17T16:09:28Z",
     "_license": "MIT"
   },
@@ -451,7 +451,7 @@
     "timeseries": true,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 20305,
+    "_stars": 20315,
     "_updated": "2026-05-08T13:44:33Z",
     "_license": "MIT"
   },
@@ -489,8 +489,8 @@
     "timeseries": true,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 4944,
-    "_updated": "2026-06-29T09:22:17Z",
+    "_stars": 4955,
+    "_updated": "2026-07-14T11:13:58Z",
     "_license": "MIT"
   },
   {
@@ -527,7 +527,7 @@
     "timeseries": true,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 1873,
+    "_stars": 1875,
     "_updated": "2025-06-18T15:41:19Z",
     "_license": "BSD-3-Clause"
   },
@@ -546,8 +546,8 @@
     "timeseries": false,
     "blackbox": true,
     "whitebox": false,
-    "_stars": 994,
-    "_updated": "2026-06-24T18:23:15Z",
+    "_stars": 995,
+    "_updated": "2026-07-17T11:10:03Z",
     "_license": "MIT"
   },
   {
@@ -565,8 +565,8 @@
     "timeseries": true,
     "blackbox": true,
     "whitebox": true,
-    "_stars": 25606,
-    "_updated": "2026-07-11T00:35:18Z",
+    "_stars": 25622,
+    "_updated": "2026-07-15T22:14:58Z",
     "_license": "MIT"
   },
   {
@@ -584,7 +584,7 @@
     "timeseries": false,
     "blackbox": true,
     "whitebox": true,
-    "_stars": 3241,
+    "_stars": 3245,
     "_updated": "2026-07-09T09:50:14Z",
     "_license": "Apache-2.0"
   },
@@ -603,8 +603,8 @@
     "timeseries": true,
     "blackbox": true,
     "whitebox": true,
-    "_stars": 756,
-    "_updated": "2026-07-11T16:01:17Z",
+    "_stars": 758,
+    "_updated": "2026-07-14T11:56:23Z",
     "_license": "MIT"
   },
   {
@@ -622,8 +622,8 @@
     "timeseries": false,
     "blackbox": true,
     "whitebox": true,
-    "_stars": 66666,
-    "_updated": "2026-07-11T05:42:37Z",
+    "_stars": 66728,
+    "_updated": "2026-07-20T01:52:16Z",
     "_license": "BSD-3-Clause"
   },
   {
@@ -641,8 +641,8 @@
     "timeseries": true,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 9849,
-    "_updated": "2026-07-11T21:42:26Z",
+    "_stars": 9864,
+    "_updated": "2026-07-19T00:22:15Z",
     "_license": "BSD-3-Clause"
   },
   {
@@ -660,8 +660,8 @@
     "timeseries": true,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 11506,
-    "_updated": "2026-07-12T19:10:29Z",
+    "_stars": 11522,
+    "_updated": "2026-07-18T08:51:53Z",
     "_license": "BSD-3-Clause"
   },
   {
@@ -736,8 +736,8 @@
     "timeseries": false,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 3664,
-    "_updated": "2026-07-08T18:28:46Z",
+    "_stars": 3689,
+    "_updated": "2026-07-16T16:11:56Z",
     "_license": "MIT"
   },
   {
@@ -755,7 +755,7 @@
     "timeseries": false,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 1415,
+    "_stars": 1416,
     "_updated": "2023-08-30T22:52:59Z",
     "_license": "Apache-2.0"
   },
@@ -793,7 +793,7 @@
     "timeseries": true,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 3160,
+    "_stars": 3161,
     "_updated": "2026-07-10T19:31:26Z",
     "_license": "BSD-2-Clause"
   },
@@ -812,7 +812,7 @@
     "timeseries": false,
     "blackbox": false,
     "whitebox": true,
-    "_stars": 1094,
+    "_stars": 1096,
     "_updated": "2022-03-12T05:26:04Z",
     "_license": "MIT"
   },
